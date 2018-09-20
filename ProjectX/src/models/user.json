@@ -2,8 +2,14 @@
     "username": "",
     "password": "",
     "email": "",
-    "languages": [],
-    "themes": [],
+    "languages": [{
+        "langName": "",
+        "path": ""
+    }],
+    "themes": [{
+        "themeName": "",
+        "path": ""
+    }],
     "totalInc": "",
     "totalExp": "",
     "categories": []
