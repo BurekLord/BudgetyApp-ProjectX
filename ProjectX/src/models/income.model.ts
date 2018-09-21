@@ -7,6 +7,13 @@ export class Income {
     private category: string;
     private timeStamp: string;
 
+    constructor(iName: string, val: number, cat: string, time: Date) {
+        this.incomeName = iName;
+        this.value = val;
+        this.category = cat;
+        // this.timeStamp = formatDate(newDate, 'dd.MM.yyyy hh:mm:ss', 'en');
+    }
+
     /*setters*/
     public set incomeNameSet(exp: string) {
         this.incomeName = exp;

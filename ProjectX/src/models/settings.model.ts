@@ -9,7 +9,7 @@ export class Settings {
         this.langName = lName;
     }
     public set langPathSet(lPath: string) {
-        this.langName = lPath;
+        this.langPath = lPath;
     }
     public set themeNameSet(tName: string) {
         this.themeName = tName;
@@ -23,7 +23,7 @@ export class Settings {
         return this.langName;
     }
     public get langPathSet() {
-        return this.langName;
+        return this.langPath;
     }
     public get themeNameSet() {
         return this.themeName;

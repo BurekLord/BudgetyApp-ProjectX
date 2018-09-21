@@ -5,6 +5,7 @@
             "email": "",
             "langName": "",
             "themeName": "",
+            "isNew": true /*or false*/ ,
             "totalInc": "",
             "totalExp": "",
             "categoriesExp": {

@@ -7,6 +7,13 @@ export class Expense {
     private category: string;
     private timeStamp: string;
 
+    constructor(eName: string, val: number, cat: string, time: Date) {
+        this.expenseName = eName;
+        this.value = val;
+        this.category = cat;
+        // this.timeStamp = formatDate(newDate, 'dd.MM.yyyy hh:mm:ss', 'en');
+    }
+
     /*setters*/
     public set expenseNameSet(exp: string) {
         this.expenseName = exp;
