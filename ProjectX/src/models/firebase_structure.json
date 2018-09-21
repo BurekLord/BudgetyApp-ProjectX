@@ -3,14 +3,8 @@
         "username": {
             "password": "",
             "email": "",
-            "languages": {
-                /*ime kljuca ovde je ime jezika e.g. "eng", value je path do json fajla sa prevodom*/
-                "langName": ""
-            },
-            "themes": {
-                /*ime kljuca ovde je ime teme e.g. "DarkShit", value je path do json fajla sa settupom za temu*/
-                "themeName": ""
-            },
+            "langName": "",
+            "themeName": "",
             "totalInc": "",
             "totalExp": "",
             "categories": {
@@ -44,6 +38,16 @@
             "timestamp": "",
             //ime kljuca ovde je username korisnika value true*/
             "username": true
+        }
+    },
+    "settings": {
+        "languages": {
+            /*ime kljuca ovde je ime jezika e.g. "eng", value je path do json fajla sa prevodom*/
+            "langName": ""
+        },
+        "themes": {
+            /*ime kljuca ovde je ime teme e.g. "DarkShit", value je path do json fajla sa settupom za temu*/
+            "themeName": ""
         }
     }
 }
