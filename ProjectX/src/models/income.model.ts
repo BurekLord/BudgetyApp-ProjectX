@@ -21,7 +21,7 @@ export class Income {
     custom kao u datom stringu.
     Ne znam zasto nema ovog modula 'formatDate. Pogleaj*/
 
-    // public set timestampSet(newDate: Date) {
+    // public set timeStampSet(newDate: Date) {
     //     this.timeStamp = formatDate(newDate, 'dd.MM.yyyy hh:mm:ss', 'en');
     // }
 

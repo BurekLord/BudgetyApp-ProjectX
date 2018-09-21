@@ -6,7 +6,13 @@ export class User {
     private themeName: string;
     private totalInc: number;
     private totalExp: number;
-    private categories: string[];
+    private categoriesExp: string[];
+
+    constructor(uName: string, pass: string, eMail: string) {
+        this.username = uName;
+        this.password = pass;
+        this.email = eMail;
+    }
 
     /*setters*/
     public set usernameSet(uName: string) {
@@ -37,8 +43,8 @@ export class User {
         }
     }
     /*param array svih kljuceva /username/categories/category iz baze*/
-    public set categoriesSet(cat: string[]) {
-        this.categories = cat;
+    public set categoriesExpSet(cats: string[]) {
+        this.categoriesExp = cats;
     }
 
     /*getters*/
@@ -63,7 +69,7 @@ export class User {
     public get totalExpGet() {
         return this.totalExp;
     }
-    public get categoriesGet() {
-        return this.categories;
+    public get categoriesExpGet() {
+        return this.categoriesExp;
     }
 }

@@ -7,7 +7,7 @@
             "themeName": "",
             "totalInc": "",
             "totalExp": "",
-            "categories": {
+            "categoriesExp": {
                 /*ime kljuca ovde je ime "category" iz expenses e.g. "food"*/
                 /*treba li nam categorija za incomes?*/
                 "category": true
