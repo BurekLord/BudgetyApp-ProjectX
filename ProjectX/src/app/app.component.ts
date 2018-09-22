@@ -11,11 +11,5 @@ import { AngularFireDatabase } from 'angularfire2/database';
 export class AppComponent implements OnInit {
     constructor(public af: AngularFireDatabase) {}
 
-    ngOnInit() {
-        // this.af
-        //     .list('/users')
-        //     .push({ name: 'Mile', pass: '123' })
-        //     .then(console.log, console.error);
-        // this.af.list('/users').valueChanges();
-    }
+    ngOnInit() {}
 }

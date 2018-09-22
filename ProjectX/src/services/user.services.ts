@@ -7,6 +7,11 @@ export class UserService {
     constructor(private db: AngularFireDatabase) {}
 
     getAllUsers(): User[] {
+        // this.af
+        //     .list('/users')
+        //     .push({ name: 'Mile', pass: '123' })
+        //     .then(console.log, console.error);
+        // this.af.list('/users').valueChanges();
         return undefined;
     }
 
