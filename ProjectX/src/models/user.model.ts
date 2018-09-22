@@ -16,18 +16,18 @@ export class User {
     private expenses: Expense[];
 
     constructor(
-        userName: string,
-        password: string,
-        email: string,
-        isNew: boolean,
-        langName: string,
-        themeName: string,
-        totalInc: number,
-        totalExp: number,
-        categoriesExp: string[],
-        categoriesInc: string[],
-        incomes: Income[],
-        expenses: Expense[]
+        userName?: string,
+        password?: string,
+        email?: string,
+        isNew?: boolean,
+        langName?: string,
+        themeName?: string,
+        totalInc?: number,
+        totalExp?: number,
+        categoriesExp?: string[],
+        categoriesInc?: string[],
+        incomes?: Income[],
+        expenses?: Expense[]
     ) {}
 
     /**
