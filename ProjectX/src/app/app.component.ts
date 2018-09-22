@@ -1,3 +1,4 @@
+import { User } from './../models/user.model';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -8,8 +9,13 @@ import { AngularFireDatabase } from 'angularfire2/database';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+    constructor(public af: AngularFireDatabase) {}
 
-    constructor() {}
-
-    ngOnInit() {}
+    ngOnInit() {
+        // this.af
+        //     .list('/users')
+        //     .push({ name: 'Mile', pass: '123' })
+        //     .then(console.log, console.error);
+        // this.af.list('/users').valueChanges();
+    }
 }
