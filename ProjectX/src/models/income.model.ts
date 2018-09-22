@@ -5,44 +5,100 @@ export class Income {
     private incomeName: string;
     private value: number;
     private category: string;
-    private timeStamp: string;
+    private timeStamp: Date;
+    private userId: string;
 
-    constructor(iName: string, val: number, cat: string, time: Date) {
-        this.incomeName = iName;
-        this.value = val;
-        this.category = cat;
-        // this.timeStamp = formatDate(newDate, 'dd.MM.yyyy hh:mm:ss', 'en');
+    constructor(
+        incomeName?: string,
+        value?: number,
+        category?: string,
+        timeStamp?: Date,
+        userId?: string
+    ) {
+        this.incomeName = incomeName;
+        this.value = value;
+        this.category = category;
+        this.timeStamp = timeStamp;
+        this.userId = userId;
     }
 
-    /*setters*/
-    public set incomeNameSet(exp: string) {
-        this.incomeName = exp;
-    }
-    public set valueSet(val: number) {
-        this.value = val;
-    }
-    public set categorySet(cat: string) {
-        this.category = cat;
-    }
-    /*das mu obekat new Date() i formatira vreme i datum
-    custom kao u datom stringu.
-    Ne znam zasto nema ovog modula 'formatDate. Pogleaj*/
-
-    // public set timeStampSet(newDate: Date) {
-    //     this.timeStamp = formatDate(newDate, 'dd.MM.yyyy hh:mm:ss', 'en');
-    // }
-
-    /*getters*/
-    public get expenseNameGet() {
+    /**
+     * Getter $incomeName
+     * @return {string}
+     */
+    public get $incomeName(): string {
         return this.incomeName;
     }
-    public get valueGet() {
+
+    /**
+     * Getter $value
+     * @return {number}
+     */
+    public get $value(): number {
         return this.value;
     }
-    public get categoryGet() {
+
+    /**
+     * Getter $category
+     * @return {string}
+     */
+    public get $category(): string {
         return this.category;
     }
-    public get timeStampGet() {
+
+    /**
+     * Getter $timeStamp
+     * @return {Date}
+     */
+    public get $timeStamp(): Date {
         return this.timeStamp;
+    }
+
+    /**
+     * Getter $userId
+     * @return {string}
+     */
+    public get $userId(): string {
+        return this.userId;
+    }
+
+    /**
+     * Setter $incomeName
+     * @param {string} value
+     */
+    public set $incomeName(value: string) {
+        this.incomeName = value;
+    }
+
+    /**
+     * Setter $value
+     * @param {number} value
+     */
+    public set $value(value: number) {
+        this.value = value;
+    }
+
+    /**
+     * Setter $category
+     * @param {string} value
+     */
+    public set $category(value: string) {
+        this.category = value;
+    }
+
+    /**
+     * Setter $timeStamp
+     * @param {Date} value
+     */
+    public set $timeStamp(value: Date) {
+        this.timeStamp = value;
+    }
+
+    /**
+     * Setter $userId
+     * @param {string} value
+     */
+    public set $userId(value: string) {
+        this.userId = value;
     }
 }

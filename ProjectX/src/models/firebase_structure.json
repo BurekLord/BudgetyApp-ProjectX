@@ -1,4 +1,4 @@
-{
+{ /*svidja mi se*/
     "users": {
         "username": {
             "password": "",
@@ -29,7 +29,7 @@
             "category": "",
             "timestamp": "",
             /*ime kljuca ovde je username korisnika value true*/
-            "username": true
+            "userId": true
         }
     },
     "expenses": {
@@ -38,7 +38,7 @@
             "category": "",
             "timestamp": "",
             //ime kljuca ovde je username korisnika value true*/
-            "username": true
+            "userId": true
         }
     },
     "settings": {
