@@ -1,3 +1,4 @@
+import { User } from './../models/user.model';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -8,8 +9,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-
-    constructor() {}
+    constructor(public af: AngularFireDatabase) {}
 
     ngOnInit() {}
 }
