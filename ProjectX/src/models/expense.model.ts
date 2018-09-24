@@ -1,21 +1,20 @@
 // import { formatDate } from '@angular/common';
 
 export class Expense {
-    /*fields*/
-    private expenseName: string;
+    private name: string;
     private value: number;
     private category: string;
     private timeStamp: Date;
     private userId: string;
 
     constructor(
-        expenseName: string,
+        name: string,
         value: number,
         category: string,
         timeStamp: Date,
         userId: string
     ) {
-        this.expenseName = expenseName;
+        this.name = name;
         this.value = value;
         this.category = category;
         this.timeStamp = timeStamp;
@@ -23,82 +22,82 @@ export class Expense {
     }
 
     /**
-     * Getter $expenseName
+     * Getter name
      * @return {string}
      */
-    public get $expenseName(): string {
-        return this.expenseName;
+    public getName(): string {
+        return this.name;
     }
 
     /**
-     * Getter $value
+     * Getter value
      * @return {number}
      */
-    public get $value(): number {
+    public getValue(): number {
         return this.value;
     }
 
     /**
-     * Getter $category
+     * Getter category
      * @return {string}
      */
-    public get $category(): string {
+    public getCategory(): string {
         return this.category;
     }
 
     /**
-     * Getter $timeStamp
+     * Getter timeStamp
      * @return {Date}
      */
-    public get $timeStamp(): Date {
+    public getTimeStamp(): Date {
         return this.timeStamp;
     }
 
     /**
-     * Getter $userId
+     * Getter userId
      * @return {string}
      */
-    public get $userId(): string {
+    public getUserId(): string {
         return this.userId;
     }
 
     /**
-     * Setter $expenseName
+     * Setter name
      * @param {string} value
      */
-    public set $expenseName(value: string) {
-        this.expenseName = value;
+    public setName(value: string) {
+        this.name = value;
     }
 
     /**
-     * Setter $value
+     * Setter value
      * @param {number} value
      */
-    public set $value(value: number) {
+    public setValue(value: number) {
         this.value = value;
     }
 
     /**
-     * Setter $category
+     * Setter category
      * @param {string} value
      */
-    public set $category(value: string) {
+    public setCategory(value: string) {
         this.category = value;
     }
 
     /**
-     * Setter $timeStamp
+     * Setter timeStamp
      * @param {Date} value
      */
-    public set $timeStamp(value: Date) {
+    public setTimeStamp(value: Date) {
         this.timeStamp = value;
     }
 
     /**
-     * Setter $userId
+     * Setter userId
      * @param {string} value
      */
-    public set $userId(value: string) {
+    public setUserId(value: string) {
         this.userId = value;
     }
 }

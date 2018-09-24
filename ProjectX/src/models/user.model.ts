@@ -1,224 +1,219 @@
-import { Income } from './income.model';
-import { Expense } from './expense.model';
-
 export class User {
-    private userName: string;
+    private name: string;
     private password: string;
     private email: string;
-    private isNew: boolean;
-    private langName: string;
-    private themeName: string;
+    private language: string;
+    private theme: string;
+    // ovo cemo da zadrzimo jer ce dobavljanje svih income a expensova biti zaseban poziv ka bazi
+    // i kad god se taj poziv obavi izracunacemo totalInc i totalExp
     private totalInc: number;
     private totalExp: number;
-    private categoriesExp: string[];
+    private categoriesExp: string[]; // niz kategorija
     private categoriesInc: string[];
-    private incomes: Income[];
-    private expenses: Expense[];
+    // fora da cemo morati nekako u bazi da napravimo parametrizovani poziv za listu refova za odredjeno vreme. al ne znam kako.
+    // za sad nek ostane da poziva sve stalno
+    private incomeRefs: string[]; // niz $key od income tabele. ovde ce biti referenca za kljuceve inkome i expensa
+    private expenseRefs: string[]; // niz $key od expense tabele
 
     constructor(
-        userName?: string,
+        name?: string,
         password?: string,
         email?: string,
-        isNew?: boolean,
-        langName?: string,
-        themeName?: string,
+        language?: string,
+        theme?: string,
         totalInc?: number,
         totalExp?: number,
         categoriesExp?: string[],
         categoriesInc?: string[],
-        incomes?: Income[],
-        expenses?: Expense[]
-    ) {}
-
-    /**
-     * Getter $userName
-     * @return {string}
-     */
-    public get $userName(): string {
-        return this.userName;
+        incomeRefs?: string[],
+        expenseRefs?: string[]
+    ) {
+        this.name = name;
+        this.password = password;
+        this.email = email;
+        this.language = language;
+        this.theme = theme;
+        this.totalInc = totalInc;
+        this.totalExp = totalExp;
+        this.categoriesExp = categoriesExp;
+        this.categoriesInc = categoriesInc;
+        this.incomeRefs = incomeRefs;
+        this.expenseRefs = expenseRefs;
     }
 
     /**
-     * Getter $password
+     * Getter name
      * @return {string}
      */
-    public get $password(): string {
+    public getName(): string {
+        return this.name;
+    }
+
+    /**
+     * Getter password
+     * @return {string}
+     */
+    public getPassword(): string {
         return this.password;
     }
 
     /**
-     * Getter $email
+     * Getter email
      * @return {string}
      */
-    public get $email(): string {
+    public getEmail(): string {
         return this.email;
     }
 
     /**
-     * Getter $isNew
-     * @return {boolean}
-     */
-    public get $isNew(): boolean {
-        return this.isNew;
-    }
-
-    /**
-     * Getter $langName
+     * Getter language
      * @return {string}
      */
-    public get $langName(): string {
-        return this.langName;
+    public getLanguage(): string {
+        return this.language;
     }
 
     /**
-     * Getter $themeName
+     * Getter theme
      * @return {string}
      */
-    public get $themeName(): string {
-        return this.themeName;
+    public getTheme(): string {
+        return this.theme;
     }
 
     /**
-     * Getter $totalInc
+     * Getter totalInc
      * @return {number}
      */
-    public get $totalInc(): number {
+    public getTotalInc(): number {
         return this.totalInc;
     }
 
     /**
-     * Getter $totalExp
+     * Getter totalExp
      * @return {number}
      */
-    public get $totalExp(): number {
+    public getTotalExp(): number {
         return this.totalExp;
     }
 
     /**
-     * Getter $categoriesExp
+     * Getter categoriesExp
      * @return {string[]}
      */
-    public get $categoriesExp(): string[] {
+    public getCategoriesExp(): string[] {
         return this.categoriesExp;
     }
 
     /**
-     * Getter $categoriesInc
+     * Getter categoriesInc
      * @return {string[]}
      */
-    public get $categoriesInc(): string[] {
+    public getCategoriesInc(): string[] {
         return this.categoriesInc;
     }
 
     /**
-     * Getter $incomes
-     * @return {Income[]}
+     * Getter incomeRefs
+     * @return {string[]}
      */
-    public get $incomes(): Income[] {
-        return this.incomes;
+    public getIncomeRefs(): string[] {
+        return this.incomeRefs;
     }
 
     /**
-     * Getter $expenses
-     * @return {Expense[]}
+     * Getter expenseRefs
+     * @return {string[]}
      */
-    public get $expenses(): Expense[] {
-        return this.expenses;
+    public getExpenseRefs(): string[] {
+        return this.expenseRefs;
     }
 
     /**
-     * Setter $userName
+     * Setter name
      * @param {string} value
      */
-    public set $userName(value: string) {
-        this.userName = value;
+    public setName(value: string) {
+        this.name = value;
     }
 
     /**
-     * Setter $password
+     * Setter password
      * @param {string} value
      */
-    public set $password(value: string) {
+    public setPassword(value: string) {
         this.password = value;
     }
 
     /**
-     * Setter $email
+     * Setter email
      * @param {string} value
      */
-    public set $email(value: string) {
+    public setEmail(value: string) {
         this.email = value;
     }
 
     /**
-     * Setter $isNew
-     * @param {boolean} value
-     */
-    public set $isNew(value: boolean) {
-        this.isNew = value;
-    }
-
-    /**
-     * Setter $langName
+     * Setter language
      * @param {string} value
      */
-    public set $langName(value: string) {
-        this.langName = value;
+    public setLanguage(value: string) {
+        this.language = value;
     }
 
     /**
-     * Setter $themeName
+     * Setter theme
      * @param {string} value
      */
-    public set $themeName(value: string) {
-        this.themeName = value;
+    public setTheme(value: string) {
+        this.theme = value;
     }
 
     /**
-     * Setter $totalInc
+     * Setter totalInc
      * @param {number} value
      */
-    public set $totalInc(value: number) {
+    public setTotalInc(value: number) {
         this.totalInc = value;
     }
 
     /**
-     * Setter $totalExp
+     * Setter totalExp
      * @param {number} value
      */
-    public set $totalExp(value: number) {
+    public setTotalExp(value: number) {
         this.totalExp = value;
     }
 
     /**
-     * Setter $categoriesExp
+     * Setter categoriesExp
      * @param {string[]} value
      */
-    public set $categoriesExp(value: string[]) {
+    public setCategoriesExp(value: string[]) {
         this.categoriesExp = value;
     }
 
     /**
-     * Setter $categoriesInc
+     * Setter categoriesInc
      * @param {string[]} value
      */
-    public set $categoriesInc(value: string[]) {
+    public setCategoriesInc(value: string[]) {
         this.categoriesInc = value;
     }
 
     /**
-     * Setter $incomes
-     * @param {Income[]} value
+     * Setter incomeRefs
+     * @param {string[]} value
      */
-    public set $incomes(value: Income[]) {
-        this.incomes = value;
+    public setIncomeRefs(value: string[]) {
+        this.incomeRefs = value;
     }
 
     /**
-     * Setter $expenses
-     * @param {Expense[]} value
+     * Setter expenseRefs
+     * @param {string[]} value
      */
-    public set $expenses(value: Expense[]) {
-        this.expenses = value;
+    public setExpenseRefs(value: string[]) {
+        this.expenseRefs = value;
     }
 }
