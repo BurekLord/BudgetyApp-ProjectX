@@ -12,15 +12,23 @@ import { map } from 'rxjs/operators';
 import { User } from './../models/user.model';
 @Injectable()
 export class UserService {
-    usersCollection: AngularFirestoreCollection<User> = this.db.collection<
-        User
-    >(config.users_endpoint);
+    usersCollection: AngularFirestoreCollection<any> = this.db.collection<User>(
+        config.users_endpoint
+    );
     userDocument: AngularFirestoreDocument<User>;
     usersObservable: Observable<any>;
 
     constructor(public db: AngularFirestore) {}
 
     getAllUsers() {
+        // this.db
+        //     .collection(config.users_endpoint)
+        //     .get()
+        //     .subscribe(querySnapshot => {
+        //         querySnapshot.forEach(doc => {
+        //             console.log(doc.data());
+        //         });
+        //     });
         return this.db
             .collection(config.users_endpoint)
             .snapshotChanges()
@@ -47,7 +55,8 @@ export class UserService {
     }
 
     addUser(user: User) {
-        return this.usersCollection.add(JSON.parse(JSON.stringify(user)));
+        // return this.usersCollection.add(JSON.parse(JSON.stringify(user)));
+        return this.usersCollection.add({ ...User.modelToJson(user) });
     }
 
     removeUser(id: string) {

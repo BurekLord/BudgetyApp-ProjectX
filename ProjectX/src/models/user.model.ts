@@ -16,17 +16,17 @@ export class User {
     private expenseRefs: string[]; // niz $key od expense tabele
 
     constructor(
-        name?: string,
-        password?: string,
-        email?: string,
-        language?: string,
-        theme?: string,
-        totalInc?: number,
-        totalExp?: number,
-        categoriesExp?: string[],
-        categoriesInc?: string[],
-        incomeRefs?: string[],
-        expenseRefs?: string[]
+        name: string,
+        password: string,
+        email: string,
+        language: string,
+        theme: string,
+        totalInc: number,
+        totalExp: number,
+        categoriesExp: string[],
+        categoriesInc: string[],
+        incomeRefs: string[],
+        expenseRefs: string[]
     ) {
         this.name = name;
         this.password = password;

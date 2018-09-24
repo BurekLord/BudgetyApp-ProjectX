@@ -11,18 +11,20 @@ export class AppComponent implements OnInit {
     constructor(public us: UserService) {
         let users;
         const user = new User(
-            'asd',
-            'asd',
-            'asd',
-            'asd',
-            'asd',
+            'yoyoyo',
+            'yoyoyo',
+            'yoyoyo',
+            'yoyoyo',
+            'yoyoyo',
             12,
             12,
+            undefined,
+            undefined,
             undefined,
             undefined
         );
 
-        // us.addUser(user);
+        us.addUser(user);
 
         us.getAllUsers().subscribe(res => {
             users = res;
