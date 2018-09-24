@@ -1,3 +1,4 @@
+import { Income } from './../models/income.model';
 import { DBService } from './../services/db.service';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.services';
@@ -11,16 +12,33 @@ import { config } from '../services/config';
 })
 export class AppComponent implements OnInit {
     constructor(public us: UserService, public db: DBService) {
-        let users;
+        let items;
         const user = new User('jaje', 'jaje', 'jaje', 'jaje', 'jaje');
-
         // us.addUser(user);
 
         // db.addItem<User>(config.users_endpoint, user);
 
         db.getAllCollectionItems(config.users_endpoint).subscribe(res => {
-            users = res;
-            console.log('call from appComponent getAllUsers', users);
+            items = res;
+            console.log('call from appComponent getAllCollectionItems', items);
+        });
+
+        // setTimeout(() => {
+        //     db.addItem<Income>(
+        //         config.incomes_endpoint,
+        //         new Income(
+        //             'income 1',
+        //             123415,
+        //             'kategorija',
+        //             new Date(),
+        //             items[0].id
+        //         )
+        //     );
+        // }, 1000);
+
+        db.getAllCollectionItems(config.incomes_endpoint).subscribe(res => {
+            items = res;
+            console.log('call from appComponent getAllCollectionItems', items);
         });
 
         // setTimeout(() => {

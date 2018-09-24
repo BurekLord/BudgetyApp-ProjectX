@@ -1,11 +1,12 @@
+import { Income } from './../models/income.model';
 import { User } from './../models/user.model';
 export class Converter {
     constructor() {}
 
     static modelToJson<T>(model: T): JSON {
+        let json;
         if (model instanceof User) {
             console.log('INSIDE THE CONVERTER');
-            let json;
             json = {
                 name: model.getName() ? model.getName() : null,
                 password: model.getPassword() ? model.getPassword() : null,
@@ -26,6 +27,15 @@ export class Converter {
                 expenseRefs: model.getExpenseRefs()
                     ? model.getExpenseRefs()
                     : null
+            };
+            return json;
+        } else if (model instanceof Income) {
+            json = {
+                name: model.getName() ? model.getName() : null,
+                value: model.getValue() ? model.getValue() : null,
+                category: model.getCategory() ? model.getCategory() : null,
+                timeStamp: model.getTimeStamp() ? model.getTimeStamp() : null,
+                userId: model.getUserId() ? model.getUserId() : null
             };
             return json;
         }
