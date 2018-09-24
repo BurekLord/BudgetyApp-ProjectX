@@ -1,7 +1,6 @@
-import { User } from './../models/user.model';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { UserService } from '../services/user.services';
+import { User } from '../models/user.model';
 
 @Component({
     selector: 'app-root',
@@ -9,7 +8,28 @@ import { AngularFireDatabase } from 'angularfire2/database';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-    constructor(public af: AngularFireDatabase) {}
+    constructor(public us: UserService) {
+        let users;
+        const user = new User(
+            'asd',
+            'asd',
+            'asd',
+            'asd',
+            'asd',
+            12,
+            12,
+            undefined,
+            undefined
+        );
+
+        // us.addUser(user);
+
+        us.getAllUsers().subscribe(res => {
+            users = res;
+            console.log('call from appComponent getAllUsers', users);
+        });
+        // console.log('call from appComponent getUser', us.getUser(undefined));
+    }
 
     ngOnInit() {}
 }
