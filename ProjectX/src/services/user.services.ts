@@ -15,7 +15,7 @@ export class UserService {
     usersCollection: AngularFirestoreCollection<any> = this.db.collection<User>(
         config.users_endpoint
     );
-    userDocument: AngularFirestoreDocument<User>;
+    userDocument: AngularFirestoreDocument<any>;
     usersObservable: Observable<any>;
 
     constructor(public db: AngularFirestore) {}
@@ -48,26 +48,21 @@ export class UserService {
 
     updateUser(id: string, update: User) {
         this.userDocument = this.db.doc<User>(`${config.users_endpoint}/${id}`);
-        this.userDocument
-            .update(update)
-            .then(console.log)
-            .catch(console.error);
+        this.userDocument.update({ ...User.modelToJson(update) });
     }
 
     addUser(user: User) {
         // return this.usersCollection.add(JSON.parse(JSON.stringify(user)));
+        // koristimo ... spred operator da raspodelimo polja u objekat. posto ovo sranje samo tako oce da radi. ne prima reference
         return this.usersCollection.add({ ...User.modelToJson(user) });
     }
 
     removeUser(id: string) {
         this.userDocument = this.db.doc<User>(`${config.users_endpoint}/${id}`);
-        this.userDocument
-            .delete()
-            .then(console.log)
-            .catch(console.error);
+        this.userDocument.delete();
     }
 
-    getUser(user: User): User {
+    getUser(id: string): User {
         return undefined;
     }
 }

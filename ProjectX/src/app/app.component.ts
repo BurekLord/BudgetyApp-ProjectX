@@ -10,26 +10,30 @@ import { User } from '../models/user.model';
 export class AppComponent implements OnInit {
     constructor(public us: UserService) {
         let users;
-        const user = new User(
-            'yoyoyo',
-            'yoyoyo',
-            'yoyoyo',
-            'yoyoyo',
-            'yoyoyo',
-            12,
-            12,
-            undefined,
-            undefined,
-            undefined,
-            undefined
-        );
+        // const user = new User(
+        //     'zazazazazazaza',
+        //     'zazazazazazaza',
+        //     'zazazazazazaza',
+        //     'zazazazazazaza',
+        //     'zazazazazazaza'
+        // );
 
-        us.addUser(user);
+        // us.addUser(user);
 
         us.getAllUsers().subscribe(res => {
             users = res;
             console.log('call from appComponent getAllUsers', users);
         });
+
+        // setTimeout(() => {
+        //     us.updateUser(users[0].id, user);
+        // }, 1000);
+
+        // remove user must be called after user list is defined
+        // setTimeout(function() {
+        //     us.removeUser(users[0].id);
+        // }, 1000);
+
         // console.log('call from appComponent getUser', us.getUser(undefined));
     }
 
