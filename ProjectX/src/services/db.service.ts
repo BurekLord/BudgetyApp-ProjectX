@@ -5,12 +5,9 @@ import {
     AngularFirestore,
     AngularFirestoreCollection
 } from 'angularfire2/firestore';
-import { config } from './config';
 
 import { pipe, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-
-import { User } from './../models/user.model';
 
 @Injectable()
 export class DBService {
@@ -18,9 +15,13 @@ export class DBService {
     document: AngularFirestoreDocument<any>;
     usersObservable: Observable<any>;
 
+    getOptions: GetOptions = {
+        source: 'cache'
+    };
+
     constructor(public db: AngularFirestore) {}
 
-    getAllCollectionItems(endpoint: string): Observable<any> {
+    getAllCollectionItemsWithIds(endpoint: string): Observable<any> {
         return this.db
             .collection(endpoint)
             .snapshotChanges()
@@ -40,22 +41,101 @@ export class DBService {
 
     updateItem<T>(endpoint: string, id: string, update: T) {
         this.document = this.db.doc<T>(`${endpoint}/${id}`);
-        this.document.update({ ...Converter.modelToJson<T>(update) });
+        this.document
+            .update({ ...Converter.modelToJson<T>(update) })
+            .then(
+                () =>
+                    console.log(
+                        `Document updated on ${endpoint} with id ${id}`
+                    ),
+                () =>
+                    console.error(
+                        `Document update REJECTED on ${endpoint} with id ${id}`
+                    )
+            );
     }
 
     addItem<T>(endpoint: string, item: T) {
         this.collection = this.db.collection<T>(endpoint);
         // return this.usersCollection.add(JSON.parse(JSON.stringify(user)));
         // koristimo ... spred operator da raspodelimo polja u objekat. posto ovo sranje samo tako oce da radi. ne prima reference
-        return this.collection.add({ ...Converter.modelToJson<T>(item) });
+        return this.collection.add({ ...Converter.modelToJson<T>(item) }).then(
+            resolved => {
+                console.log(
+                    `Document added on ${endpoint} with id ${resolved.id}`
+                );
+                return resolved;
+            },
+            rejected =>
+                console.error(`Document add on ${endpoint} REJECTED`, rejected)
+        );
     }
 
     removeItem<T>(endpoint: string, id: string) {
         this.document = this.db.doc<T>(`${endpoint}/${id}`);
-        this.document.delete();
+        this.document
+            .delete()
+            .then(
+                resolved =>
+                    console.log(
+                        `Document from ${endpoint} with id ${id} was DELETED`
+                    ),
+                rejected =>
+                    console.error(
+                        `Document from ${endpoint} with id ${id} was NOT DELETED`,
+                        rejected
+                    )
+            );
     }
 
-    getUser(id: string): User {
-        return undefined;
+    // OLD\ GET ITEM
+    // getItem<T>(endpoint: string, id: string) {
+    //     this.document = this.db.doc<T>(`${endpoint}/${id}`);
+    //     return this.document.get().pipe(
+    //         map(res => {
+    //             return res.data()
+    //                 ? Converter.jsonToModel(res.data(), endpoint)
+    //                 : console.error('No data in response');
+    //         })
+    //     );
+    // }
+
+    getItem<T>(endpoint: string, id: string) {
+        this.document = this.db.doc<T>(`${endpoint}/${id}`);
+        return this.document
+            .get()
+            .toPromise()
+            .then(res => {
+                if (res.data()) {
+                    return Converter.jsonToModel(res.data(), endpoint);
+                } else {
+                    this.document
+                        .get(this.getOptions)
+                        .toPromise()
+                        .then(cache => {
+                            return Converter.jsonToModel(
+                                cache.data(),
+                                endpoint
+                            );
+                        })
+                        .catch(err => {
+                            console.log('No data on server or in cache', err);
+                        });
+                }
+            });
     }
 }
+
+// TODO: QUERIES
+
+//    db.collection("cities").where("capital", "==", true)
+//     .get()
+//     .then(function(querySnapshot) {
+//         querySnapshot.forEach(function(doc) {
+//             // doc.data() is never undefined for query doc snapshots
+//             console.log(doc.id, " => ", doc.data());
+//         });
+//     })
+//     .catch(function(error) {
+//         console.log("Error getting documents: ", error);
+//     });

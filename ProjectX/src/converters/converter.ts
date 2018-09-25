@@ -1,3 +1,4 @@
+import { config } from './../services/config';
 import { Income } from './../models/income.model';
 import { User } from './../models/user.model';
 export class Converter {
@@ -49,30 +50,37 @@ export class Converter {
         return json;
     }
 
-    // static jsonToModel<T>(json: any): T {
-    //     if ( T instanceof (User)) {
+    static jsonToModel(json: any, endpoint: string) {
+        if (endpoint === config.users_endpoint) {
+            return new User(
+                json.name ? json.name : undefined,
+                json.password ? json.password : undefined,
+                json.email ? json.password : undefined,
+                json.language ? json.language : undefined,
+                json.theme ? json.theme : undefined,
+                json.totalInc ? json.totalInc : undefined,
+                json.totalExp ? json.totalExp : undefined,
+                json.categoriesExp ? json.categoriesExp : undefined,
+                json.categoriesInc ? json.categoriesInc : undefined,
+                json.incomeRefs ? json.incomeRefs : undefined,
+                json.expenseRefs ? json.expenseRefs : undefined
+            );
+        } else if (endpoint === config.incomes_endpoint) {
+            return new Income(
+                json.name ? json.name : undefined,
+                json.value ? json.value : undefined,
+                json.category ? json.category : undefined,
+                json.timeStamp ? json.timeStamp : undefined,
+                json.userId ? json.userId : undefined
+            );
+        }
+    }
 
-    //     return new User(
-    //         json.name ? json.name : undefined,
-    //         json.password ? json.password : undefined,
-    //         json.email ? json.password : undefined,
-    //         json.language ? json.language : undefined,
-    //         json.theme ? json.theme : undefined,
-    //         json.totalInc ? json.totalInc : undefined,
-    //         json.totalExp ? json.totalExp : undefined,
-    //         json.categoriesExp ? json.categoriesExp : undefined,
-    //         json.categoriesInc ? json.categoriesInc : undefined,
-    //         json.incomeRefs ? json.incomeRefs : undefined,
-    //         json.expenseRefs ? json.expenseRefs : undefined
-    //     );
-    //     }
-    // }
-
-    // static jsonToModelList(json: any[]): model[] {
-    //     const models = [];
-    //     json.forEach(el => {
-    //         models.push(model.jsonToModel(el));
-    //     });
-    //     return models;
-    // }
+    static jsonToModelList(json: any[], endpoint: string) {
+        const models = [];
+        json.forEach(el => {
+            models.push(this.jsonToModel(el, endpoint));
+        });
+        return models;
+    }
 }
