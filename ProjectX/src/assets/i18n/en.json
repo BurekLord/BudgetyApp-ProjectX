@@ -2,5 +2,24 @@
     "EXAMPLE": {
         "SOMETEXT": "Some text",
         "TEXT_WITH_PARAMETERS": "Some text with parameter {{value}}"
+    },
+    "TITLE": {
+        "SETUP_GREETINGS1": "Thank you for choosing ProjectX app",
+        "SETUP_GREETINGS2": "Please let us help you set up your account..."
+    },
+    "BUTTON": {
+        "ADD": "Add",
+        "BACK": "Back",
+        "NEXT": "Next",
+        "SKIP": "Skip",
+        "COMPLETE": "Complete",
+        "END": "End"
+    },
+    "INPUT": {
+        "SETUP_BALANCE": "First lets enter your current balance..."
+    },
+    "LABEL": {
+        "BALANCE": "Balance",
+        "COMMON_INCOMES": "Common incomes"
     }
 }

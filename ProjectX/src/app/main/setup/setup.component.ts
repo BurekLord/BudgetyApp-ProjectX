@@ -6,14 +6,15 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./setup.component.scss']
 })
 export class SetupComponent implements OnInit {
-    inputText = 'First lets enter yout current balance';
-    btnNextText = 'Next';
-    btnAddText = 'Add';
+    inputText = 'INPUT.SETUP_BALANCE';
+    btnNextText = 'BUTTON.NEXT';
+    btnAddText = 'BUTTON.ADD';
+    btnBackText = 'BUTTON.BACK';
     tables = [
-        { name: 'balance', value: ['12312454,123'] },
-        { name: 'common incomes', value: ['cat1', 'cat2'] }
+        { name: 'LABEL.BALANCE', value: ['12312454,123'] },
+        { name: 'LABEL.COMMON_INCOMES', value: ['cat1', 'cat2'] }
     ];
-    btnEndText = 'Skip';
+    btnEndText = 'BUTTON.SKIP';
 
     constructor() {}
 
