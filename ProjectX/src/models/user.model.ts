@@ -12,8 +12,8 @@ export class User {
     private categoriesInc: string[];
     // fora da cemo morati nekako u bazi da napravimo parametrizovani poziv za listu refova za odredjeno vreme. al ne znam kako.
     // za sad nek ostane da poziva sve stalno
-    private incomeRefs: string[]; // niz $key od income tabele. ovde ce biti referenca za kljuceve inkome i expensa
-    private expenseRefs: string[]; // niz $key od expense tabele
+    private incomeRefs: string; // referenca od incomes documenta incomes collekcije
+    private expenseRefs: string; // niz $key od expense tabele
 
     constructor(
         name?: string,
@@ -25,8 +25,8 @@ export class User {
         totalExp?: number,
         categoriesExp?: string[],
         categoriesInc?: string[],
-        incomeRefs?: string[],
-        expenseRefs?: string[]
+        incomeRefs?: string,
+        expenseRefs?: string
     ) {
         this.name = name;
         this.password = password;
@@ -165,17 +165,17 @@ export class User {
 
     /**
      * Getter incomeRefs
-     * @return {string[]}
+     * @return {string}
      */
-    public getIncomeRefs(): string[] {
+    public getIncomeRefs(): string {
         return this.incomeRefs;
     }
 
     /**
      * Getter expenseRefs
-     * @return {string[]}
+     * @return {string}
      */
-    public getExpenseRefs(): string[] {
+    public getExpenseRefs(): string {
         return this.expenseRefs;
     }
 
@@ -253,17 +253,17 @@ export class User {
 
     /**
      * Setter incomeRefs
-     * @param {string[]} value
+     * @param {string} value
      */
-    public setIncomeRefs(value: string[]) {
+    public setIncomeRefs(value: string) {
         this.incomeRefs = value;
     }
 
     /**
      * Setter expenseRefs
-     * @param {string[]} value
+     * @param {string} value
      */
-    public setExpenseRefs(value: string[]) {
+    public setExpenseRefs(value: string) {
         this.expenseRefs = value;
     }
 }
