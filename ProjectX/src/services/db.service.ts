@@ -8,6 +8,7 @@ import {
 
 import { pipe, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { firestore } from 'firebase';
 
 @Injectable()
 export class DBService {
@@ -15,7 +16,7 @@ export class DBService {
     document: AngularFirestoreDocument<any>;
     usersObservable: Observable<any>;
 
-    getOptions: GetOptions = {
+    getOptions: firestore.GetOptions = {
         source: 'cache'
     };
 

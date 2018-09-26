@@ -1,25 +1,70 @@
-import { AngularFirestore } from 'angularfire2/firestore';
-constructor(db: AngularFirestore)
-// list all items
-this.items = db.collection('/items').valueChanges();
-    console.log(this.items);
-    let subscription;
-    this.items.subscribe(el => {
-    subscription = el[0];
-    console.log(subscription);
-    });
+ constructor(public db: DBService) {
+        // let items;
+        // const user = new User(
+        //     'kis kis',
+        //     'kis kis',
+        //     'kis kis',
+        //     'kis kis',
+        //     'toto',
+        //     0,
+        //     0,
+        //     undefined,
+        //     undefined,
+        //     undefined,
+        //     undefined
+        // );
 
-// list all users
-this.users = db.collection('/users').valueChanges();
-this.users.subscribe(console.log);
+        // db.addItem<User>(config.users_endpoint, user).then(res => console.log(res ? res.id : 'nodata');
+        // setTimeout(() => {
+        //     db.addItem<Income>(
+        //         config.incomes_endpoint,
+        //         new Income(
+        //             'income 1',
+        //             123415,
+        //             'kategorija',
+        //             new Date(),
+        //             items[0].id
+        //         )
+        //     );
+        // }, 1000);
 
-// add user to users
-db.collection('/users')
-    .add(User.userToJSON(new User()))
-    // dock ref je user id
-    .then(function(docRef) {
-        console.log('Document written with ID: ', docRef.id);
-    })
-    .catch(function(error) {
-        console.error('Error adding document: ', error);
-    });
+        // setTimeout(() => {
+        //     db.addItem<Expense>(
+        //         config.incomes_endpoint,
+        //         new Expense(
+        //             'Expense 1',
+        //             123415,
+        //             'kategorija',
+        //             new Date(),
+        //             items[0].id
+        //         )
+        //     );
+        // }, 1000);
+
+        // db.getAllCollectionItems(config.users_endpoint).subscribe(res => {
+        //     items = res;
+        //     console.log('call from appComponent getAllCollectionItems', items);
+        // });
+
+        db.getItem(config.users_endpoint, 'B7BlHvwM1eQkJp2X3Fsb').then(
+            console.log
+        );
+
+        // db.getAllCollectionItems(config.incomes_endpoint).subscribe(res => {
+        //     items = res;
+        //     console.log('call from appComponent getAllCollectionItems', items);
+        // });
+
+        // db.getAllCollectionItems(config.expenses_endpoint).subscribe(res => {
+        //     items = res;
+        //     console.log('call from appComponent getAllCollectionItems', items);
+        // });
+
+        // setTimeout(() => {
+        //     db.updateItem(config.users_endpoint, '1kSrUrnjwoTxVeU8x0p7', user);
+        // }, 1000);
+
+        // setTimeout(function() {
+        //     db.removeItem(config.users_endpoint, '534pVAhtFFomVMSh88FV');
+        // }, 1000);
+    }

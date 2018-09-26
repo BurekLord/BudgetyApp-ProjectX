@@ -1,7 +1,8 @@
 .main {
-    // width: 100vw;
-    // height: 75vh;
-    // margin: 0%;
-    display: flex;
+
+    display: grid;
+
+    grid-gap: 2rem;
+
     position: relative;
 }

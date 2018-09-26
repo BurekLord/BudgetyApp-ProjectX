@@ -1,3 +1,4 @@
+import { Expense } from './../models/expense.model';
 import { config } from './../services/config';
 import { Income } from './../models/income.model';
 import { User } from './../models/user.model';
@@ -7,7 +8,6 @@ export class Converter {
     static modelToJson<T>(model: T): JSON {
         let json;
         if (model instanceof User) {
-            console.log('INSIDE THE CONVERTER');
             json = {
                 name: model.getName() ? model.getName() : null,
                 password: model.getPassword() ? model.getPassword() : null,
@@ -39,6 +39,14 @@ export class Converter {
                 userId: model.getUserId() ? model.getUserId() : null
             };
             return json;
+        } else if (model instanceof Expense) {
+            json = {
+                name: model.getName() ? model.getName() : null,
+                value: model.getValue() ? model.getValue() : null,
+                category: model.getCategory() ? model.getCategory() : null,
+                timeStamp: model.getTimeStamp() ? model.getTimeStamp() : null,
+                userId: model.getUserId() ? model.getUserId() : null
+            };
         }
     }
 
@@ -67,6 +75,14 @@ export class Converter {
             );
         } else if (endpoint === config.incomes_endpoint) {
             return new Income(
+                json.name ? json.name : undefined,
+                json.value ? json.value : undefined,
+                json.category ? json.category : undefined,
+                json.timeStamp ? json.timeStamp : undefined,
+                json.userId ? json.userId : undefined
+            );
+        } else if (endpoint === config.expenses_endpoint) {
+            return new Expense(
                 json.name ? json.name : undefined,
                 json.value ? json.value : undefined,
                 json.category ? json.category : undefined,
