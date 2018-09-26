@@ -1,3 +1,33 @@
-<p>
-    Setup component works!!
-</p>
+<div class="setup">
+
+    <div>
+        Thank you for choosing ProjectX app
+    </div>
+    <div>
+        Please let us help you set up your account...
+    </div>
+
+    <div class="input">
+        <div class="input__text">
+            {{inputText}}
+        </div>
+        <button class="btn">
+            Back
+        </button>
+        <input #input type="text" class="input__field">
+        <button class="btn">
+            {{btnNextText}}
+        </button>
+        <button class="btn">
+            {{btnAddText}}
+        </button>
+    </div>
+
+    <div *ngFor="let table of tables">
+        <ul>
+            <li *ngFor="let item of table.value">{{item}}</li>
+        </ul>
+    </div>
+
+    <button class="btn">{{btnEndText}}</button>
+</div>
