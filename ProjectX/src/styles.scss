@@ -23,3 +23,20 @@ body {
     color: $primary-color;
     box-sizing: border-box;
 }
+
+button {
+    // TODO: change border
+    border: none;
+
+    background-color: transparent;
+    padding: .5rem;
+    width: 10rem;
+}
+
+input {
+    // TODO: change border    
+    border: none;
+    border-bottom: 1px solid blue;
+
+    padding: .5rem;
+}
