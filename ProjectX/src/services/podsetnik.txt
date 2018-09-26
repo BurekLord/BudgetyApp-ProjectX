@@ -1,0 +1,25 @@
+import { AngularFirestore } from 'angularfire2/firestore';
+constructor(db: AngularFirestore)
+// list all items
+this.items = db.collection('/items').valueChanges();
+    console.log(this.items);
+    let subscription;
+    this.items.subscribe(el => {
+    subscription = el[0];
+    console.log(subscription);
+    });
+
+// list all users
+this.users = db.collection('/users').valueChanges();
+this.users.subscribe(console.log);
+
+// add user to users
+db.collection('/users')
+    .add(User.userToJSON(new User()))
+    // dock ref je user id
+    .then(function(docRef) {
+        console.log('Document written with ID: ', docRef.id);
+    })
+    .catch(function(error) {
+        console.error('Error adding document: ', error);
+    });

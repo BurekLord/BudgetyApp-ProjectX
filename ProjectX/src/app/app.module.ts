@@ -2,8 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { environment } from './../environments/environment';
 import { AppComponent } from './app.component';
@@ -13,6 +13,7 @@ import { MainComponent } from './main/main.component';
 import { DescriptionComponent } from './main/description/description.component';
 import { LoginComponent } from './main/login/login.component';
 
+import { UserService } from './../services/user.services';
 @NgModule({
     declarations: [
         AppComponent,
@@ -26,9 +27,9 @@ import { LoginComponent } from './main/login/login.component';
         BrowserModule,
         FormsModule,
         AngularFireModule.initializeApp(environment.firebase),
-        AngularFireDatabaseModule // for database
+        AngularFirestoreModule
     ],
-    providers: [],
+    providers: [UserService],
     bootstrap: [AppComponent]
 })
 export class AppModule {}
