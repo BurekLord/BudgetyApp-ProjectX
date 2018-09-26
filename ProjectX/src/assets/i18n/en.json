@@ -1,0 +1,6 @@
+{
+    "EXAMPLE": {
+        "SOMETEXT": "Some text",
+        "TEXT_WITH_PARAMETERS": "Some text with parameter {{value}}"
+    }
+}
