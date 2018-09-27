@@ -17,7 +17,6 @@ import { FooterComponent } from './footer/footer.component';
 import { MainComponent } from './main/main.component';
 import { LoginComponent } from './main/login/login.component';
 
-import { UserService } from './../services/user.services';
 import { SetupComponent } from './main/setup/setup.component';
 
 // import ngx-translate and the http loader
@@ -51,7 +50,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
             }
         })
     ],
-    providers: [UserService, DBService],
+    providers: [DBService],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

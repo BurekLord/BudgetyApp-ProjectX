@@ -69,7 +69,8 @@ export class LoginComponent implements OnInit {
                     user.emailVerified,
                     user.photoURL,
                     user.metadata.lastSignInTime,
-                    user.uid
+                    user.uid,
+                    user.metadata.creationTime === user.metadata.lastSignInTime
                 );
             } else {
                 console.log('User IS singed OUT');
