@@ -15,7 +15,6 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MainComponent } from './main/main.component';
-import { DescriptionComponent } from './main/description/description.component';
 import { LoginComponent } from './main/login/login.component';
 
 import { UserService } from './../services/user.services';
@@ -31,7 +30,6 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
         HeaderComponent,
         FooterComponent,
         MainComponent,
-        DescriptionComponent,
         LoginComponent,
         SetupComponent,
         BalanceComponent,
