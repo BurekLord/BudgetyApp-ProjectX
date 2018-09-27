@@ -59,7 +59,6 @@ export class LoginComponent implements OnInit {
         // Finally, render the FirebaseUI Auth interface:
         // The start method will wait until the DOM is loaded.
         ui.start('#firebaseui-auth-container', uiConfig);
-
         // when user loges in observable
         auth().onAuthStateChanged(function(user) {
             if (user) {
