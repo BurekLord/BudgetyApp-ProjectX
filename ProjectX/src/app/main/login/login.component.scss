@@ -1,7 +1,25 @@
 .login {
     display: flex;
-    align-items: center;
-    justify-content: center;
 
-    border: 1px solid black;
+    text-align: center;
+
+
+    .firebase-login {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50%;
+
+        border: 1px solid black;
+    }
+
+    .description {
+        text-align: center;
+        word-wrap: normal;
+        display: flex;
+        align-items: center;
+        width: 50%;
+
+        border: 1px solid black;
+    }
 }

@@ -1950,6 +1950,10 @@ di@^0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/di/-/di-0.0.1.tgz#806649326ceaa7caa3306d75d985ea2748ba913c"
 
+dialog-polyfill@^0.4.7:
+  version "0.4.10"
+  resolved "https://registry.yarnpkg.com/dialog-polyfill/-/dialog-polyfill-0.4.10.tgz#c4ea68a0deed4abb59a6a2a025c548b278cd532e"
+
 diff@^3.1.0, diff@^3.2.0:
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/diff/-/diff-3.5.0.tgz#800c0dd1e0a8bfbc95835c202ad220fe317e5a12"
@@ -2564,6 +2568,12 @@ firebase@^5.5.1:
     "@firebase/messaging" "0.3.6"
     "@firebase/polyfill" "0.3.3"
     "@firebase/storage" "0.2.3"
+
+firebaseui@^3.4.1:
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/firebaseui/-/firebaseui-3.4.1.tgz#f440f1cc653d98f97caadf8f58f7d67b83d00fde"
+  dependencies:
+    dialog-polyfill "^0.4.7"
 
 flush-write-stream@^1.0.0:
   version "1.0.3"
