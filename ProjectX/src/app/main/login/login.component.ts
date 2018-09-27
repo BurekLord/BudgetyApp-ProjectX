@@ -1,12 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { UserCredentials } from './../../../models/userCredentials.model';
+import { Component, OnInit, Output } from '@angular/core';
 import { auth } from 'firebase/app';
 import { auth as authUi } from 'firebaseui';
+import { EventEmitter } from 'events';
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+    public static userCredentials = new UserCredentials();
+
     displayName;
     email;
     emailVerified;
@@ -59,15 +63,15 @@ export class LoginComponent implements OnInit {
         // when user loges in observable
         auth().onAuthStateChanged(function(user) {
             if (user) {
-                console.log('User singed IN', user);
-                this.displayName = user.displayName;
-                this.email = user.email;
-                this.emailVerified = user.emailVerified;
-                this.photoURL = user.photoURL;
-                this.isAnonymous = user.isAnonymous;
-                this.uid = user.uid;
-                this.providerData = user.providerData;
-                // ...
+                console.log('User singed IN', user.displayName);
+                LoginComponent.userCredentials = new UserCredentials(
+                    user.displayName,
+                    user.email,
+                    user.emailVerified,
+                    user.photoURL,
+                    user.metadata.lastSignInTime,
+                    user.uid
+                );
             } else {
                 console.log('User IS singed OUT');
             }

@@ -5,7 +5,6 @@ export class UserCredentials {
         public emailVerified?: any,
         public photoURL?: any,
         public lastSignInTime?: any,
-        public uid?: string,
-        public providerData?: any
+        public uid?: string
     ) {}
 }
