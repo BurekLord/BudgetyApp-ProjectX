@@ -5,7 +5,10 @@
     },
     "TITLE": {
         "SETUP_GREETINGS1": "Thank you for choosing ProjectX app",
-        "SETUP_GREETINGS2": "Please let us help you set up your account..."
+        "SETUP_GREETINGS2": "Please let us help you set up your account...",
+        "BALANCE_TITLE": "Balance",
+        "BALANCE_CURRENT": "Current balance",
+        "BALANCE_OVERTIME": "Money spent this month"
     },
     "BUTTON": {
         "ADD": "Add",
