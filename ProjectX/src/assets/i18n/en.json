@@ -5,9 +5,7 @@
     },
     "TITLE": {
         "SETUP_GREETINGS1": "Thank you for choosing ProjectX app",
-        "SETUP_GREETINGS2": "Please let us help you set up your account...",
-        "SETTINGS_LANGUAGE": "Language",
-        "SETTINGS_THEME": "Theme"
+        "SETUP_GREETINGS2": "Please let us help you set up your account..."
     },
     "BUTTON": {
         "ADD": "Add",
@@ -22,6 +20,8 @@
     },
     "LABEL": {
         "BALANCE": "Balance",
-        "COMMON_INCOMES": "Common incomes"
+        "COMMON_INCOMES": "Common incomes",
+        "SETTINGS_LANGUAGE": "Language",
+        "SETTINGS_THEME": "Theme"
     }
 }
