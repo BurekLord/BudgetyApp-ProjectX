@@ -46,11 +46,18 @@ export class AppComponent implements OnInit {
                         //     this.db.updateItem<User>(
                         //         config.users_endpoint,
                         //         this.currUserCredentials.uid,
-                        //         new User(this.currUserCredentials.uid, 'KOJA KOJA')
+                        //         this.mockUser(this.currUserCredentials.uid)
                         //     );
                         // }, 5000);
                     });
             }
         });
+    }
+
+    mockUser(id: string) {
+        const mock = new User(id);
+        mock.setBalance(12345);
+
+        return mock;
     }
 }
