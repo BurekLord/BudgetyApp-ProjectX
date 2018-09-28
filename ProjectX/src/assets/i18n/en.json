@@ -6,8 +6,7 @@
     },
     "TITLE": {
         "SETUP_GREETINGS1": "Thank you for choosing ProjectX app",
-        "SETUP_GREETINGS2": "Please let us help you set up your account...",
-        "STATISTICS_TITLE": "Statistics"
+        "SETUP_GREETINGS2": "Please let us help you set up your account..."
     },
     "BUTTON": {
         "ADD": "Add",
