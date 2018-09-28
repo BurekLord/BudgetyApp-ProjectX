@@ -56,20 +56,19 @@ export class DBService {
             );
     }
 
-    addItem<T>(endpoint: string, item: T) {
+    addItem<T>(endpoint: string, item: T, id: string) {
         this.collection = this.db.collection<T>(endpoint);
         // return this.usersCollection.add(JSON.parse(JSON.stringify(user)));
         // koristimo ... spred operator da raspodelimo polja u objekat. posto ovo sranje samo tako oce da radi. ne prima reference
-        return this.collection.add({ ...Converter.modelToJson<T>(item) }).then(
-            resolved => {
-                console.log(
-                    `Document added on ${endpoint} with id ${resolved.id}`
-                );
-                return resolved;
-            },
-            rejected =>
-                console.error(`Document add on ${endpoint} REJECTED`, rejected)
-        );
+        return this.collection
+            .doc(id)
+            .set({ ...Converter.modelToJson<T>(item) })
+            .then(
+                () => {
+                    console.log(`Document added on ${endpoint}`);
+                },
+                () => console.error(`Document add on ${endpoint} REJECTED`)
+            );
     }
 
     removeItem<T>(endpoint: string, id: string) {
@@ -124,6 +123,10 @@ export class DBService {
                         });
                 }
             });
+    }
+
+      getSpecificItem<T>(endpoint: string, id: string) {
+        return this.db.doc<T>(`${endpoint}/${id}`).snapshotChanges();
     }
 }
 

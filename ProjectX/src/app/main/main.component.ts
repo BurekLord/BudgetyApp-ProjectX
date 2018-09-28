@@ -1,15 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import { UserCredentials } from './../../models/userCredentials.model';
+import { User } from './../../models/user.model';
+import {
+    Component,
+    OnInit,
+    Input,
+    OnChanges,
+    SimpleChanges
+} from '@angular/core';
 
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+    selector: 'app-main',
+    templateUrl: './main.component.html',
+    styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements OnInit {
+// in every component we use userData or userCredentials we will implement OnChanges angular life cycle hook
+export class MainComponent implements OnInit, OnChanges {
+    // to use user data or userCredentials we need a @Input on that component (app-component provides the data)
+    @Input()
+    userData: User;
+    @Input()
+    userCredentials: UserCredentials;
 
-  constructor() { }
+    currentUser: User;
+    constructor() {}
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+        // in the console we can see that onInit userData is undefined. because it is called async
+        console.log('onInit user data TEST', this.userData);
+    }
 
+    ngOnChanges(changes: SimpleChanges) {
+        // OnChanges is subscribed on the @Input and every time input gets new data it is called
+        console.log('On changes', changes.userData.currentValue);
+
+        // now we have up to date current user with the latest data...
+        // EVERY TIME user is changed in the database, this will be triggered
+        this.currentUser = changes.userData.currentValue;
+    }
 }

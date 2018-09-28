@@ -2,6 +2,7 @@ import { Expense } from './../models/expense.model';
 import { config } from './../services/config';
 import { Income } from './../models/income.model';
 import { User } from './../models/user.model';
+import { throwError } from 'rxjs';
 export class Converter {
     constructor() {}
 
@@ -9,6 +10,7 @@ export class Converter {
         let json;
         if (model instanceof User) {
             json = {
+                id: model.getId() ? model.getId() : throwError(console.error),
                 name: model.getName() ? model.getName() : null,
                 password: model.getPassword() ? model.getPassword() : null,
                 email: model.getEmail() ? model.getEmail() : null,
@@ -61,6 +63,7 @@ export class Converter {
     static jsonToModel(json: any, endpoint: string) {
         if (endpoint === config.users_endpoint) {
             return new User(
+                json.id ? json.id : throwError(console.error),
                 json.name ? json.name : undefined,
                 json.password ? json.password : undefined,
                 json.email ? json.password : undefined,

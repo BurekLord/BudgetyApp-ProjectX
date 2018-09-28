@@ -1,4 +1,5 @@
 export class User {
+    private id: string;
     private name: string;
     private password: string;
     private email: string;
@@ -16,6 +17,7 @@ export class User {
     private expenseRefs: string; // niz $key od expense tabele
 
     constructor(
+        id: string,
         name?: string,
         password?: string,
         email?: string,
@@ -28,6 +30,7 @@ export class User {
         incomeRefs?: string,
         expenseRefs?: string
     ) {
+        this.id = id;
         this.name = name;
         this.password = password;
         this.email = email;
@@ -39,6 +42,22 @@ export class User {
         this.categoriesInc = categoriesInc;
         this.incomeRefs = incomeRefs;
         this.expenseRefs = expenseRefs;
+    }
+
+    /**
+     * Getter id
+     * @return {string}
+     */
+    public getId(): string {
+        return this.id;
+    }
+
+    /**
+     * Setter id
+     * @param {string} value
+     */
+    public setId(value: string) {
+        this.id = value;
     }
 
     /**

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { User } from './../../models/user.model';
+import { Component, OnInit, Input } from '@angular/core';
 import { auth } from 'firebase/app';
+import { UserCredentials } from '../../models/userCredentials.model';
 
 @Component({
     selector: 'app-header',
@@ -7,6 +9,11 @@ import { auth } from 'firebase/app';
     styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+    @Input()
+    userData: User;
+    @Input()
+    userCredentials: UserCredentials;
+
     constructor() {}
 
     onSignOUt() {
