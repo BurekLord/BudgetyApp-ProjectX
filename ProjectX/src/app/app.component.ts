@@ -9,7 +9,6 @@ import { TranslateService } from '@ngx-translate/core';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-    translateParamExample = { value: '42' };
     constructor(public db: DBService, translate: TranslateService) {
         translate.setDefaultLang('en');
         translate.use('en');
