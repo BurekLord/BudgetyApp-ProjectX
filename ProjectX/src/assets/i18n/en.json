@@ -2,11 +2,12 @@
     "EXAMPLE": {
         "SOMETEXT": "Some text",
         "TEXT_WITH_PARAMETERS": "Some text with parameter {{value}}",
-        "STATISTICS_TITLE": "Statistics"
+
     },
     "TITLE": {
         "SETUP_GREETINGS1": "Thank you for choosing ProjectX app",
-        "SETUP_GREETINGS2": "Please let us help you set up your account..."
+        "SETUP_GREETINGS2": "Please let us help you set up your account...",
+        "STATISTICS_TITLE": "Statistics"
     },
     "BUTTON": {
         "ADD": "Add",
