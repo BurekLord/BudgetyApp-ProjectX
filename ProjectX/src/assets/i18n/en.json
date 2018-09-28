@@ -6,9 +6,8 @@
     "TITLE": {
         "SETUP_GREETINGS1": "Thank you for choosing ProjectX app",
         "SETUP_GREETINGS2": "Please let us help you set up your account...",
-        "BALANCE_TITLE": "Balance",
-        "BALANCE_CURRENT": "Current balance",
-        "BALANCE_OVERTIME": "Money spent this month"
+        "BALANCE_TITLE": "Balance"
+
     },
     "BUTTON": {
         "ADD": "Add",
@@ -23,6 +22,8 @@
     },
     "LABEL": {
         "BALANCE": "Balance",
-        "COMMON_INCOMES": "Common incomes"
+        "COMMON_INCOMES": "Common incomes",
+        "BALANCE_CURRENT": "Current balance",
+        "BALANCE_OVERTIME": "Money spent this month"
     }
 }
