@@ -5,7 +5,8 @@
     },
     "TITLE": {
         "SETUP_GREETINGS1": "Thank you for choosing ProjectX app",
-        "SETUP_GREETINGS2": "Please let us help you set up your account..."
+        "SETUP_GREETINGS2": "Please let us help you set up your account...",
+        "CATEGORIES_TITLE": "Categories"
     },
     "BUTTON": {
         "ADD": "Add",
@@ -19,6 +20,7 @@
         "SETUP_BALANCE": "First lets enter your current balance..."
     },
     "LABEL": {
+        "CATEGORY_NAME": "{{categoryName}}",
         "BALANCE": "Balance",
         "COMMON_INCOMES": "Common incomes"
     }
