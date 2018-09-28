@@ -125,30 +125,9 @@ export class DBService {
             });
     }
 
-    //   getSpecificItem<T>(endpoint: string, id: string) {
-    //     this.document = this.db.doc<T>(`${endpoint}/${id}`);
-    //     return this.document
-    //         .get()
-    //         .toPromise()
-    //         .then(res => {
-    //             if (res.data()) {
-    //                 return Converter.jsonToModel(res.data(), endpoint);
-    //             } else {
-    //                 this.document
-    //                     .get(this.getOptions)
-    //                     .toPromise()
-    //                     .then(cache => {
-    //                         return Converter.jsonToModel(
-    //                             cache.data(),
-    //                             endpoint
-    //                         );
-    //                     })
-    //                     .catch(err => {
-    //                         console.log('No data on server or in cache', err);
-    //                     });
-    //             }
-    //         });
-    // }
+      getSpecificItem<T>(endpoint: string, id: string) {
+        return this.db.doc<T>(`${endpoint}/${id}`).snapshotChanges();
+    }
 }
 
 // TODO: QUERIES

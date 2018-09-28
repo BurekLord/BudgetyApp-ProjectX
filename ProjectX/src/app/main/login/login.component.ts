@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { LoginService } from './../../../services/login.service';
 
@@ -8,7 +8,7 @@ import { LoginService } from './../../../services/login.service';
     styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-    constructor(public loginService: LoginService) {
+    constructor(private loginService: LoginService) {
         loginService.startLogInUI();
     }
     ngOnInit() {}

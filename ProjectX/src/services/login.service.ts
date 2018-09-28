@@ -1,7 +1,7 @@
 import { User } from './../models/user.model';
 import { config } from './config';
 import { DBService } from './db.service';
-import { Observable, from } from 'rxjs';
+import { Observable, from, Subject } from 'rxjs';
 import { Injectable, OnInit } from '@angular/core';
 
 import { auth } from 'firebase/app';
@@ -11,15 +11,16 @@ import { UserCredentials } from './../models/userCredentials.model';
 
 @Injectable()
 export class LoginService implements OnInit {
-    public userCredentials: UserCredentials;
-    public userData: any;
+    userCredentials: Subject<UserCredentials> = new Subject();
+    userData: Subject<any> = new Subject();
+    // userData: Observable<any>;
 
+    //
     ui: any;
     uiConfig: any;
 
     constructor(private dbService: DBService) {
         // firebaseUI login
-
         // Initialize the FirebaseUI Widget using Firebase.
         this.ui = new authUi.AuthUI(auth());
 
@@ -64,21 +65,23 @@ export class LoginService implements OnInit {
                         user.metadata.lastSignInTime &&
                     new Date().toString() ===
                         new Date(user.metadata.creationTime).toString();
-                console.log(user);
-                this.userCredentials = new UserCredentials(
-                    user.displayName,
-                    user.email,
-                    user.emailVerified,
-                    user.photoURL,
-                    user.metadata.lastSignInTime,
-                    user.uid,
-                    user.metadata.creationTime === user.metadata.lastSignInTime
+                this.userCredentials.next(
+                    new UserCredentials(
+                        user.displayName,
+                        user.email,
+                        user.emailVerified,
+                        user.photoURL,
+                        user.metadata.lastSignInTime,
+                        user.uid,
+                        user.metadata.creationTime ===
+                            user.metadata.lastSignInTime
+                    )
                 );
 
                 // probao sam ovu funkcionalnost da izdvojim iz ovog auth() metoda, al nema sanse, ne znam...
                 if (isFirstTime) {
                     // if new user, create new user data
-                    const newUser = new User(this.userCredentials.uid);
+                    const newUser = new User(user.uid);
                     this.dbService.addItem<User>(
                         config.users_endpoint,
                         newUser,
@@ -86,12 +89,13 @@ export class LoginService implements OnInit {
                     );
                 } else if (!isFirstTime) {
                     // ako nije nov uzmi njegove podatke i storuj ih u userData
-                    this.dbService
-                        .getItem<User>(
-                            config.users_endpoint,
-                            this.userCredentials.uid
-                        )
-                        .then(res => (this.userData = res));
+                    // this.dbService
+                    //     .getItem<User>(config.users_endpoint, user.uid)
+                    //     .then(res => this.userData.next(res));
+                    // this.userData = this.dbService.getSpecificItem(
+                    //     config.users_endpoint,
+                    //     user.uid
+                    // );
                 }
             } else {
                 console.log('User IS singed OUT');
