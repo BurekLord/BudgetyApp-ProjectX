@@ -1,3 +1,34 @@
-<p>
-    Setup component works!!
-</p>
+<div class="setup">
+
+    <div>
+        {{'TITLE.SETUP_GREETINGS1' | translate}}
+    </div>
+    <div>
+        {{'TITLE.SETUP_GREETINGS2' | translate}}
+    </div>
+
+    <div class="input">
+        <div class="input__text">
+            {{inputText | translate}}
+        </div>
+        <button class="btn">
+            {{btnBackText | translate}}
+        </button>
+        <input #input type="text" class="input__field">
+        <button class="btn">
+            {{btnNextText | translate}}
+        </button>
+        <button class="btn">
+            {{btnAddText | translate}}
+        </button>
+    </div>
+
+    <div *ngFor="let table of tables">
+        <div>{{table.name | translate}}</div>
+        <ul>
+            <li *ngFor="let item of table.value">{{item}}</li>
+        </ul>
+    </div>
+
+    <button class="btn">{{btnEndText | translate}}</button>
+</div>
