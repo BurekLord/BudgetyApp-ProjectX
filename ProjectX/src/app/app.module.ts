@@ -23,6 +23,7 @@ import { SetupComponent } from './main/setup/setup.component';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { LoginService } from '../services/login.service';
 @NgModule({
     declarations: [
         AppComponent,
@@ -50,7 +51,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
             }
         })
     ],
-    providers: [DBService],
+    providers: [DBService, LoginService],
     bootstrap: [AppComponent]
 })
 export class AppModule {}
