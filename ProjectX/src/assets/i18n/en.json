@@ -20,6 +20,14 @@
     },
     "LABEL": {
         "BALANCE": "Balance",
-        "COMMON_INCOMES": "Common incomes"
+        "COMMON_INCOMES": "Common incomes",
+        "COMMON_EXPENSES": "Common expenses",
+        "DEFAULT_TIME_FRAME": "Default time frame"
+    },
+    "TIME_DATE": {
+        "DAY": "Day",
+        "WEEK": "Week",
+        "MONTH": "Month",
+        "YEAR": "Year"
     }
 }
