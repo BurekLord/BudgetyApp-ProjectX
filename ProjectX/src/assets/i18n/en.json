@@ -16,7 +16,10 @@
         "END": "End"
     },
     "INPUT": {
-        "SETUP_BALANCE": "First lets enter your current balance..."
+        "SETUP_BALANCE": "First lets enter your current balance...",
+        "SETUP_INCOME": "Now enter the name your source of income...",
+        "SETUP_EXPENSE": "Now enter some general categories of of things you spend your money on ...",
+        "SETUP_TIME_FRAME": "Now enter the time frame you would like to be a default for you in this app..."
     },
     "LABEL": {
         "BALANCE": "Balance",

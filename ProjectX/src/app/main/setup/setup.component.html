@@ -18,17 +18,17 @@
         <button class="btn" (click)="onNext(input.value)">
             {{btnNextText | translate}}
         </button>
-        <button class="btn" (click)="onAdd()">
+        <button class="btn" [hidden]="!btnAddShow" (click)="onAdd(input.value)">
             {{btnAddText | translate}}
         </button>
     </div>
 
     <div class="table-box" *ngFor="let table of tables; let i = index" [hidden]="!table.isShown">
         <div>{{table.name | translate}}</div>
-        <ul *ngIf="i !== 3">
+        <ul [hidden]="i === 3">
             <li *ngFor="let item of table.value">{{item}}</li>
         </ul>
-        <div *ngIf="i === 3">
+        <div [hidden]="i !== 3">
             <div *ngFor="let time of table.value">{{time | translate}}</div>
         </div>
     </div>
