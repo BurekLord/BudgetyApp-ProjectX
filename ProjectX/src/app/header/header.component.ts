@@ -25,6 +25,7 @@ export class HeaderComponent implements OnInit {
             .catch(function(error) {
                 console.log('Error happened while singing OUT!', error);
             });
+        window.location.reload();
     }
 
     ngOnInit() {}

@@ -1,6 +1,6 @@
 <main class="main">
-    <app-login></app-login>
-    <app-setup *ngIf="true"></app-setup>
+    <app-login [hidden]="!showLogin"></app-login>
+    <app-setup [hidden]="!showSetup"></app-setup>
     <app-balance></app-balance>
     <app-categories></app-categories>
     <app-statistic></app-statistic>

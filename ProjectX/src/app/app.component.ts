@@ -27,25 +27,30 @@ export class AppComponent implements OnInit {
 
     ngOnInit() {
         this.loginService.userCredentials.subscribe(res => {
-            this.currUserCredentials = res;
-            this.db
-                .getSpecificItem(
-                    config.users_endpoint,
-                    this.currUserCredentials.uid
-                )
-                .subscribe(userData => {
-                    this.currUserData = Converter.jsonToModel(
-                        userData.payload.data(),
-                        config.users_endpoint
-                    );
-                    // setTimeout(() => {
-                    //     this.db.updateItem<User>(
-                    //         config.users_endpoint,
-                    //         this.currUserCredentials.uid,
-                    //         new User(this.currUserCredentials.uid, 'KOJA KOJA')
-                    //     );
-                    // }, 5000);
-                });
+            if (res) {
+                console.log('changed user credenttials, ', res);
+                this.currUserCredentials = res;
+                this.db
+                    .getSpecificItem(
+                        config.users_endpoint,
+                        this.currUserCredentials.uid
+                    )
+                    .subscribe(userData => {
+                        if (userData) {
+                            this.currUserData = Converter.jsonToModel(
+                                userData.payload.data(),
+                                config.users_endpoint
+                            );
+                        }
+                        // setTimeout(() => {
+                        //     this.db.updateItem<User>(
+                        //         config.users_endpoint,
+                        //         this.currUserCredentials.uid,
+                        //         new User(this.currUserCredentials.uid, 'KOJA KOJA')
+                        //     );
+                        // }, 5000);
+                    });
+            }
         });
     }
 }

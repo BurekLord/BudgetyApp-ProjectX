@@ -6,6 +6,7 @@ import { DBService } from './../services/db.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireModule } from 'angularfire2';
@@ -24,6 +25,22 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { LoginService } from '../services/login.service';
+
+// routes for the router
+const appRoutes: Routes = [
+    { path: '', component: AppComponent }
+    //   { path: 'hero/:id',      component: HeroDetailComponent },
+    //   {
+    //     path: 'heroes',
+    //     component: HeroListComponent,
+    //     data: { title: 'Heroes List' }
+    //   },
+    //   { path: '',
+    //     redirectTo: '/heroes',
+    //     pathMatch: 'full'
+    //   },
+    //   { path: '**', component: PageNotFoundComponent }
+];
 @NgModule({
     declarations: [
         AppComponent,
@@ -49,7 +66,8 @@ import { LoginService } from '../services/login.service';
                 useFactory: HttpLoaderFactory,
                 deps: [HttpClient]
             }
-        })
+        }),
+        RouterModule.forRoot(appRoutes)
     ],
     providers: [DBService, LoginService],
     bootstrap: [AppComponent]

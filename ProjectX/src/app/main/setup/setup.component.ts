@@ -19,4 +19,8 @@ export class SetupComponent implements OnInit {
     constructor() {}
 
     ngOnInit() {}
+
+    setIsNewFalse() {
+        // TODO
+    }
 }

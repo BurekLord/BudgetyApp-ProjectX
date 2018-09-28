@@ -22,6 +22,9 @@ export class MainComponent implements OnInit, OnChanges {
     userCredentials: UserCredentials;
 
     currentUser: User;
+
+    showSetup = false;
+    showLogin = true;
     constructor() {}
 
     ngOnInit() {
@@ -30,11 +33,25 @@ export class MainComponent implements OnInit, OnChanges {
     }
 
     ngOnChanges(changes: SimpleChanges) {
-        // OnChanges is subscribed on the @Input and every time input gets new data it is called
-        console.log('On changes', changes.userData.currentValue);
+        if (changes.userData && changes.userData.currentValue) {
+            // OnChanges is subscribed on the @Input and every time input gets new data it is called
+            console.log('On changes', changes.userData.currentValue);
+            // now we have up to date current user with the latest data...
+            // EVERY TIME user is changed in the database, this will be triggered
+            this.currentUser = changes.userData.currentValue;
+        }
 
-        // now we have up to date current user with the latest data...
-        // EVERY TIME user is changed in the database, this will be triggered
-        this.currentUser = changes.userData.currentValue;
+        if (changes.userCredentials && changes.userCredentials.currentValue) {
+            console.log('On credentials changes');
+            if (changes.userCredentials.currentValue.isNew) {
+                console.log('On credentials changes is new');
+                this.showSetup = true;
+                this.showLogin = false;
+            } else {
+                console.log('On credentials changes not new');
+                this.showSetup = false;
+                this.showLogin = false;
+            }
+        }
     }
 }
