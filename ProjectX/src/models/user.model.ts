@@ -9,6 +9,7 @@ export class User {
     // i kad god se taj poziv obavi izracunacemo totalInc i totalExp
     private totalInc: number;
     private totalExp: number;
+    private balance: number;
     private categoriesExp: string[]; // niz kategorija
     private categoriesInc: string[];
     // fora da cemo morati nekako u bazi da napravimo parametrizovani poziv za listu refova za odredjeno vreme. al ne znam kako.
@@ -25,6 +26,7 @@ export class User {
         theme?: string,
         totalInc?: number,
         totalExp?: number,
+        balance?: number,
         categoriesExp?: string[],
         categoriesInc?: string[],
         incomeRefs?: string,
@@ -38,10 +40,27 @@ export class User {
         this.theme = theme;
         this.totalInc = totalInc;
         this.totalExp = totalExp;
+        this.balance = balance;
         this.categoriesExp = categoriesExp;
         this.categoriesInc = categoriesInc;
         this.incomeRefs = incomeRefs;
         this.expenseRefs = expenseRefs;
+    }
+
+    /**
+     * Getter balance
+     * @return {number}
+     */
+    public getBalance(): number {
+        return this.balance;
+    }
+
+    /**
+     * Setter balance
+     * @param {number} value
+     */
+    public setBalance(value: number) {
+        this.balance = value;
     }
 
     /**

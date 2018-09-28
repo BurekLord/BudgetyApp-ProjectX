@@ -21,6 +21,7 @@ export class Converter {
                     theme: model.getTheme() ? model.getTheme() : null,
                     totalInc: model.getTotalInc() ? model.getTotalInc() : null,
                     totalExp: model.getTotalExp() ? model.getTotalExp() : null,
+                    balance: model.getBalance() ? model.getBalance() : null,
                     categoriesExp: model.getCategoriesExp()
                         ? model.getCategoriesExp()
                         : null,
@@ -80,6 +81,7 @@ export class Converter {
                     json.theme ? json.theme : undefined,
                     json.totalInc ? json.totalInc : undefined,
                     json.totalExp ? json.totalExp : undefined,
+                    json.balance ? json.balance : undefined,
                     json.categoriesExp ? json.categoriesExp : undefined,
                     json.categoriesInc ? json.categoriesInc : undefined,
                     json.incomeRefs ? json.incomeRefs : undefined,
