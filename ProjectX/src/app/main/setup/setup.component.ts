@@ -1,6 +1,9 @@
+import { User } from './../../../models/user.model';
+import { DBService } from './../../../services/db.service';
 import { LoginService } from './../../../services/login.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { UserCredentials } from '../../../models/userCredentials.model';
+import { config } from '../../../services/config';
 
 @Component({
     selector: 'app-setup',
@@ -8,7 +11,8 @@ import { UserCredentials } from '../../../models/userCredentials.model';
     styleUrls: ['./setup.component.scss']
 })
 export class SetupComponent implements OnInit {
-    userCredentials: UserCredentials;
+    @Input()
+    userData: User;
     balanceStep = new HelperModel('INPUT.SETUP_BALANCE', 0, false);
     incomeStep = new HelperModel('INPUT.SETUP_INCOME', 1, false);
     expenseStep = new HelperModel('INPUT.SETUP_EXPENSE', 2, false);
@@ -31,13 +35,13 @@ export class SetupComponent implements OnInit {
 
     tables: HelperModel[] = [];
 
-    constructor() {}
+    constructor(private db: DBService) {}
 
     ngOnInit() {
         this.currentStep = this.steps[0];
         this.inputText = this.currentStep.name;
         this.tables = [
-            new HelperModel('LABEL.BALANCE', []),
+            new HelperModel('LABEL.BALANCE', 0),
             new HelperModel('LABEL.COMMON_INCOMES', []),
             new HelperModel('LABEL.COMMON_EXPENSES', []),
             new HelperModel('LABEL.DEFAULT_TIME_FRAME', [
@@ -54,6 +58,16 @@ export class SetupComponent implements OnInit {
             this.currentStep = this.steps[this.currentStep.value + 1];
             this.inputText = this.currentStep.name;
         } else {
+            // in the last step, take all of the data and send it to be
+            this.userData.setCategoriesExp(this.tables[2].value);
+            this.userData.setCategoriesInc(this.tables[1].value);
+            this.userData.setBalance(this.tables[0].value);
+            this.userData.setSettings(undefined); //  TODO: see about this...
+            this.db.updateItem<User>(
+                config.users_endpoint,
+                this.userData.getId(),
+                this.userData
+            );
             // TODO: remove this
             window.location.reload();
         }
