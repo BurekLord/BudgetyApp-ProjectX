@@ -41,56 +41,6 @@ export class User {
         this.expenseRefs = expenseRefs;
     }
 
-    static modelToJson(user: User): JSON {
-        let json;
-        json = {
-            name: user.name ? user.name : null,
-            password: user.password ? user.password : null,
-            email: user.email ? user.email : null,
-            language: user.language ? user.language : null,
-            theme: user.theme ? user.theme : null,
-            totalInc: user.totalInc ? user.totalInc : null,
-            totalExp: user.totalExp ? user.totalExp : null,
-            categoriesExp: user.categoriesExp ? user.categoriesExp : null,
-            categoriesInc: user.categoriesInc ? user.categoriesInc : null,
-            incomeRefs: user.incomeRefs ? user.incomeRefs : null,
-            expenseRefs: user.expenseRefs ? user.expenseRefs : null
-        };
-        return json;
-    }
-
-    static modelToJsonList(users: User[]): JSON[] {
-        const json = [];
-        users.forEach(user => {
-            json.push(User.modelToJson(user));
-        });
-        return json;
-    }
-
-    static jsonToModel(json: any): User {
-        return new User(
-            json.name ? json.name : undefined,
-            json.password ? json.password : undefined,
-            json.email ? json.password : undefined,
-            json.language ? json.language : undefined,
-            json.theme ? json.theme : undefined,
-            json.totalInc ? json.totalInc : undefined,
-            json.totalExp ? json.totalExp : undefined,
-            json.categoriesExp ? json.categoriesExp : undefined,
-            json.categoriesInc ? json.categoriesInc : undefined,
-            json.incomeRefs ? json.incomeRefs : undefined,
-            json.expenseRefs ? json.expenseRefs : undefined
-        );
-    }
-
-    static jsonToModelList(json: any[]): User[] {
-        const models = [];
-        json.forEach(el => {
-            models.push(User.jsonToModel(el));
-        });
-        return models;
-    }
-
     /**
      * Getter name
      * @return {string}
