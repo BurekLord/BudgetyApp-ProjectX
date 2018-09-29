@@ -28,6 +28,7 @@ export class SetupComponent implements OnInit {
 
     inputText = '';
     btnNextText = 'BUTTON.NEXT';
+    btnNextShow = true;
     btnAddText = 'BUTTON.ADD';
     btnAddShow = false;
     btnBackText = 'BUTTON.BACK';
@@ -59,6 +60,8 @@ export class SetupComponent implements OnInit {
             this.inputText = this.currentStep.name;
         } else {
             // in the last step, take all of the data and send it to be
+            this.btnNextShow = false;
+            this.btnEndText = 'BUTTON.END';
             this.userData.setCategoriesExp(this.tables[2].value);
             this.userData.setCategoriesInc(this.tables[1].value);
             this.userData.setBalance(this.tables[0].value);
@@ -68,8 +71,6 @@ export class SetupComponent implements OnInit {
                 this.userData.getId(),
                 this.userData
             );
-            // TODO: remove this
-            window.location.reload();
         }
     }
     previousStep() {

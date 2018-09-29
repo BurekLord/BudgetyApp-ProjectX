@@ -15,7 +15,7 @@
             {{btnBackText | translate}}
         </button>
         <input #input type="text" class="input__field">
-        <button class="btn" (click)="onNext(input.value)">
+        <button class="btn" (click)="onNext(input.value)" [hidden]="!btnNextShow">
             {{btnNextText | translate}}
         </button>
         <button class="btn" [hidden]="!btnAddShow" (click)="onAdd(input.value)">
