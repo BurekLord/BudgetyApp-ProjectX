@@ -1,1 +1,24 @@
-.categories {}
+// TODO: remove stupid css
+.categories {
+    border: 1px solid black;
+    padding: 2rem;
+    font-size: 2rem;
+
+    .btn-remove {
+        cursor: pointer;
+        color: white;
+        background-color: purple;
+        transition: .2s all;
+
+        &:hover {
+            color: black;
+            background-color: red;
+            transform: translateY(1px);
+            box-shadow: 0px 3px 10px 1px rgba(122, 117, 122, 1);
+        }
+    }
+
+    div {
+        padding: 1rem;
+    }
+}

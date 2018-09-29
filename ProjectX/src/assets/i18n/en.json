@@ -13,7 +13,8 @@
         "NEXT": "Next",
         "SKIP": "Skip",
         "COMPLETE": "Complete",
-        "END": "End"
+        "END": "End",
+        "REMOVE": "Remove"
     },
     "INPUT": {
         "SETUP_BALANCE": "First lets enter your current balance...",
@@ -25,7 +26,8 @@
         "BALANCE": "Balance",
         "COMMON_INCOMES": "Common incomes",
         "COMMON_EXPENSES": "Common expenses",
-        "DEFAULT_TIME_FRAME": "Default time frame"
+        "DEFAULT_TIME_FRAME": "Default time frame",
+        "CATEGORIES": "Categories"
     },
     "TIME_DATE": {
         "DAY": "Day",
