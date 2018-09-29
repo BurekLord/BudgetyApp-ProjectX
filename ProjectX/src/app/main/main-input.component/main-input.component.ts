@@ -1,7 +1,7 @@
 import { config } from './../../../services/config';
 import { DBService } from './../../../services/db.service';
 import { User } from '../../../models/user.model';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { Income } from '../../../models/income.model';
 import { Expense } from '../../../models/expense.model';
 
@@ -13,10 +13,24 @@ import { Expense } from '../../../models/expense.model';
 export class MainInputComponent implements OnInit {
     @Input()
     userData: User;
+    expCategoryEmpty: boolean;
+    incCategoryEmpty: boolean;
     expDropIsHidden = true;
     incDropIsHidden = true;
-    constructor(public db: DBService) {}
+    @ViewChild('expCategory')
+    expCategory: ElementRef;
+    @ViewChild('incCategory')
+    incCategory: ElementRef;
+    @ViewChild('name')
+    name: ElementRef;
+    @ViewChild('value')
+    value: ElementRef;
 
+    constructor(public db: DBService) {}
+    clearInputFields() {
+        this.name.nativeElement.value = null;
+        this.value.nativeElement.value = null;
+    }
     ngOnInit() {}
 
     onIncomeAddClick(inc: any, name: any, value: any) {
@@ -36,10 +50,21 @@ export class MainInputComponent implements OnInit {
                 this.userData.getId()
             )
             .then(console.log);
+        if (this.incCategoryEmpty === true) {
+            console.log(name);
+            this.userData.setCategoriesInc([inc]);
+            this.db.updateItem<User>(
+                config.users_endpoint,
+                this.userData.getId(),
+                this.userData
+            );
+        }
+        this.clearInputFields();
     }
 
     onExpenseAddClick(exp: any, name: any, value: any) {
         this.expDropIsHidden = true;
+
         const newExpense = new Expense(
             name,
             value,
@@ -53,13 +78,36 @@ export class MainInputComponent implements OnInit {
             undefined,
             this.userData.getId()
         );
+        if (this.expCategoryEmpty === true) {
+            console.log(name);
+            this.userData.setCategoriesExp([exp]);
+            this.db.updateItem<User>(
+                config.users_endpoint,
+                this.userData.getId(),
+                this.userData
+            );
+        }
+        this.clearInputFields();
     }
 
     onIncBtn() {
         this.incDropIsHidden = !this.incDropIsHidden;
+        this.expDropIsHidden = true;
+        this.incCategoryEmpty =
+            this.userData.getCategoriesInc() === undefined ||
+            this.userData.getCategoriesInc().length === 0
+                ? true
+                : false;
     }
 
     onExpBtn() {
         this.expDropIsHidden = !this.expDropIsHidden;
+        this.incDropIsHidden = true;
+        this.expCategoryEmpty =
+            this.userData.getCategoriesExp() === undefined ||
+            this.userData.getCategoriesExp().length === 0
+                ? true
+                : false;
+        console.log(this.expCategoryEmpty);
     }
 }
