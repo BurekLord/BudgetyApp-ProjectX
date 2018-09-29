@@ -8,7 +8,6 @@ import {
     OnChanges,
     SimpleChanges
 } from '@angular/core';
-import { config } from '../../../services/config';
 
 @Component({
     selector: 'app-categories',
