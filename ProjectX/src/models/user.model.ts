@@ -1,3 +1,4 @@
+import { Settings } from './settings.model';
 export class User {
     private id: string;
     private name: string;
@@ -5,6 +6,7 @@ export class User {
     private email: string;
     private language: string;
     private theme: string;
+    private settings: Settings;
     // ovo cemo da zadrzimo jer ce dobavljanje svih income a expensova biti zaseban poziv ka bazi
     // i kad god se taj poziv obavi izracunacemo totalInc i totalExp
     private totalInc: number;
@@ -24,6 +26,7 @@ export class User {
         email?: string,
         language?: string,
         theme?: string,
+        settings?: Settings,
         totalInc?: number,
         totalExp?: number,
         balance?: number,
@@ -38,6 +41,7 @@ export class User {
         this.email = email;
         this.language = language;
         this.theme = theme;
+        this.settings = settings;
         this.totalInc = totalInc;
         this.totalExp = totalExp;
         this.balance = balance;
@@ -46,6 +50,23 @@ export class User {
         this.incomeRefs = incomeRefs;
         this.expenseRefs = expenseRefs;
     }
+
+
+    /**
+     * Getter settings
+     * @return {Settings}
+     */
+	public getSettings(): Settings {
+		return this.settings;
+	}
+
+    /**
+     * Setter settings
+     * @param {Settings} value
+     */
+	public setSettings(value: Settings) {
+		this.settings = value;
+	}
 
     /**
      * Getter balance
