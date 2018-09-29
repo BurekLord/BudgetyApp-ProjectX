@@ -36,6 +36,11 @@ export class CategoriesComponent implements OnInit, OnChanges {
             if (this.userData) {
                 if (this.userData.getCategoriesExp()) {
                     this.userData.getCategoriesExp().push(value);
+                    this.db.updateItem<User>(
+                        config.users_endpoint,
+                        this.userData.getId(),
+                        this.userData
+                    );
                 } else {
                     this.userData.setCategoriesExp([]);
                 }
