@@ -1,8 +1,13 @@
 <section class="categories">
-    <h2>Categories</h2>
+    <h2>{{'LABEL.CATEGORIES' | translate}}</h2>
     <div>
         <img src="" alt="" />
-        <span>Food</span>
-        <span>300$</span>
+        <div class="category" *ngFor="let cat of userData?.getCategoriesExp()">
+            <span>{{cat}}</span>
+            <span>300$</span>
+        </div>
+        <input #input type="text" [hidden]="!showInput">
+        <button class="btn btn-add" (click)="onAdd(input.value)">{{'BUTTON.ADD' | translate}}</button>
+        <button class="btn btn-finish" (click)="onFinish()" [hidden]="!showBtnFinish">{{'BUTTON.END' | translate}}</button>
     </div>
 </section>

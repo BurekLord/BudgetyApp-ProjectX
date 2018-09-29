@@ -1,1 +1,10 @@
-.categories {}
+// TODO: remove this css
+.categories {
+    border: 1px solid black;
+    padding: 2rem;
+    font-size: 2rem;
+
+    div {
+        padding: 1rem;
+    }
+}

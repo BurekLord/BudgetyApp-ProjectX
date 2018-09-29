@@ -2,6 +2,6 @@
     <app-login [hidden]="!showLogin"></app-login>
     <app-setup [hidden]="!showSetup"></app-setup>
     <app-balance [hidden]="showLogin || showSetup" [userData]="userData"></app-balance>
-    <app-categories [hidden]="showLogin || showSetup"></app-categories>
+    <app-categories [hidden]="showLogin || showSetup" [userData]="userData"></app-categories>
     <app-statistic [hidden]="showLogin || showSetup"></app-statistic>
 </main>

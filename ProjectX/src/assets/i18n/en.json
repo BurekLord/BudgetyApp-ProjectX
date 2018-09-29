@@ -20,6 +20,7 @@
     },
     "LABEL": {
         "BALANCE": "Balance",
-        "COMMON_INCOMES": "Common incomes"
+        "COMMON_INCOMES": "Common incomes",
+        "CATEGORIES": "Categories"
     }
 }
