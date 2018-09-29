@@ -13,7 +13,8 @@
         "NEXT": "Next",
         "SKIP": "Skip",
         "COMPLETE": "Complete",
-        "END": "End"
+        "END": "End",
+        "REMOVE": "Remove"
     },
     "INPUT": {
         "SETUP_BALANCE": "First lets enter your current balance..."

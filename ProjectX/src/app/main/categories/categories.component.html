@@ -4,7 +4,8 @@
         <img src="" alt="" />
         <div class="category" *ngFor="let cat of userData?.getCategoriesExp()">
             <span>{{cat}}</span>
-            <span>300$</span>
+            <span> TODO: make dynamic $ spent value over time</span>
+            <button class="btn btn-remove" (click)="onRemove(cat)">{{'BUTTON.REMOVE' | translate}}</button>
         </div>
         <input #input type="text" [hidden]="!showInput">
         <button class="btn btn-add" (click)="onAdd(input.value)">{{'BUTTON.ADD' | translate}}</button>
