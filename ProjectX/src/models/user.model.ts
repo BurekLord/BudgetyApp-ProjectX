@@ -51,22 +51,21 @@ export class User {
         this.expenseRefs = expenseRefs;
     }
 
-
     /**
      * Getter settings
      * @return {Settings}
      */
-	public getSettings(): Settings {
-		return this.settings;
-	}
+    public getSettings(): Settings {
+        return this.settings;
+    }
 
     /**
      * Setter settings
      * @param {Settings} value
      */
-	public setSettings(value: Settings) {
-		this.settings = value;
-	}
+    public setSettings(value: Settings) {
+        this.settings = value;
+    }
 
     /**
      * Getter balance

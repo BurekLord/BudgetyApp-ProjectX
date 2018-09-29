@@ -14,7 +14,9 @@
         "SKIP": "Skip",
         "COMPLETE": "Complete",
         "END": "End",
-        "REMOVE": "Remove"
+        "REMOVE": "Remove",
+        "ADD_INCOME": "Add Income",
+        "ADD_EXPENSE": "Add Expense"
     },
     "INPUT": {
         "SETUP_BALANCE": "First lets enter your current balance...",

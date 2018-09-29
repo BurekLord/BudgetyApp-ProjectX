@@ -49,6 +49,7 @@ export class Converter {
                 };
                 return json;
             } else if (model instanceof Expense) {
+                console.log('inconverter');
                 json = {
                     name: model.getName() ? model.getName() : null,
                     value: model.getValue() ? model.getValue() : null,
@@ -58,6 +59,7 @@ export class Converter {
                         : null,
                     userId: model.getUserId() ? model.getUserId() : null
                 };
+                return json;
             }
         }
     }

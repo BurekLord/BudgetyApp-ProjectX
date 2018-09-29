@@ -25,6 +25,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { LoginService } from '../services/login.service';
+import { MainInputComponent } from './main/main-input.component/main-input.component';
 
 // routes for the router
 const appRoutes: Routes = [
@@ -52,7 +53,8 @@ const appRoutes: Routes = [
         BalanceComponent,
         SettingsComponent,
         StatisticComponent,
-        CategoriesComponent
+        CategoriesComponent,
+        MainInputComponent
     ],
     imports: [
         BrowserModule,
