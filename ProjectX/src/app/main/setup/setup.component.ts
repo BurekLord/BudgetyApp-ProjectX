@@ -41,7 +41,7 @@ export class SetupComponent implements OnInit {
         this.currentStep = this.steps[0];
         this.inputText = this.currentStep.name;
         this.tables = [
-            new HelperModel('LABEL.BALANCE', 0),
+            new HelperModel('LABEL.BALANCE', []),
             new HelperModel('LABEL.COMMON_INCOMES', []),
             new HelperModel('LABEL.COMMON_EXPENSES', []),
             new HelperModel('LABEL.DEFAULT_TIME_FRAME', [
