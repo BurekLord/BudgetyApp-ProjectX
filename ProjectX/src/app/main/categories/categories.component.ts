@@ -33,6 +33,11 @@ export class CategoriesComponent implements OnInit, OnChanges {
 
     ngOnChanges(changes: SimpleChanges) {
         this.userData = changes.userData.currentValue;
+        if (this.userData) {
+            if (!this.userData.getCategoriesExp()) {
+                this.userData.setCategoriesExp([]);
+            }
+        }
     }
 
     ngOnInit() {}
@@ -50,8 +55,6 @@ export class CategoriesComponent implements OnInit, OnChanges {
                         this.userData.getId(),
                         this.userData
                     );
-                } else {
-                    this.userData.setCategoriesExp([]);
                 }
             }
         }

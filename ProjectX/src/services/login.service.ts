@@ -62,10 +62,7 @@ export class LoginService implements OnInit {
                 // checks if the user has just singed up in so that it doesn call addUser 2x
                 let isFirstTime: boolean;
                 isFirstTime =
-                    user.metadata.creationTime ===
-                        user.metadata.lastSignInTime &&
-                    new Date().toString() ===
-                        new Date(user.metadata.creationTime).toString();
+                    user.metadata.creationTime === user.metadata.lastSignInTime;
                 this.userCredentials.next(
                     new UserCredentials(
                         user.displayName,
@@ -77,19 +74,6 @@ export class LoginService implements OnInit {
                         isFirstTime
                     )
                 );
-                this.dbService
-                    .getItem(config.users_endpoint, user.uid)
-                    .then(res => {
-                        if (!res) {
-                            console.log('IS USER FIRST TIME', res);
-                            const newUser = new User(user.uid);
-                            this.dbService.addItem<User>(
-                                config.users_endpoint,
-                                newUser,
-                                newUser.getId()
-                            );
-                        }
-                    });
                 // probao sam ovu funkcionalnost da izdvojim iz ovog auth() metoda, al nema sanse, ne znam...
                 // if (isFirstTime) {
                 // if new user, create new user data

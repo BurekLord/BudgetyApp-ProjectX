@@ -35,21 +35,41 @@ export class AppComponent implements OnInit {
                         config.users_endpoint,
                         this.currUserCredentials.uid
                     )
-                    .subscribe(userData => {
-                        if (userData) {
-                            this.currUserData = Converter.jsonToModel(
-                                userData.payload.data(),
-                                config.users_endpoint
+                    .subscribe(
+                        userData => {
+                            // console.log('in user Data sub', userData);
+                            if (userData.payload.data()) {
+                                this.currUserData = Converter.jsonToModel(
+                                    userData.payload.data(),
+                                    config.users_endpoint
+                                );
+                                this.currUserCredentials.isNew = false;
+                            } else {
+                                const newUser = new User(
+                                    this.currUserCredentials.uid
+                                );
+                                this.db.addItem<User>(
+                                    config.users_endpoint,
+                                    newUser,
+                                    newUser.getId()
+                                );
+                                this.currUserCredentials.isNew = true;
+                            }
+                            // setTimeout(() => {
+                            //     this.db.updateItem<User>(
+                            //         config.users_endpoint,
+                            //         this.currUserCredentials.uid,
+                            //         this.mockUser(this.currUserCredentials.uid)
+                            //     );
+                            // }, 5000);
+                        },
+                        err => {
+                            console.error(
+                                'there was an error in getting the userData',
+                                err
                             );
                         }
-                        // setTimeout(() => {
-                        //     this.db.updateItem<User>(
-                        //         config.users_endpoint,
-                        //         this.currUserCredentials.uid,
-                        //         this.mockUser(this.currUserCredentials.uid)
-                        //     );
-                        // }, 5000);
-                    });
+                    );
             }
         });
     }

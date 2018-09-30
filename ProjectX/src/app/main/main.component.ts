@@ -43,11 +43,7 @@ export class MainComponent implements OnInit, OnChanges {
 
         if (changes.userCredentials && changes.userCredentials.currentValue) {
             console.log('On credentials changes');
-            if (
-                changes.userCredentials.currentValue.isNew &&
-                (changes.userData.currentValue.getBalance() !== undefined ||
-                    changes.userData.currentValue.getBalance() !== null)
-            ) {
+            if (changes.userCredentials.currentValue.isNew) {
                 console.log('On credentials changes is new');
                 this.showSetup = true;
                 this.showLogin = false;
