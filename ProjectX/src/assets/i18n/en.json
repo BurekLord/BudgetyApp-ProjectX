@@ -33,7 +33,9 @@
         "DEFAULT_TIME_FRAME": "Default time frame",
         "CATEGORIES": "Categories",
         "BALANCE_CURRENT": "Current balance",
-        "BALANCE_OVERTIME": "Money spent this month"
+        "BALANCE_OVERTIME": "Money spent this month",
+        "SETTINGS_LANGUAGE": "Language",
+        "SETTINGS_THEME": "Theme"
     },
     "TIME_DATE": {
         "DAY": "Day",
