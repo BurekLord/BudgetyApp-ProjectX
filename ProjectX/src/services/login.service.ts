@@ -57,6 +57,7 @@ export class LoginService implements OnInit {
 
         // when user logs in
         auth().onAuthStateChanged(user => {
+            console.log('IN AUTH', user);
             if (user) {
                 // checks if the user has just singed up in so that it doesn call addUser 2x
                 let isFirstTime: boolean;
@@ -76,26 +77,38 @@ export class LoginService implements OnInit {
                         isFirstTime
                     )
                 );
-
+                this.dbService
+                    .getItem(config.users_endpoint, user.uid)
+                    .then(res => {
+                        if (!res) {
+                            console.log('IS USER FIRST TIME', res);
+                            const newUser = new User(user.uid);
+                            this.dbService.addItem<User>(
+                                config.users_endpoint,
+                                newUser,
+                                newUser.getId()
+                            );
+                        }
+                    });
                 // probao sam ovu funkcionalnost da izdvojim iz ovog auth() metoda, al nema sanse, ne znam...
-                if (isFirstTime) {
-                    // if new user, create new user data
-                    const newUser = new User(user.uid);
-                    this.dbService.addItem<User>(
-                        config.users_endpoint,
-                        newUser,
-                        newUser.getId()
-                    );
-                } else if (!isFirstTime) {
-                    // ako nije nov uzmi njegove podatke i storuj ih u userData
-                    // this.dbService
-                    //     .getItem<User>(config.users_endpoint, user.uid)
-                    //     .then(res => this.userData.next(res));
-                    // this.userData = this.dbService.getSpecificItem(
-                    //     config.users_endpoint,
-                    //     user.uid
-                    // );
-                }
+                // if (isFirstTime) {
+                // if new user, create new user data
+                //     const newUser = new User(user.uid);
+                //     this.dbService.addItem<User>(
+                //         config.users_endpoint,
+                //         newUser,
+                //         newUser.getId()
+                //     );
+                // } else if (!isFirstTime) {
+                // ako nije nov uzmi njegove podatke i storuj ih u userData
+                // this.dbService
+                //     .getItem<User>(config.users_endpoint, user.uid)
+                //     .then(res => this.userData.next(res));
+                // this.userData = this.dbService.getSpecificItem(
+                //     config.users_endpoint,
+                //     user.uid
+                // );
+                // }
             } else {
                 console.log('User IS singed OUT');
             }
