@@ -5,7 +5,9 @@
     },
     "TITLE": {
         "SETUP_GREETINGS1": "Thank you for choosing ProjectX app",
-        "SETUP_GREETINGS2": "Please let us help you set up your account..."
+        "SETUP_GREETINGS2": "Please let us help you set up your account...",
+        "BALANCE_TITLE": "Balance"
+
     },
     "BUTTON": {
         "ADD": "Add",
@@ -29,7 +31,9 @@
         "COMMON_INCOMES": "Common incomes",
         "COMMON_EXPENSES": "Common expenses",
         "DEFAULT_TIME_FRAME": "Default time frame",
-        "CATEGORIES": "Categories"
+        "CATEGORIES": "Categories",
+        "BALANCE_CURRENT": "Current balance",
+        "BALANCE_OVERTIME": "Money spent this month"
     },
     "TIME_DATE": {
         "DAY": "Day",
