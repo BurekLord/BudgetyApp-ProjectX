@@ -1,16 +1,31 @@
 <div class="main-input">
     <div class="inc-group">
         <button class="btn income-btn" (click)="onIncBtn()">{{'BUTTON.ADD_INCOME' | translate}}</button>
-        <div class="income-dropdown" *ngFor="let inc of userData?.getCategoriesInc()" [hidden]="incDropIsHidden" (click)="onIncomeAddClick(inc, name.value, value.value)">{{inc}}</div>
+        <div [hidden]="incDropIsHidden">
+            <div *ngIf="incCategoryEmpty">
+                <input #incCategory type="text" name="category">
+                <button class="btn expense-btn" (click)="onIncomeAddClick(incCategory.value, name.value, value.value)">{{'BUTTON.ADD'
+                    | translate}}</button>
+            </div>
+            <div class="income-dropdown" *ngFor="let inc of userData?.getCategoriesInc()" (click)="onIncomeAddClick(inc, name.value, value.value)">{{inc}}</div>
+        </div>
     </div>
     <div class="input-group">
         <label for="name">Description</label>
         <input #name type="text" name="name">
         <label for="value">Value</label>
         <input #value type="text" name="value">
+        <span *ngIf="!expDropIsHidden || !incDropIsHidden">Categorize this:</span>
     </div>
     <div class="exp-group">
         <button class="btn expense-btn" (click)="onExpBtn()">{{'BUTTON.ADD_EXPENSE' | translate}}</button>
-        <div class="expense-dropdown" *ngFor="let exp of userData?.getCategoriesExp()" [hidden]="expDropIsHidden" (click)="onExpenseAddClick(exp, name.value, value.value)">{{exp}}</div>
+        <div [hidden]="expDropIsHidden">
+            <div *ngIf="expCategoryEmpty">
+                <input #expCategory type="text" name="expCategory">
+                <button class="btn expense-btn" (click)="onExpenseAddClick(expCategory.value, name.value, value.value)">{{'BUTTON.ADD'
+                    | translate}}</button>
+            </div>
+            <div class="expense-dropdown" *ngFor="let exp of userData?.getCategoriesExp()" (click)="onExpenseAddClick(exp, name.value, value.value)">{{exp}}</div>
+        </div>
     </div>
 </div>

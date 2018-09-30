@@ -6,7 +6,9 @@ import {
     OnInit,
     Input,
     OnChanges,
-    SimpleChanges
+    SimpleChanges,
+    ViewChild,
+    ElementRef
 } from '@angular/core';
 
 @Component({
@@ -15,11 +17,19 @@ import {
     styleUrls: ['./categories.component.scss']
 })
 export class CategoriesComponent implements OnInit, OnChanges {
+    //
+    @ViewChild('input')
+    input: ElementRef;
+
     @Input()
     userData: User;
     showInput = false;
     showBtnFinish = false;
     constructor(private db: DBService) {}
+
+    clearInputFields() {
+        this.input.nativeElement.value = null;
+    }
 
     ngOnChanges(changes: SimpleChanges) {
         this.userData = changes.userData.currentValue;
@@ -45,6 +55,7 @@ export class CategoriesComponent implements OnInit, OnChanges {
                 }
             }
         }
+        this.clearInputFields();
     }
 
     onFinish() {
@@ -55,6 +66,7 @@ export class CategoriesComponent implements OnInit, OnChanges {
             this.userData.getId(),
             this.userData
         );
+        this.clearInputFields();
     }
 
     onRemove(cat: any) {

@@ -9,6 +9,6 @@
         </div>
         <input #input type="text" [hidden]="!showInput">
         <button class="btn btn-add" (click)="onAdd(input.value)">{{'BUTTON.ADD' | translate}}</button>
-        <button class="btn btn-finish" (click)="onFinish()" [hidden]="!showBtnFinish">{{'BUTTON.END' | translate}}</button>
+        <button class="btn btn-finish" (click)="onFinish(input)" [hidden]="!showBtnFinish">{{'BUTTON.END' | translate}}</button>
     </div>
 </section>
