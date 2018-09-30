@@ -1,7 +1,8 @@
 {
     "EXAMPLE": {
         "SOMETEXT": "Some text",
-        "TEXT_WITH_PARAMETERS": "Some text with parameter {{value}}"
+        "TEXT_WITH_PARAMETERS": "Some text with parameter {{value}}",
+
     },
     "TITLE": {
         "SETUP_GREETINGS1": "Thank you for choosing ProjectX app",
@@ -36,7 +37,10 @@
         "BALANCE_CURRENT": "Current balance",
         "BALANCE_OVERTIME": "Money spent this month",
         "SETTINGS_LANGUAGE": "Language",
-        "SETTINGS_THEME": "Theme"
+        "SETTINGS_THEME": "Theme",
+        "STATISTIC_TIMEFRAME": "Time frame",
+        "STATISTIC_MONTH": "Month",
+        "STATISTIC_WEEK": "Week"
     },
     "TIME_DATE": {
         "DAY": "Day",
