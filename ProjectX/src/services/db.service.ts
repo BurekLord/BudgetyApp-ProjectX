@@ -6,9 +6,11 @@ import {
     AngularFirestoreCollection
 } from 'angularfire2/firestore';
 
-import { pipe, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, forkJoin, Subject, from } from 'rxjs';
+import { map, switchMap, mergeMap } from 'rxjs/operators';
+
 import { firestore } from 'firebase';
+import { config } from './config';
 
 @Injectable()
 export class DBService {
@@ -22,19 +24,23 @@ export class DBService {
 
     constructor(public db: AngularFirestore) {}
 
-    getAllCollectionItemsWithIds(endpoint: string): Observable<any> {
+    getAllCollectionItemsWithIds(
+        endpoint: string,
+        userId?: string
+    ): Observable<any> {
         return this.db
-            .collection(endpoint)
+            .collection(endpoint + userId)
             .snapshotChanges()
             .pipe(
                 map(actions => {
                     return actions.map(a => {
                         // Get document data
                         const data = a.payload.doc.data();
+                        console.log('data in iner func', data);
                         // Get document id
-                        const id = a.payload.doc.id;
+                        // const id = a.payload.doc.id;
                         // Use spread operator to add the id to the document data
-                        return { id, ...data };
+                        return data;
                     });
                 })
             );
@@ -70,7 +76,6 @@ export class DBService {
                 .doc(id)
                 .set({ ...Converter.modelToJson<T>(item) });
         } else {
-            console.log('intheconverter', Converter.modelToJson<T>(item));
             return this.db
                 .collection(endpoint + userId)
                 .add(Converter.modelToJson<T>(item));
@@ -134,18 +139,20 @@ export class DBService {
     getSpecificItem<T>(endpoint: string, id: string) {
         return this.db.doc<T>(`${endpoint}/${id}`).snapshotChanges();
     }
+
+    getAllValues(endpoint: string, userId: string) {
+        return this.db
+            .collection(endpoint + userId)
+            .snapshotChanges()
+            .pipe(
+                map(actions => {
+                    let data = 0;
+                    return actions.map(a => {
+                        // Get document data
+                        data += parseFloat(a.payload.doc.data()['value']);
+                        return data;
+                    });
+                })
+            );
+    }
 }
-
-// TODO: QUERIES
-
-//    db.collection("cities").where("capital", "==", true)
-//     .get()
-//     .then(function(querySnapshot) {
-//         querySnapshot.forEach(function(doc) {
-//             // doc.data() is never undefined for query doc snapshots
-//             console.log(doc.id, " => ", doc.data());
-//         });
-//     })
-//     .catch(function(error) {
-//         console.log("Error getting documents: ", error);
-//     });
