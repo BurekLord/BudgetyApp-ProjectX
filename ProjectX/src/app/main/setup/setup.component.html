@@ -8,10 +8,10 @@
     </div>
 
     <div class="input">
-        <div #input class="input__text">
+        <div class="input__text">
             {{inputText | translate}}
         </div>
-        <button class="btn" (click)="onBack()">
+        <button class="btn" (click)="onBack()" *ngIf="currentStep.value !== 0">
             {{btnBackText | translate}}
         </button>
         <input #input type="text" class="input__field">
