@@ -1,8 +1,8 @@
-<section>
+<section class="balance">
     <span>{{'TITLE.BALANCE_TITLE' | translate}}</span>
     <div>
         <p>{{'LABEL.BALANCE_CURRENT' | translate}}</p>
-        <span>{{userData? userData.balance : '---' }}</span>
+        <span>{{userData? userData.getBalance() : '---' }}</span>
         <p>{{'LABEL.BALANCE_OVERTIME' | translate}}</p>
         <span>200$</span>
     </div>
