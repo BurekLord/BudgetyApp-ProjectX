@@ -1,7 +1,7 @@
 import { User } from './../../../models/user.model';
 import { DBService } from './../../../services/db.service';
 import { LoginService } from './../../../services/login.service';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { UserCredentials } from '../../../models/userCredentials.model';
 import { config } from '../../../services/config';
 
@@ -25,7 +25,7 @@ export class SetupComponent implements OnInit {
         this.timeStep
     ];
     end: boolean;
-
+    added: boolean;
     inputText = '';
     btnNextText = 'BUTTON.NEXT';
     btnNextShow = true;
@@ -36,7 +36,14 @@ export class SetupComponent implements OnInit {
 
     tables: HelperModel[] = [];
 
+    @ViewChild('input')
+    input: ElementRef;
+
     constructor(private db: DBService) {}
+
+    clearInputFields() {
+        this.input.nativeElement.value = null;
+    }
 
     ngOnInit() {
         this.currentStep = this.steps[0];
@@ -55,12 +62,14 @@ export class SetupComponent implements OnInit {
     }
 
     nextStep() {
+        this.clearInputFields();
         if (this.currentStep.value !== 3) {
             this.currentStep = this.steps[this.currentStep.value + 1];
             this.inputText = this.currentStep.name;
         } else {
             // in the last step, take all of the data and send it to be
             this.btnNextShow = false;
+            this.btnAddShow = false;
             this.btnEndText = 'BUTTON.END';
             this.userData.setCategoriesExp(this.tables[2].value);
             this.userData.setCategoriesInc(this.tables[1].value);
@@ -77,6 +86,12 @@ export class SetupComponent implements OnInit {
         if (this.currentStep.value !== 0) {
             this.currentStep = this.steps[this.currentStep.value - 1];
             this.inputText = this.currentStep.name;
+            this.btnNextShow = true;
+            if (this.currentStep.value === 0) {
+                this.btnAddShow = false;
+            } else {
+                this.btnAddShow = true;
+            }
         }
     }
 
@@ -89,25 +104,35 @@ export class SetupComponent implements OnInit {
     }
 
     onNext(input: any) {
-        this.btnAddShow = false;
-
-        if (input) {
-            if (this.currentStep === this.steps[0]) {
-                this.tables[0].isShown = true;
-                this.tables[0].value.push(input);
-                this.btnAddShow = true;
-            } else if (this.currentStep === this.steps[1]) {
-                this.tables[1].isShown = true;
-                this.tables[1].value.push(input);
-                this.btnAddShow = true;
-            } else if (this.currentStep === this.steps[2]) {
-                this.tables[2].isShown = true;
-                this.tables[2].value.push(input);
-            } else if (this.currentStep === this.steps[3]) {
-                // TODO
-                this.tables[3].isShown = true;
+        if (input || this.added) {
+            // cleaner code
+            for (let i = 0; i < this.steps.length; i++) {
+                if (this.currentStep === this.steps[i]) {
+                    this.tables[i].isShown = true;
+                    this.tables[i].value.push(input);
+                    this.btnAddShow = true;
+                } else if (this.currentStep === this.steps[3]) {
+                    // TODO
+                    this.tables[3].isShown = true;
+                }
             }
+            // if (this.currentStep === this.steps[0]) {
+            //     this.tables[0].isShown = true;
+            //     this.tables[0].value.push(input);
+            //     this.btnAddShow = true;
+            // } else if (this.currentStep === this.steps[1]) {
+            //     this.tables[1].isShown = true;
+            //     this.tables[1].value.push(input);
+            //     this.btnAddShow = true;
+            // } else if (this.currentStep === this.steps[2]) {
+            //     this.tables[2].isShown = true;
+            //     this.tables[2].value.push(input);
+            // } else if (this.currentStep === this.steps[3]) {
+            //     // TODO
+            //     this.tables[3].isShown = true;
+            // }
             this.nextStep();
+            this.added = false;
         } else {
             // TODO: remove and place a warning msg for the user
             alert('enter a goddamn VALUE!');
@@ -122,6 +147,8 @@ export class SetupComponent implements OnInit {
             this.tables[2].isShown = true;
             this.tables[2].value.push(input);
         }
+        this.added = true;
+        this.clearInputFields();
     }
 
     onSkip() {
