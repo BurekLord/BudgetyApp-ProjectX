@@ -65,7 +65,8 @@ export class MainInputComponent implements OnInit {
             );
 
             // calc balance
-            this.db.calculateBalance(this.userData.getId());
+            this.calculateBalance();
+
             this.clearInputFields();
         } else {
             alert('enter a value');
@@ -106,25 +107,7 @@ export class MainInputComponent implements OnInit {
                 this.userData
             );
             // calc balance
-            this.db.joinIncomeAndExpens(this.userData.getId()).subscribe(res => {
-                // add them into one arr
-                const data = [];
-                res[0].forEach((incEl) => {
-                    data.push(incEl.data()['value']);
-                });
-                res[1].forEach((expEl) => {
-                    data.push(expEl.data()['value']);
-                });
-                // add them
-                let total = 0;
-                data.forEach((el) => {
-                    total += el;
-                });
-                // update user balance
-                this.db.getDocRef(config.users_endpoint, this.userData.getId()).update({
-                    'balance': total
-                });
-            });
+            this.calculateBalance();
 
             this.clearInputFields();
         } else {
@@ -147,5 +130,27 @@ export class MainInputComponent implements OnInit {
             this.userData.getCategoriesExp() === undefined ||
             this.userData.getCategoriesExp().length === 0;
         console.log(this.expCategoryEmpty);
+    }
+
+    calculateBalance() {
+        this.db.joinIncomeAndExpens(this.userData.getId()).subscribe(res => {
+            // add them into one arr
+            const data = [];
+            res[0].forEach((incEl) => {
+                data.push(incEl.data()['value']);
+            });
+            res[1].forEach((expEl) => {
+                data.push(expEl.data()['value']);
+            });
+            // add them
+            let total = 0;
+            data.forEach((el) => {
+                total += el;
+            });
+            // update user balance
+            this.db.getDocRef(config.users_endpoint, this.userData.getId()).update({
+                'balance': total
+            });
+        });
     }
 }
