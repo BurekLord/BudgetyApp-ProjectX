@@ -34,60 +34,85 @@ export class MainInputComponent implements OnInit {
     ngOnInit() {}
 
     onIncomeAddClick(inc: any, name: any, value: any) {
-        this.incDropIsHidden = true;
-        const newIncome = new Income(
-            name,
-            value,
-            inc,
-            new Date(),
-            this.userData.getId()
-        );
-        this.db
-            .addItem<Income>(
+        if (value) {
+            this.incDropIsHidden = true;
+
+            // kreireaj nov income i pretvori vrednos u pozitivnu vrednost
+            const newIncome = new Income(
+                name,
+                parseFloat(value.toString()),
+                inc,
+                new Date(),
+                this.userData.getId()
+            );
+            this.db.addItem<Income>(
                 config.incomes_endpoint,
                 newIncome,
                 undefined,
                 this.userData.getId()
-            )
-            .then(console.log);
-        if (this.incCategoryEmpty === true) {
-            console.log(name);
-            this.userData.setCategoriesInc([inc]);
+            );
+
+            if (this.incCategoryEmpty === true) {
+                console.log(name);
+                this.userData.setCategoriesInc([inc]);
+            }
+
+            // updejtuj userData
             this.db.updateItem<User>(
                 config.users_endpoint,
                 this.userData.getId(),
                 this.userData
             );
+
+            // calc balance
+            this.calculateBalance();
+
+            this.clearInputFields();
+        } else {
+            alert('enter a value');
         }
-        this.clearInputFields();
     }
 
     onExpenseAddClick(exp: any, name: any, value: any) {
-        this.expDropIsHidden = true;
+        // ako postoji value u inputu
+        if (value) {
+            this.expDropIsHidden = true;
 
-        const newExpense = new Expense(
-            name,
-            value,
-            exp,
-            new Date(),
-            this.userData.getId()
-        );
-        this.db.addItem<Expense>(
-            config.incomes_endpoint,
-            newExpense,
-            undefined,
-            this.userData.getId()
-        );
-        if (this.expCategoryEmpty === true) {
-            console.log(name);
-            this.userData.setCategoriesExp([exp]);
+            // kreiraj novi expens i stavi minus ispred vrednosti i pretvori je u number
+            const newExpense = new Expense(
+                name,
+                parseFloat('-' + value.toString()),
+                exp,
+                new Date(),
+                this.userData.getId()
+            );
+            // odaj ga u bazu
+            this.db.addItem<Expense>(
+                config.expenses_endpoint,
+                newExpense,
+                undefined,
+                this.userData.getId()
+            );
+
+            // ako ne postoje kategorije setuj dodatu kategoriju u userData
+            if (this.expCategoryEmpty === true) {
+                console.log(name);
+                this.userData.setCategoriesExp([exp]);
+            }
+
+            // updejtuj userData
             this.db.updateItem<User>(
                 config.users_endpoint,
                 this.userData.getId(),
                 this.userData
             );
+            // calc balance
+            this.calculateBalance();
+
+            this.clearInputFields();
+        } else {
+            alert('enter a value');
         }
-        this.clearInputFields();
     }
 
     onIncBtn() {
@@ -95,9 +120,7 @@ export class MainInputComponent implements OnInit {
         this.expDropIsHidden = true;
         this.incCategoryEmpty =
             this.userData.getCategoriesInc() === undefined ||
-            this.userData.getCategoriesInc().length === 0
-                ? true
-                : false;
+            this.userData.getCategoriesInc().length === 0;
     }
 
     onExpBtn() {
@@ -105,9 +128,29 @@ export class MainInputComponent implements OnInit {
         this.incDropIsHidden = true;
         this.expCategoryEmpty =
             this.userData.getCategoriesExp() === undefined ||
-            this.userData.getCategoriesExp().length === 0
-                ? true
-                : false;
+            this.userData.getCategoriesExp().length === 0;
         console.log(this.expCategoryEmpty);
+    }
+
+    calculateBalance() {
+        this.db.joinIncomeAndExpens(this.userData.getId()).subscribe(res => {
+            // add them into one arr
+            const data = [];
+            res[0].forEach((incEl) => {
+                data.push(incEl.data()['value']);
+            });
+            res[1].forEach((expEl) => {
+                data.push(expEl.data()['value']);
+            });
+            // add them
+            let total = 0;
+            data.forEach((el) => {
+                total += el;
+            });
+            // update user balance
+            this.db.getDocRef(config.users_endpoint, this.userData.getId()).update({
+                'balance': total
+            });
+        });
     }
 }
