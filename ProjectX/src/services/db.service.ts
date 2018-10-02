@@ -140,19 +140,24 @@ export class DBService {
         return this.db.doc<T>(`${endpoint}/${id}`).snapshotChanges();
     }
 
-    getAllValues(endpoint: string, userId: string) {
+    getAllValues(endpoint: string, userId: string, forPeriod?: any) {
         return this.db
-            .collection(endpoint + userId)
-            .snapshotChanges()
-            .pipe(
-                map(actions => {
-                    let data = 0;
-                    return actions.map(a => {
-                        // Get document data
-                        data += parseFloat(a.payload.doc.data()['value']);
-                        return data;
-                    });
-                })
-            );
+            .collection(endpoint + userId).get().pipe(map(res => {
+                const data = [];
+                res.forEach(el => data.push(el));
+                return data;
+            }));
+    }
+
+    getDocRef(endpoint: string, id: string) {
+        return this.db.doc(`${endpoint}/${id}`);
+    }
+
+    joinIncomeAndExpens (userId: string) {
+        // get all incomes and expenses
+        const inc = this.getAllValues(config.incomes_endpoint, userId);
+        const exp = this.getAllValues(config.expenses_endpoint, userId);
+        // forkJoin them, make them complete at the same time
+        return forkJoin([inc, exp]);
     }
 }

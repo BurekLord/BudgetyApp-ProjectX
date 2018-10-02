@@ -36,9 +36,11 @@ export class MainInputComponent implements OnInit {
     onIncomeAddClick(inc: any, name: any, value: any) {
         if (value) {
             this.incDropIsHidden = true;
+
+            // kreireaj nov income i pretvori vrednos u pozitivnu vrednost
             const newIncome = new Income(
                 name,
-                value,
+                parseFloat(value.toString()),
                 inc,
                 new Date(),
                 this.userData.getId()
@@ -54,11 +56,16 @@ export class MainInputComponent implements OnInit {
                 console.log(name);
                 this.userData.setCategoriesInc([inc]);
             }
+
+            // updejtuj userData
             this.db.updateItem<User>(
                 config.users_endpoint,
                 this.userData.getId(),
                 this.userData
             );
+
+            // calc balance
+            this.db.calculateBalance(this.userData.getId());
             this.clearInputFields();
         } else {
             alert('enter a value');
@@ -70,7 +77,7 @@ export class MainInputComponent implements OnInit {
         if (value) {
             this.expDropIsHidden = true;
 
-            // kreiraj novi expens
+            // kreiraj novi expens i stavi minus ispred vrednosti i pretvori je u number
             const newExpense = new Expense(
                 name,
                 parseFloat('-' + value.toString()),
@@ -98,6 +105,27 @@ export class MainInputComponent implements OnInit {
                 this.userData.getId(),
                 this.userData
             );
+            // calc balance
+            this.db.joinIncomeAndExpens(this.userData.getId()).subscribe(res => {
+                // add them into one arr
+                const data = [];
+                res[0].forEach((incEl) => {
+                    data.push(incEl.data()['value']);
+                });
+                res[1].forEach((expEl) => {
+                    data.push(expEl.data()['value']);
+                });
+                // add them
+                let total = 0;
+                data.forEach((el) => {
+                    total += el;
+                });
+                // update user balance
+                this.db.getDocRef(config.users_endpoint, this.userData.getId()).update({
+                    'balance': total
+                });
+            });
+
             this.clearInputFields();
         } else {
             alert('enter a value');
