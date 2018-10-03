@@ -1,8 +1,8 @@
 <main class="main">
-    <app-login [hidden]="!showLogin"></app-login>
-    <app-setup [hidden]="!showSetup" [userData]="userData"></app-setup>
-    <app-balance [hidden]="showLogin || showSetup" [userData]="userData"></app-balance>
-    <app-categories [hidden]="showLogin || showSetup" [userData]="userData"></app-categories>
-    <app-statistic [hidden]="showLogin || showSetup"></app-statistic>
-    <app-main-input [hidden]="showLogin || showSetup" [userData]="userData"></app-main-input>
+    <app-login class="login" [hidden]="!showLogin"></app-login>
+    <app-setup class="setup" [hidden]="!showSetup" [userData]="userData"></app-setup>
+    <app-categories class="categories" [hidden]="showLogin || showSetup" [userData]="userData"></app-categories>
+    <app-balance class="balance" [hidden]="showLogin || showSetup" [userData]="userData"></app-balance>
+    <app-main-input class="main-input" [hidden]="showLogin || showSetup" [userData]="userData"></app-main-input>
+    <app-statistic class="statistic" [hidden]="showLogin || showSetup"></app-statistic>
 </main>
