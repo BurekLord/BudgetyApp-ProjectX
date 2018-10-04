@@ -7,13 +7,12 @@
     margin: 0;
     padding: 0;
     box-sizing: inherit;
-    color: $red-50;
 }
 
 html {
     // ovako definisemo da je font size uvek 10px ili ekvivalent tome. posto je default u brovseru 16px
     font-size: 62.5%;
-
+    box-sizing: border-box;
 }
 
 body {
@@ -21,15 +20,15 @@ body {
     font-family: $font-family;
     font-weight: $font-slim;
     color: $red-50;
-    background-color: $primary-color;
+    background-image: linear-gradient(to right bottom,
+        rgba($primary-color-light, 1),
+        rgba($primary-color, 1));
+    // background-color: $primary-color;
+    background-size: cover;
+    background-position: top;
 
-    line-height: 2rem;
+    line-height: 2;
     font-size: 1.5rem;
-
-    // TODO change color
-    color: $primary-color;
-    box-sizing: border-box;
-
 }
 
 button {

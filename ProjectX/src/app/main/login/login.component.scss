@@ -1,6 +1,6 @@
 .login {
     border: 1px solid black;
-
+    height: 80vh;
     display: flex;
 
     text-align: center;
@@ -11,7 +11,7 @@
         align-items: center;
         justify-content: center;
         width: 50%;
-
+        margin: 3rem;
         border: 1px solid black;
     }
 
@@ -21,6 +21,7 @@
         display: flex;
         align-items: center;
         width: 50%;
+        margin: 3rem;
 
         border: 1px solid black;
     }

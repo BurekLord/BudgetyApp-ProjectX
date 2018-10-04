@@ -1,4 +1,10 @@
 .app {
     width: 100vw;
     height: 100vh;
+    background-image: linear-gradient(to right top,
+        rgba(#3a3a3a, .85),
+        rgba(#262626, .9)),
+        url(../assets/images/raining-money.png);
+    background-position: top;
+    // background-size: ;
 }
