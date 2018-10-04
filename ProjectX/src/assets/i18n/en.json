@@ -8,7 +8,8 @@
         "SETUP_GREETINGS2": "Please let us help you set up your account...",
         "BALANCE_TITLE": "Balance",
         "CATEGORIES_TITLE": "Categories",
-        "STATISTICS_TITLE": "Statistics"
+        "STATISTICS_TITLE": "Statistics",
+        "PROJECT": "ProjectX"
     },
     "BUTTON": {
         "ADD": "Add",
@@ -19,7 +20,8 @@
         "END": "End",
         "REMOVE": "Remove",
         "ADD_INCOME": "Add Income",
-        "ADD_EXPENSE": "Add Expense"
+        "ADD_EXPENSE": "Add Expense",
+        "SIGN_OUT": "Sign Out"
     },
     "INPUT": {
         "SETUP_BALANCE": "First lets enter your current balance...",
@@ -40,7 +42,8 @@
         "SETTINGS_THEME": "Theme",
         "PROJECT_DESCRIPTION": "This is a personal project for keeping track of my own money.<br>For practice we added log-in and a functionality for other people to use it as well.<br>The basic function of this app is to calculate users spending and earning, and sort them in categories of type and time. We will continue adding more features when we feel like it :D Thank you for using our app.<br>MacroHardInc team:<br>Lead developer: <a href='https://www.facebook.com/mile.ignjatovic.5'>Mile Ignjatovic</a><br>The other developer: <a href='https://www.facebook.com/marko.m.misojcic'>Marko Misojcic</a>",
         "STATISTIC_TIME_FRAME": "Time frame",
-        "WELCOME": "Welcome to ProjectX"
+        "WELCOME": "Welcome to ProjectX",
+        "HEADER_TEXT": "keep track of your shit..."
     },
     "TIME_DATE": {
         "DAY": "Day",

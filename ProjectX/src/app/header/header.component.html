@@ -1,6 +1,8 @@
 <header class="header">
-    <img src="../assets/icons/logo1.png" alt="" />
-    <h1>ProjectX</h1>
-    <p>keep track of your shit</p>
-    <button class="btn btn-sign-out" (click)="onSignOUt()">Sign Out</button>
+    <div class="img-box">
+        <img src="../assets/icons/logo1.png" alt="" />
+    </div>
+    <h1>{{'TITLE.PROJECT' | translate}}</h1>
+    <p>{{'LABEL.HEADER_TEXT' | translate}}</p>
+    <button class="btn btn-sign-out" (click)="onSignOUt()">{{'BUTTON.SIGN_OUT' | translate}}</button>
 </header>
