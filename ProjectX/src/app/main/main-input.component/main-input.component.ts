@@ -13,8 +13,6 @@ import { Expense } from '../../../models/expense.model';
 export class MainInputComponent implements OnInit {
     @Input()
     userData: User;
-    expCategoryEmpty: boolean;
-    incCategoryEmpty: boolean;
     expDropIsHidden = true;
     incDropIsHidden = true;
     newCategoryCtrl = true;
@@ -27,8 +25,6 @@ export class MainInputComponent implements OnInit {
     @ViewChild('value')
     value: ElementRef;
 
-    // @ViewChild('newCategoryDiv')
-    // newCategoryDiv: ElementRef;
     constructor(public db: DBService) {}
 
     clearInputFields() {
@@ -144,7 +140,8 @@ export class MainInputComponent implements OnInit {
                     this.userData.setCategoriesInc(tmpCatArray);
                     this.incCategory.nativeElement.value = null;
                 }
-
+                // hide new Category Controls
+                this.newCategoryCtrl = true;
                 // updejtuj userData
                 this.db.updateItem<User>(
                     config.users_endpoint,
