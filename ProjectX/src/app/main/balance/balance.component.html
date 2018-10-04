@@ -1,10 +1,10 @@
 <section class="balance">
-    <span>{{'TITLE.BALANCE_TITLE' | translate}}</span>
-    <div>
-        <p>{{'LABEL.BALANCE_CURRENT' | translate}}</p>
-        <span>{{userData? userData.getBalance() : '---' }}</span>
-        <p>{{'LABEL.BALANCE_OVERTIME' | translate}}</p>
-        <span>200$</span>
+    <!-- <h2>{{'TITLE.BALANCE_TITLE' | translate}}</h2> -->
+    <div class="balance__container">
+        <div class="balance__text">{{'LABEL.BALANCE_CURRENT' | translate}}</div>
+        <div class="balance__value">{{userData? userData.getBalance() : '---' }}</div>
+        <!-- <div>{{'LABEL.BALANCE_OVERTIME' | translate}}</div>
+        <span>{{}}</span> -->
     </div>
     <!-- <app-message-roll></app-message-roll> ????????? -->
 </section>
