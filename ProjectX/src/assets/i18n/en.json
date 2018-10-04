@@ -19,7 +19,8 @@
         "END": "End",
         "REMOVE": "Remove",
         "ADD_INCOME": "Add Income",
-        "ADD_EXPENSE": "Add Expense"
+        "ADD_EXPENSE": "Add Expense",
+        "NEW_CATEGORY": "+ New Category"
     },
     "INPUT": {
         "SETUP_BALANCE": "First lets enter your current balance...",
