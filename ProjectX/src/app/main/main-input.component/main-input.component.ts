@@ -58,7 +58,7 @@ export class MainInputComponent implements OnInit {
                 this.userData.getId(),
                 this.userData
             );
-
+            this.incDropIsHidden = true;
             // calc balance
             this.calculateBalance();
 
@@ -93,6 +93,7 @@ export class MainInputComponent implements OnInit {
                 this.userData.getId(),
                 this.userData
             );
+            this.expDropIsHidden = true;
             // calc balance
             this.calculateBalance();
 
