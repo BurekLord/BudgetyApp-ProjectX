@@ -15,9 +15,17 @@ html {
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: 'HpFont';
+    src: url('/../assets/fonts/hp-simplified-light wot.woff') format('woff'),
+        /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+        url('/../assets/fonts/hp-simplified-light.ttf') format('truetype');
+    /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+}
+
 body {
     // TODO: change font
-    font-family: $font-family;
+    font-family: 'HpFont';
     font-weight: $font-slim;
     color: $red-50;
     background-image: linear-gradient(to right bottom,
@@ -28,7 +36,7 @@ body {
     background-position: top;
 
     line-height: 2;
-    font-size: 1.5rem;
+    font-size: 2rem;
 }
 
 a {
