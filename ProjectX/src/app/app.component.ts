@@ -1,3 +1,5 @@
+import { Income } from './../models/income.model';
+import { Expense } from './../models/expense.model';
 import { Converter } from './../converters/converter';
 import { config } from './../services/config';
 import { User } from './../models/user.model';
@@ -16,6 +18,9 @@ import { TranslateService } from '@ngx-translate/core';
 export class AppComponent implements OnInit {
     currUserData: any;
     currUserCredentials: UserCredentials;
+    currUserExpenses: any[] = [];
+    currUserIncomes: any[] = [];
+
     constructor(
         public db: DBService,
         translate: TranslateService,
@@ -26,25 +31,48 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit() {
+        // 1. LOG IN user
         this.loginService.userCredentials.subscribe(res => {
             if (res) {
                 console.log('changed user credenttials, ', res);
                 this.currUserCredentials = res;
+                // 2. get userData from be
                 this.db
                     .getSpecificItem(
                         config.users_endpoint,
                         this.currUserCredentials.uid
                     )
                     .subscribe(
+                        // -- userData --
                         userData => {
-                            // console.log('in user Data sub', userData);
+                            // if there is data this meands that the user is not a new user
                             if (userData.payload.data()) {
                                 this.currUserData = Converter.jsonToModel(
                                     userData.payload.data(),
                                     config.users_endpoint
                                 );
                                 this.currUserCredentials.isNew = false;
+                                // get all incomes and expenses from user
+                                this.db.getAllValues(config.incomes_endpoint, this.currUserData.getId())
+                                    .subscribe(
+                                        incomes => {
+                                            this.currUserIncomes = Converter.jsonToModelList(incomes, config.incomes_endpoint);
+                                        },
+                                        err => {
+                                            console.error(err);
+                                        }
+                                    );
+                                this.db.getAllValues(config.expenses_endpoint, this.currUserData.getId())
+                                    .subscribe(
+                                        expenses => {
+                                            this.currUserExpenses = Converter.jsonToModelList(expenses, config.expenses_endpoint);
+                                        },
+                                        err => {
+                                            console.error(err);
+                                        }
+                                    );
                             } else {
+                                // no data? so its a new user. we need to create his userData
                                 const newUser = new User(
                                     this.currUserCredentials.uid
                                 );

@@ -114,7 +114,7 @@ export class Converter {
     static jsonToModelList(json: any[], endpoint: string) {
         const models = [];
         json.forEach(el => {
-            models.push(this.jsonToModel(el, endpoint));
+            models.push(this.jsonToModel(el.data(), endpoint));
         });
         return models;
     }

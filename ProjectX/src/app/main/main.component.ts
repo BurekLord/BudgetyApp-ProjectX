@@ -1,3 +1,4 @@
+import { Expense } from './../../models/expense.model';
 import { UserCredentials } from './../../models/userCredentials.model';
 import { User } from './../../models/user.model';
 import {
@@ -7,6 +8,7 @@ import {
     OnChanges,
     SimpleChanges
 } from '@angular/core';
+import { Income } from '../../models/income.model';
 
 @Component({
     selector: 'app-main',
@@ -15,11 +17,27 @@ import {
 })
 // in every component we use userData or userCredentials we will implement OnChanges angular life cycle hook
 export class MainComponent implements OnInit, OnChanges {
-    // to use user data or userCredentials we need a @Input on that component (app-component provides the data)
-    @Input()
-    userData: User;
-    @Input()
     userCredentials: UserCredentials;
+    userData: User;
+    userExpenses: Expense[];
+    userIncomes: Income[];
+    // to use user data or userCredentials we need a @Input on that component (app-component provides the data)
+    @Input() set
+    _userData(value) {
+        this.userData = value;
+    }
+    @Input() set
+    _userCredentials(value) {
+        this.userCredentials = value;
+    }
+    @Input() set
+    _userExpenses(value) {
+        this.userExpenses = value;
+    }
+    @Input() set
+    _userIncomes(value) {
+        this.userIncomes = value;
+    }
 
     currentUser: User;
 
@@ -33,17 +51,16 @@ export class MainComponent implements OnInit, OnChanges {
     }
 
     ngOnChanges(changes: SimpleChanges) {
-        if (changes.userData && changes.userData.currentValue) {
+        if (changes._userData && changes._userData.currentValue) {
             // OnChanges is subscribed on the @Input and every time input gets new data it is called
-            console.log('On changes', changes.userData.currentValue);
+            console.log('On changes', changes._userData.currentValue);
             // now we have up to date current user with the latest data...
             // EVERY TIME user is changed in the database, this will be triggered
-            this.currentUser = changes.userData.currentValue;
         }
 
-        if (changes.userCredentials && changes.userCredentials.currentValue) {
+        if (changes._userCredentials && changes._userCredentials.currentValue) {
             console.log('On credentials changes');
-            if (changes.userCredentials.currentValue.isNew) {
+            if (changes._userCredentials.currentValue.isNew) {
                 console.log('On credentials changes is new');
                 this.showSetup = true;
                 this.showLogin = false;

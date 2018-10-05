@@ -140,7 +140,7 @@ export class DBService {
         return this.db.doc<T>(`${endpoint}/${id}`).snapshotChanges();
     }
 
-    getAllValues(endpoint: string, userId: string, forPeriod?: any) {
+    getAllValues(endpoint: string, userId: string, forPeriod?: any): Observable<any> {
         return this.db
             .collection(endpoint + userId).get().pipe(map(res => {
                 const data = [];
