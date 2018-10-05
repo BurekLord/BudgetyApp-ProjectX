@@ -40,12 +40,14 @@ export class StatisticComponent implements OnInit, OnChanges {
     ngOnInit() {}
 
     ngOnChanges(changes: SimpleChanges): void {
-        console.log(this.expenses);
-        this.expenses.forEach((expense) => {
-            this.dataArr.push(new StatisticDataModel(expense.getTimeStamp(), expense.getValue()));
-        });
-        console.log('DATA ARR', this.dataArr);
-        GoogleCharts.load(this.drawChart);
+        if (this.expenses[0]) {
+            console.log(this.expenses[0].getTimeStamp());
+            this.expenses.forEach((expense) => {
+                this.dataArr.push(new StatisticDataModel(expense.getTimeStamp(), expense.getValue()));
+            });
+            console.log('DATA ARR', this.dataArr);
+            GoogleCharts.load(this.drawChart);
+        }
     }
 
     drawChart() {
@@ -67,5 +69,5 @@ export class StatisticComponent implements OnInit, OnChanges {
 }
 
 export class StatisticDataModel {
-    constructor(public time: Date, public money: number) {}
+    constructor(public time: any, public money: number) {}
 }
