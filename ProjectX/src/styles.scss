@@ -7,44 +7,93 @@
     margin: 0;
     padding: 0;
     box-sizing: inherit;
-    color: $red-50;
 }
 
 html {
     // ovako definisemo da je font size uvek 10px ili ekvivalent tome. posto je default u brovseru 16px
     font-size: 62.5%;
-    
+    box-sizing: border-box;
 }
 
 body {
     // TODO: change font
     font-family: $font-family;
-    font-weight: $font-thick;
+    font-weight: $font-slim;
     color: $red-50;
-    background-color: $primary-color; 
+    background-image: linear-gradient(to right bottom,
+        rgba($primary-color-light, 1),
+        rgba($primary-color, 1));
+    // background-color: $primary-color;
+    background-size: cover;
+    background-position: top;
 
-    line-height: 2rem;
+    line-height: 2;
     font-size: 1.5rem;
+}
 
-    // TODO change color
-    color: $primary-color;
-    box-sizing: border-box;
+a {
+
+    &:link,
+    &:visited {
+        color: inherit;
+        text-decoration: none;
+        text-transform: uppercase;
+        display: inline-block;
+        transition: all .2s;
+    }
+
+    &:hover {
+        padding: 0 .3rem;
+        box-shadow: 0px 3px 10px 1px rgb(172, 172, 172);
+        transform: rotate(-2deg) scale(1.1);
+    }
+
+    &:active {
+        padding: 0 .3rem;
+        box-shadow: 0px 3px 10px 1px rgb(97, 97, 97);
+        transform: rotate(-2deg) scale(1.1);
+    }
 }
 
 button {
+    display: flex;
+    align-self: center;
+    align-content: center;
+    flex-wrap: nowrap;
+    justify-content: center;
+    font-weight: $font-thick;
+    line-height: 2rem;
+    font-size: 3rem;
+
     // TODO: change border
-    border: 3px solid $primary-color;
-    
+    border: 1px solid $primary-color;
+    border-radius: .3rem;
+
+    cursor: pointer;
     color: $primary-color;
     font-size: inherit;
-    background-color: $red-400;
+    background-color: $red-600;
+    box-shadow: 0px 1.5px 2.5px 1px rgb(97, 97, 97);
     padding: .5rem;
-    width: 10rem;
+    width: fit-content;
+
+    transition: all .2s;
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0px 3px 10px 1px rgb(172, 172, 172);
+    }
+
+    &:active {
+        background-color: $red-500;
+        box-shadow: 0px 3px 10px 1px rgb(97, 97, 97);
+        transform: translateY(-1px);
+    }
 }
 
 input {
     // TODO: change border 
-    color: $primary-color;   
+    color: $primary-color;
     border: none;
     border-bottom: 3px solid $red-400;
     background-color: $red-50;

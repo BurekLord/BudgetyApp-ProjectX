@@ -1,12 +1,11 @@
 .main-input {
+    // border-top: 2px dotted black;
     display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    text-align: center;
 
-    border: 1px solid black;
-    font-size: 2rem;
-
-    div {
-        padding: 1rem;
-    }
+    height: 100%;
 
     .input-group {
         display: flex;
@@ -15,14 +14,19 @@
 
     .inc-group {
         .income-dropdown {
-            border: 1px solid green;
+            border: 1px solid turquoise;
             cursor: pointer;
             transition: .2s all;
 
             &:hover {
-                color: black;
+                color: white;
+                transform: translateY(0);
                 transform: translateY(1px);
-                box-shadow: 0px 3px 10px 1px rgba(122, 117, 122, 1);
+                box-shadow: 0px 3px 10px 1px rgb(255, 255, 255);
+            }
+
+            &:active {
+                box-shadow: none;
             }
         }
     }
@@ -34,9 +38,15 @@
             transition: .2s all;
 
             &:hover {
-                color: black;
+                color: white;
                 transform: translateY(1px);
                 box-shadow: 0px 3px 10px 1px rgba(122, 117, 122, 1);
+            }
+
+            &:active {
+                color: white;
+                transform: translateY(0);
+                box-shadow: none;
             }
         }
     }

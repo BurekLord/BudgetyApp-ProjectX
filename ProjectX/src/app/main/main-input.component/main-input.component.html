@@ -22,7 +22,7 @@
         <button class="btn expense-btn" (click)="onExpBtn()">{{'BUTTON.ADD_EXPENSE' | translate}}</button>
         <div [hidden]="expDropIsHidden">
             <div class="expense-dropdown" *ngFor="let exp of userData?.getCategoriesExp()" (click)="onExpenseAddClick(exp, name.value, value.value)">{{exp}}</div>
-            <div class="expense-dropdown" (click)="newCategory()">{{ 'BUTTON.NEW_CATEGORY' | translate}}</div>
+            <div class="expense-dropdown" (click)="newCategory()">+ {{ 'BUTTON.NEW_CATEGORY' | translate}}</div>
             <div [hidden]="newCategoryCtrl">
                 <input #expCategory type="text" name="expCategory">
                 <button class="btn expense-btn" (click)="newCategoryAdd(expCategory.value,'Expense')">{{'BUTTON.ADD'

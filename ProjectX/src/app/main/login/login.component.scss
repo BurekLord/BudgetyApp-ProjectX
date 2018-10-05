@@ -1,24 +1,32 @@
 .login {
+    border: 1px solid black;
+    height: 80vh;
     display: flex;
 
     text-align: center;
 
-
     .firebase-login {
+
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
         width: 50%;
-
+        margin: 3rem auto;
         border: 1px solid black;
     }
 
+
+
     .description {
         text-align: center;
-        word-wrap: normal;
+        // word-wrap: normal;
         display: flex;
         align-items: center;
-        width: 50%;
+        flex-direction: column;
+        width: 80%;
+        margin: 3rem;
+        padding: 2rem;
 
         border: 1px solid black;
     }

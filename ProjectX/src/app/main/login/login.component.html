@@ -3,22 +3,11 @@
     <div class="firebase-login">
         <div id="firebaseui-auth-container"></div>
         <div id="loader">Loading...</div>
-    </div>
-    <div class="description">
-        <h3>Welcome to ProjectX</h3>
-        <p>Chekout this cool app lorem ipsum lorem ipsum
-            lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-            lorem ipsum lorem ipsum
-            lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-            lorem ipsum lorem ipsum
-            lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-            lorem ipsum lorem ipsum
-            lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-            lorem ipsum lorem ipsum
-            lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-            lorem ipsum lorem ipsum
-            lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-        </p>
+        <div class="description">
+            <h3>{{'LABEL.WELCOME' | translate}}</h3>
+            <p [innerHtml]="'LABEL.PROJECT_DESCRIPTION' | translate">
+            </p>
+        </div>
     </div>
 </section>
 
