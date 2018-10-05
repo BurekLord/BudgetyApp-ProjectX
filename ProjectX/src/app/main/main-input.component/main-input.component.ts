@@ -110,7 +110,9 @@ export class MainInputComponent implements OnInit {
             if (type === 'Expense') {
                 tmpCatArray = this.userData.getCategoriesExp();
             } else if (type === 'Income') {
-                tmpCatArray = this.userData.getCategoriesInc();
+                this.userData.getCategoriesInc() === undefined
+                    ? (tmpCatArray = [])
+                    : (tmpCatArray = this.userData.getCategoriesInc());
             }
 
             // always format to upper case 1st letter and lower case the rest of the string
