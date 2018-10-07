@@ -33,41 +33,42 @@ export class StatisticComponent implements OnInit, OnChanges {
     }
 
     typeOfChart: string;
-    dataArr: any[] = [];
+    dataArr: any[];
 
     constructor() {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.dataArr = [];
+    }
 
     ngOnChanges(changes: SimpleChanges): void {
         if (this.expenses[0]) {
-            console.log(this.expenses[0].getTimeStamp());
+            console.log(this.expenses);
+            this.dataArr = [];
             this.expenses.forEach((expense) => {
                 this.dataArr.push(new StatisticDataModel(expense.getTimeStamp(), expense.getValue()));
             });
-            console.log('DATA ARR', this.dataArr);
-            GoogleCharts.load(this.drawChart);
+            this.dataArr.sort((a, b) => (a.time > b.time) ? 1 : ((b.time > a.time) ? -1 : 0));
+            console.log(this.dataArr);
+            GoogleCharts.load(this.drawTimeMoneyChart);
+            // GoogleCharts.load(this.drawTimeMoneyChart);
         }
     }
 
-    drawChart() {
-        const data = GoogleCharts.api.visualization.arrayToDataTable([
-            ['Time', 'Money'],
-            ['day 1', 60],
-            ['day 2', 22],
-            ['day 3', 18],
-            ['day 4', 18],
-            ['day 5', 18],
-            ['day 6', 18],
-            ['day 7', 18]
-        ]);
+    drawTimeMoneyChart() {
+        const transformedData = [['Time', 'Money']];
+        console.log(this.dataArr);
+        this.dataArr.forEach((el) => {
+            transformedData.push([el.time, el.value]);
+        });
+        const chart = GoogleCharts.api.visualization.arrayToDataTable(transformedData);
         const lineChart = new GoogleCharts.api.visualization.LineChart(
             document.getElementById('chart1')
         );
-        lineChart.draw(data);
+        lineChart.draw(chart);
     }
 }
 
 export class StatisticDataModel {
-    constructor(public time: Date, public money: number) {}
+    constructor(public time: Date, public value: number) {}
 }
