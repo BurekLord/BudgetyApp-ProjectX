@@ -69,5 +69,5 @@ export class StatisticComponent implements OnInit, OnChanges {
 }
 
 export class StatisticDataModel {
-    constructor(public time: any, public money: number) {}
+    constructor(public time: Date, public money: number) {}
 }
