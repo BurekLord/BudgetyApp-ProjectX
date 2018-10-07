@@ -1,4 +1,5 @@
 import { CategoriesComponent } from './main/categories/categories.component';
+import { FormatMoneyPipe } from './../custom_pipes/format.money.pipe';
 import { StatisticComponent } from './main/statistic/statistic.component';
 import { SettingsComponent } from './main/settings/settings.component';
 import { BalanceComponent } from './main/balance/balance.component';
@@ -53,8 +54,9 @@ const appRoutes: Routes = [
         BalanceComponent,
         SettingsComponent,
         StatisticComponent,
+        MainInputComponent,
         CategoriesComponent,
-        MainInputComponent
+        FormatMoneyPipe
     ],
     imports: [
         BrowserModule,

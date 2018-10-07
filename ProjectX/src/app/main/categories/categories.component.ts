@@ -12,8 +12,6 @@ import {
     ViewChild,
     ElementRef
 } from '@angular/core';
-import { expand } from 'rxjs/operators';
-
 @Component({
     selector: 'app-categories',
     templateUrl: './categories.component.html',
@@ -29,7 +27,6 @@ export class CategoriesComponent implements OnInit, OnChanges {
     user: User;
     expenses: Expense[];
     incomes: Income[];
-    currency: String;
 
     @Input()
     set userData(value) {
@@ -61,30 +58,6 @@ export class CategoriesComponent implements OnInit, OnChanges {
         this.incInput.nativeElement.value = null;
     }
 
-    // format money values to dot separated string e.g. 4.000
-    formatMoney(money: number): string {
-        // currency will be worked on, string literal for now
-        this.currency = '$';
-        // array of digits form given number
-        let digits: string[];
-        digits = money.toString().split('');
-        // final array of formated number with dots to be converted to string
-        const formatedDigits: string[] = [];
-        let formatedMoney = '';
-        let dotPoint = digits.length - 1;
-        for (let i = digits.length - 1; i > -1; i--) {
-            if (i === dotPoint - 3) {
-                formatedDigits.unshift(digits[i] + '.');
-                dotPoint -= 3;
-            } else {
-                formatedDigits.unshift(digits[i]);
-            }
-        }
-        // create final string joining elements of formatedDigits array
-        formatedMoney = formatedDigits.join('') + this.currency;
-        return formatedMoney;
-    }
-
     // get total money spent by Category
     totalExpByCat() {
         this.expCategoryValuePairs = [];
@@ -101,7 +74,7 @@ export class CategoriesComponent implements OnInit, OnChanges {
                     catVal += Math.abs(exp.getValue());
                 }
             });
-            this.expCategoryValuePairs.push([cat, this.formatMoney(catVal)]);
+            this.expCategoryValuePairs.push([cat, catVal]);
         });
     }
 
@@ -121,9 +94,10 @@ export class CategoriesComponent implements OnInit, OnChanges {
                     catVal += inc.getValue();
                 }
             });
-            this.incCategoryValuePairs.push([cat, this.formatMoney(catVal)]);
+            this.incCategoryValuePairs.push([cat, catVal]);
         });
     }
+
     ngOnChanges(changes: SimpleChanges) {
         // if (this.userData) {
         //     if (!this.userData.getCategoriesExp()) {

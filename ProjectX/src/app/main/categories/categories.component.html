@@ -5,7 +5,7 @@
         <div class="category" *ngFor="let expCat of expCategoryValuePairs">
             <img src="" alt="" />
             <span>{{expCat[0]}}</span>
-            <span> {{expCat[1]}}</span>
+            <span> {{expCat[1] | formatMoney}}</span>
             <button class="btn btn-remove" (click)="onRemove(expCat[0],'expense')">{{'BUTTON.REMOVE' | translate}}</button>
         </div>
         <input #expInput type="text" [hidden]="!expInputShow">
@@ -18,7 +18,7 @@
         <div class="category" *ngFor="let incCat of incCategoryValuePairs">
             <img src="" alt="" />
             <span>{{incCat[0]}}</span>
-            <span> {{incCat[1]}}</span>
+            <span> {{incCat[1] | formatMoney}}</span>
             <button class="btn btn-remove" (click)="onRemove(incCat[0],'income')">{{'BUTTON.REMOVE' | translate}}</button>
         </div>
         <input #incInput type="text" [hidden]="!incInputShow">
