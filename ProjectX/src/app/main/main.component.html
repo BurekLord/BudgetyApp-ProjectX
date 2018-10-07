@@ -1,8 +1,8 @@
 <app-login class="login" *ngIf="showLogin"></app-login>
 <app-setup class="setup" *ngIf="showSetup" [userData]="userData"></app-setup>
 <main class="main" *ngIf="!showLogin && !showSetup">
-    <app-categories class="categories" [userData]="userData"></app-categories>
+    <app-categories class="categories" [userData]="userData" [userExpenses]="userExpenses" [userIncomes]="userIncomes"></app-categories>
     <app-balance class="balance" [userData]="userData"></app-balance>
     <app-main-input class="main-input" [userData]="userData"></app-main-input>
-    <app-statistic class="statistic"></app-statistic>
+    <app-statistic class="statistic" [userData]="userData" [userExpenses]="userExpenses" [userIncomes]="userIncomes"></app-statistic>
 </main>

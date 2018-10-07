@@ -1,14 +1,29 @@
 <section class="categories">
     <h2>{{'LABEL.CATEGORIES' | translate}}</h2>
     <div>
-        <img src="" alt="" />
-        <div class="category" *ngFor="let cat of userData?.getCategoriesExp()">
-            <span>{{cat}}</span>
-            <span> TODO: make dynamic $ spent value over time</span>
-            <button class="btn btn-remove" (click)="onRemove(cat)">{{'BUTTON.REMOVE' | translate}}</button>
+        <span>{{ 'LABEL.EXPENSE_CATEGORIES' | translate}}</span>
+        <div class="category" *ngFor="let expCat of expCategoryValuePairs">
+            <img src="" alt="" />
+            <span>{{expCat[0]}}</span>
+            <span> {{expCat[1] | formatMoney}}</span>
+            <button class="btn btn-remove" (click)="onRemove(expCat[0],'expense')">{{'BUTTON.REMOVE' | translate}}</button>
         </div>
-        <input #input type="text" [hidden]="!showInput">
-        <button class="btn btn-add" (click)="onAdd(input.value)">{{'BUTTON.ADD' | translate}}</button>
-        <button class="btn btn-finish" (click)="onFinish(input)" [hidden]="!showBtnFinish">{{'BUTTON.END' | translate}}</button>
+        <input #expInput type="text" [hidden]="!expInputShow">
+        <button class="btn btn-add" (click)="onAdd(expInput.value, 'expense')">{{'BUTTON.ADD' | translate}}</button>
+        <button class="btn btn-finish" (click)="onFinish('expense')" [hidden]="!expBtnFinish">{{'BUTTON.END' |
+            translate}}</button>
+    </div>
+    <div>
+        <span>{{ 'LABEL.INCOME_CATEGORIES' | translate}}</span>
+        <div class="category" *ngFor="let incCat of incCategoryValuePairs">
+            <img src="" alt="" />
+            <span>{{incCat[0]}}</span>
+            <span> {{incCat[1] | formatMoney}}</span>
+            <button class="btn btn-remove" (click)="onRemove(incCat[0],'income')">{{'BUTTON.REMOVE' | translate}}</button>
+        </div>
+        <input #incInput type="text" [hidden]="!incInputShow">
+        <button class="btn btn-add" (click)="onAdd(incInput.value,'income')">{{'BUTTON.ADD' | translate}}</button>
+        <button class="btn btn-finish" (click)="onFinish('income')" [hidden]="!incBtnFinish">{{'BUTTON.END' |
+            translate}}</button>
     </div>
 </section>
