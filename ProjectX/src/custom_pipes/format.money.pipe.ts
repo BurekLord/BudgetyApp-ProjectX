@@ -23,7 +23,7 @@ export class FormatMoneyPipe implements PipeTransform {
             }
         }
         // create final string joining elements of formatedDigits array
-        formatedMoney = formatedDigits.join('') + this.currency;
+        formatedMoney = this.currency + formatedDigits.join('');
         return formatedMoney;
     }
 }

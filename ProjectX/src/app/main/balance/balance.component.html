@@ -2,7 +2,7 @@
     <!-- <h2>{{'TITLE.BALANCE_TITLE' | translate}}</h2> -->
     <div class="balance__container">
         <div class="balance__text">{{'LABEL.BALANCE_CURRENT' | translate}}</div>
-        <div class="balance__value">{{userData? userData.getBalance() : '---' }}</div>
+        <div class="balance__value">{{userData? (userData.getBalance() | formatMoney) : '---' }}</div>
         <!-- <div>{{'LABEL.BALANCE_OVERTIME' | translate}}</div>
         <span>{{}}</span> -->
     </div>
