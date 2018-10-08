@@ -23,11 +23,6 @@ span {
 .category {
     // margin: 2rem;
     display: flex;
-
-    &:hover > .btn-remove {
-        opacity: 1;
-        visibility: visible;
-    }
 }
 
 .cat-section {
@@ -75,8 +70,6 @@ span {
 }
 
 .btn-remove {
-    opacity: 0;
-    visibility: hidden;
     display: flex;
     border-radius: 10rem;
     background-color: $red-600;

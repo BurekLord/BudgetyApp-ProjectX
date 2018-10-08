@@ -26,9 +26,9 @@
     },
     "INPUT": {
         "SETUP_BALANCE": "First lets enter your current balance...",
-        "SETUP_INCOME": "Now enter the name your source of income...",
-        "SETUP_EXPENSE": "Now enter some general categories of of things you spend your money on ...",
-        "SETUP_TIME_FRAME": "Now enter the time frame you would like to be a default for you in this app..."
+        "SETUP_INCOME": "Now enter the name your source of income... e.g. Salary",
+        "SETUP_EXPENSE": "Now enter some general categories of of things you spend your money on ... e.g. Food",
+        "SETUP_TIME_FRAME": "Now enter the time frame you would like to be a default for you in this app... ---just enter something and skip this :D"
     },
     "LABEL": {
         "CATEGORY_NAME": "{{categoryName}}",
@@ -41,7 +41,7 @@
         "BALANCE_OVERTIME": "Money spent this month",
         "SETTINGS_LANGUAGE": "Language",
         "SETTINGS_THEME": "Theme",
-        "PROJECT_DESCRIPTION": "This is a personal project for keeping track of my own money.<br>For practice we added log-in and a functionality for other people to use it as well.<br>The basic function of this app is to calculate users spending and earning, and sort them in categories of type and time. We will continue adding more features when we feel like it :D Thank you for using our app.<br>MacroHardInc team:<br>Lead developer: <a href='https://www.facebook.com/mile.ignjatovic.5'>Mile Ignjatovic</a><br>The other developer: <a href='https://www.facebook.com/marko.m.misojcic'>Marko Misojcic</a><br>\"Business analyst\" ... or whatever: <a href='https://www.pornhub.com'>Nenad Mijailovic</a>",
+        "PROJECT_DESCRIPTION": "This is a personal project for keeping track of my own money.<br>For practice we added log-in and a functionality for other people to use it as well.<br>The basic function of this app is to calculate users spending and earning, and sort them in categories of type and time. We will continue adding more features when we feel like it :D Thank you for using our app.<br>MacroHardInc team:<br>Lead developer: <a href='https://www.facebook.com/mile.ignjatovic.5'>Mile Ignjatovic</a><br>The other developer: <a href='https://www.facebook.com/marko.m.misojcic'>Marko Misojcic</a><br>\"Business analyst\" ... or whatever: <a href='https://www.youtube.com/watch?v=sIFFywo_-1w'>Nenad Mijailovic</a>",
         "STATISTIC_TIME_FRAME": "Time frame",
         "WELCOME": "Welcome to ProjectX",
         "HEADER_TEXT": "keep track of your shit...",

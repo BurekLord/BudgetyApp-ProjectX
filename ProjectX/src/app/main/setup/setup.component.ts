@@ -31,8 +31,10 @@ export class SetupComponent implements OnInit {
     btnNextShow = true;
     btnAddText = 'BUTTON.ADD';
     btnAddShow = false;
+    finished = false;
     btnBackText = 'BUTTON.BACK';
     btnEndText = 'BUTTON.SKIP';
+    hideInput = false;
 
     tables: HelperModel[] = [];
 
@@ -70,6 +72,8 @@ export class SetupComponent implements OnInit {
             // in the last step, take all of the data and send it to be
             this.btnNextShow = false;
             this.btnAddShow = false;
+            this.hideInput = true;
+            this.finished = true;
             this.btnEndText = 'BUTTON.END';
             this.userData.setCategoriesExp(this.tables[2].value);
             this.userData.setCategoriesInc(this.tables[1].value);
@@ -89,6 +93,7 @@ export class SetupComponent implements OnInit {
             this.btnNextShow = true;
             if (this.currentStep.value === 0) {
                 this.btnAddShow = false;
+                this.tables[0] = new HelperModel('LABEL.BALANCE', []);
             } else {
                 this.btnAddShow = true;
             }
@@ -135,25 +140,32 @@ export class SetupComponent implements OnInit {
             this.added = false;
         } else {
             // TODO: remove and place a warning msg for the user
-            alert('enter a goddamn VALUE!');
+            alert('enter a VALUE!');
         }
     }
 
     onAdd(input: any) {
-        if (this.currentStep === this.steps[1]) {
-            this.tables[1].isShown = true;
-            this.tables[1].value.push(input);
-        } else if (this.currentStep === this.steps[2]) {
-            this.tables[2].isShown = true;
-            this.tables[2].value.push(input);
+        if (input || this.added) {
+            if (this.currentStep === this.steps[1]) {
+                this.tables[1].isShown = true;
+                this.tables[1].value.push(input);
+            } else if (this.currentStep === this.steps[2]) {
+                this.tables[2].isShown = true;
+                this.tables[2].value.push(input);
+            }
+            this.added = true;
+            this.clearInputFields();
+        } else {
+            // TODO: remove and place a warning msg for the user
+            alert('enter a VALUE!');
         }
-        this.added = true;
-        this.clearInputFields();
     }
 
     onSkip() {
         // TODO: remove this
-        window.location.reload();
+        if (this.currentStep.value === 3) {
+            window.location.reload();
+        }
     }
 }
 

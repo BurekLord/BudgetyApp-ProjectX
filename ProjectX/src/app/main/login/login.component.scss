@@ -1,8 +1,8 @@
 .login {
     border: 1px solid black;
-    height: 80vh;
+    min-height: 80vh;
     display: flex;
-
+    height: fit-content;
     text-align: center;
 
     .firebase-login {
