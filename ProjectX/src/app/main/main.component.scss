@@ -1,0 +1,47 @@
+.main {
+    padding: 4em;
+    // define displey of type grid
+    display: grid;
+    // define a gap width between grid cells in all directions
+    grid-gap: 3.5rem;
+
+    justify-content: stretch;
+
+    position: relative;
+
+    // how many grid rows? 3 and 1fr means they are all the same size
+    grid-template-rows: repeat(3, minmax(fr, 1fr));
+    // how many grid columns? 2 and 1fr means they are all the same size
+    grid-template-columns: repeat(2, minmax(30rem, 1fr));
+
+    // a shortcut to position the grid elements. imagine this as a matrix of fields 3x2
+    grid-template-areas: "balance categories"
+        "main-input categories"
+        "statistic statistic";
+
+    height: 100%;
+}
+
+// set grid-area nema for the grid-template-areas, and the magic happenes
+.categories {
+    grid-area: categories;
+}
+
+.balance {
+    grid-area: balance;
+}
+
+.main-input {
+    grid-area: main-input;
+}
+
+.statistic {
+    grid-area: statistic;
+}
+
+// second way to define position of the elements in the grid is by grid indexes 
+.setup .login {
+    grid-area: login;
+    grid-row: 1/3;
+    grid-column: 1/4;
+}

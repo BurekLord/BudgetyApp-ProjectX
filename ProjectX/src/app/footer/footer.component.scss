@@ -1,0 +1,11 @@
+.footer {
+    border: 1px solid white;
+
+    background-image: linear-gradient(to right bottom,
+        rgba(#363636, .6),
+        rgba(#262626, .9));
+
+    height: 10vh;
+    position: relative;
+    display: flex;
+}
