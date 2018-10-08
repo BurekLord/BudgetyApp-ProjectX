@@ -96,7 +96,7 @@ export class Converter {
                     json.name ? json.name : undefined,
                     json.value ? json.value : undefined,
                     json.category ? json.category : undefined,
-                    json.timeStamp ? json.timeStamp : undefined,
+                    json.timeStamp ? new Date(json.timeStamp.seconds * 1000) : undefined,
                     json.userId ? json.userId : undefined
                 );
             } else if (endpoint === config.expenses_endpoint) {
@@ -104,7 +104,7 @@ export class Converter {
                     json.name ? json.name : undefined,
                     json.value ? json.value : undefined,
                     json.category ? json.category : undefined,
-                    json.timeStamp ? json.timeStamp : undefined,
+                    json.timeStamp ? new Date(json.timeStamp.seconds * 1000) : undefined,
                     json.userId ? json.userId : undefined
                 );
             }
