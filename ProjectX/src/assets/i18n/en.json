@@ -46,7 +46,9 @@
         "WELCOME": "Welcome to ProjectX",
         "HEADER_TEXT": "keep track of your shit...",
         "EXPENSE_CATEGORIES": "Total expenses by category",
-        "INCOME_CATEGORIES": "Total incomes by category"
+        "INCOME_CATEGORIES": "Total incomes by category",
+        "INCOMES": "Incomes",
+        "EXPENSES": "Expenses"
     },
     "TIME_DATE": {
         "DAY": "Day",
