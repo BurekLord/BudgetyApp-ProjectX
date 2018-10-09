@@ -21,8 +21,26 @@ span {
 }
 
 .category {
-    // margin: 2rem;
+    margin: .2rem;
+    border: $small-border;
     display: flex;
+    width: 99%;
+    transition: all .2s;
+    justify-content: center;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: $small-shadow;
+    }
+
+    &:hover > .btn-remove {
+        display: flex;
+    }
+
+    &:active {
+        transform: translateY(-1px);
+        box-shadow: $smaller-shadow;
+    }
 }
 
 .cat-section {
@@ -41,11 +59,11 @@ span {
     opacity: 0;
     visibility: hidden;
     display: flex;
-    margin-top: 3rem;
+    margin-top: 2rem;
     // display: flex;
     flex-direction: column;
     align-items: center;
-    width: 40%;
+    width: 80%;
     > input {
         margin-bottom: .7rem;
         width: 95%;
@@ -60,18 +78,20 @@ span {
 }
 
 .btn-add {
-        background-color: $primary-blue;
-        width: 42%;
+        background-color: $red-50;
+        width: 35%;
     }
 
 .btn-finish {
-    background-color: $red-50;
-    width: 42%;
+    background-color: $primary-blue;
+    width: 35%;
 }
 
 .btn-remove {
-    display: flex;
+    display: none;
     border-radius: 10rem;
+    font-size: 1.5rem;
     background-color: $red-600;
     margin-left: 2rem;
+    line-height: 1.2rem;
 }

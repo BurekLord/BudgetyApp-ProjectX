@@ -1,8 +1,10 @@
 <section class="categories">
+    <!-- komentar: ova komponenta moze da se uradi tako da nema income section i exp section nego
+    samo jedan section ali sa *ngFor bilo bi bolje i lakse, preglednije i jednostavnije za odrzavanje i menjanje-->
     <h2>{{'LABEL.CATEGORIES' | translate}}</h2>
     <div class="flex-container">
         <div class="cat-section">
-            <span>{{ 'LABEL.EXPENSES' | translate}}</span>
+            <span>--  {{ 'LABEL.EXPENSES' | translate}}  --</span>
             <div class="category" *ngFor="let expCat of expCategoryValuePairs">
                 <img src="" alt="" />
                 <span>{{expCat[0]}}</span>
@@ -13,13 +15,13 @@
                 <input #expInput type="text" [hidden]="!expInputShow">
                 <div class="btn-box">
                     <button class="btn btn-add" (click)="onAdd(expInput.value, 'expense')">{{'BUTTON.ADD' | translate}}</button>
-                    <button class="btn btn-finish" (click)="onFinish('expense')" [hidden]="!expBtnFinish">{{'BUTTON.END' |
+                    <button class="btn btn-finish" (click)="onFinish('expense')" *ngIf="expBtnFinish">{{'BUTTON.END' |
                         translate}}</button>
                 </div>
             </div>
         </div>
         <div class="cat-section">
-            <span>{{ 'LABEL.INCOMES' | translate}}</span>
+            <span>--  {{ 'LABEL.INCOMES' | translate}}  --</span>
             <div class="category" *ngFor="let incCat of incCategoryValuePairs">
                 <img src="" alt="" />
                 <span>{{incCat[0]}}</span>
@@ -30,7 +32,7 @@
                 <input #incInput type="text" [hidden]="!incInputShow">
                 <div class="btn-box">
                     <button class="btn btn-add" (click)="onAdd(incInput.value,'income')">{{'BUTTON.ADD' | translate}}</button>
-                    <button class="btn btn-finish" (click)="onFinish('income')" [hidden]="!incBtnFinish">{{'BUTTON.END' |
+                    <button class="btn btn-finish" (click)="onFinish('income')" *ngIf="incBtnFinish">{{'BUTTON.END' |
                         translate}}</button>
                 </div>
             </div>

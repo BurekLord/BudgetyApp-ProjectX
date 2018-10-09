@@ -1,3 +1,4 @@
+@import '../../../assets/scss/variables';
 .main-input {
     // border-top: 2px dotted black;
     display: flex;
@@ -7,47 +8,53 @@
 
     height: 100%;
 
-    .input-group {
+    .group {
         display: flex;
         flex-direction: column;
+        width: 28%;
     }
 
-    .inc-group {
-        .income-dropdown {
-            border: 1px solid turquoise;
-            cursor: pointer;
-            transition: .2s all;
+    .income-dropdown {
+        border: $small-border;
+        margin: .2rem;
+        transition: .2s all;
 
-            &:hover {
-                color: white;
-                transform: translateY(0);
-                transform: translateY(1px);
-                box-shadow: 0px 3px 10px 1px rgb(255, 255, 255);
-            }
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: $small-shadow;
+        }
 
-            &:active {
-                box-shadow: none;
-            }
+        &:active {
+            transform: translateY(-1px);
+            box-shadow: $smaller-shadow;
         }
     }
 
-    .exp-group {
-        .expense-dropdown {
-            border: 1px solid red;
-            cursor: pointer;
-            transition: .2s all;
+    .expense-dropdown {
+        border: $small-border;
+        margin: .2rem;
+        transition: .2s all;
 
-            &:hover {
-                color: white;
-                transform: translateY(1px);
-                box-shadow: 0px 3px 10px 1px rgba(122, 117, 122, 1);
-            }
-
-            &:active {
-                color: white;
-                transform: translateY(0);
-                box-shadow: none;
-            }
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: $small-shadow;
         }
+
+        &:active {
+            transform: translateY(-1px);
+            box-shadow: $smaller-shadow;
+        }
+    }
+
+    .expense-btn {
+        // align-self: center;
+        &> .expense-btn {
+            background-color: $red-50;
+        }
+    }
+
+    .input-box {
+        display: flex;
+        flex-direction: column;
     }
 }

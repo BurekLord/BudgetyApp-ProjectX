@@ -1,29 +1,29 @@
 <div class="main-input">
-    <div class="inc-group">
+    <div class="group">
         <button class="btn income-btn" (click)="onIncBtn()">{{'BUTTON.ADD_INCOME' | translate}}</button>
         <div [hidden]="incDropIsHidden">
             <div class="income-dropdown" *ngFor="let inc of userData?.getCategoriesInc()" (click)="onIncomeAddClick(inc, name.value, value.value)">{{inc}}</div>
-            <div class="income-dropdown" (click)="newCategory()">{{ 'BUTTON.NEW_CATEGORY' | translate}}</div>
-            <div [hidden]="newCategoryCtrl">
+            <div class="income-dropdown" (click)="newCategory()">+ {{ 'BUTTON.NEW_CATEGORY' | translate}}</div>
+            <div class="input-box" [hidden]="newCategoryCtrl">
                 <input #incCategory type="text" name="category">
                 <button class="btn expense-btn" (click)="newCategoryAdd(incCategory.value, 'Income')">{{'BUTTON.ADD'
                     | translate}}</button>
             </div>
         </div>
     </div>
-    <div class="input-group">
+    <div class="group">
         <label for="name">{{'LABEL.DESCRIPTION' | translate}}</label>
         <input #name type="text" name="name">
         <label for="value">{{'LABEL.VALUE' | translate}}</label>
         <input #value type="number" name="value">
         <span *ngIf="!expDropIsHidden || !incDropIsHidden">{{'LABEL.CATEGORISE_THIS' | translate}}:</span>
     </div>
-    <div class="exp-group">
+    <div class="group">
         <button class="btn expense-btn" (click)="onExpBtn()">{{'BUTTON.ADD_EXPENSE' | translate}}</button>
         <div [hidden]="expDropIsHidden">
             <div class="expense-dropdown" *ngFor="let exp of userData?.getCategoriesExp()" (click)="onExpenseAddClick(exp, name.value, value.value)">{{exp}}</div>
             <div class="expense-dropdown" (click)="newCategory()">+ {{ 'BUTTON.NEW_CATEGORY' | translate}}</div>
-            <div [hidden]="newCategoryCtrl">
+            <div class="input-box" [hidden]="newCategoryCtrl">
                 <input #expCategory type="text" name="expCategory">
                 <button class="btn expense-btn" (click)="newCategoryAdd(expCategory.value,'Expense')">{{'BUTTON.ADD'
                     | translate}}</button>
