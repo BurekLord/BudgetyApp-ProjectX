@@ -12,11 +12,11 @@
         </div>
     </div>
     <div class="input-group">
-        <label for="name">Description</label>
+        <label for="name">{{'LABEL.DESCRIPTION' | translate}}</label>
         <input #name type="text" name="name">
-        <label for="value">Value</label>
+        <label for="value">{{'LABEL.VALUE' | translate}}</label>
         <input #value type="number" name="value">
-        <span *ngIf="!expDropIsHidden || !incDropIsHidden">Categorize this:</span>
+        <span *ngIf="!expDropIsHidden || !incDropIsHidden">{{'LABEL.CATEGORISE_THIS' | translate}}:</span>
     </div>
     <div class="exp-group">
         <button class="btn expense-btn" (click)="onExpBtn()">{{'BUTTON.ADD_EXPENSE' | translate}}</button>

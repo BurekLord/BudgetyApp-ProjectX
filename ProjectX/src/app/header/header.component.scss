@@ -29,6 +29,25 @@
 
     .btn-sign-out {
         margin-left: auto;
-        margin-right: 5rem;
+        margin-right: 2rem;
+    }
+
+    .btn-en {
+        background-image: url(../../assets/icons/Custom-Icon-Design-Flag-3-United-Kingdom-flag.ico);
+        background-position: center;
+        background-size: cover;
+        color: transparent;
+        margin: .5rem;
+        margin-left: auto;
+    }
+    .btn-sr {
+        background-image: url(../../assets/icons/Serbia-Flag-icon.png);
+        background-position: center;
+        background-size: cover;
+        color: transparent;
+        margin: .5rem;
+    }
+    .btn {
+       
     }
 }

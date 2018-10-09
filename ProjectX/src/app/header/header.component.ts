@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { User } from './../../models/user.model';
 import { Component, OnInit, Input } from '@angular/core';
 import { auth } from 'firebase/app';
@@ -14,7 +15,7 @@ export class HeaderComponent implements OnInit {
     @Input()
     userCredentials: UserCredentials;
 
-    constructor() {}
+    constructor(public translate: TranslateService) {}
 
     onSignOUt() {
         auth()
@@ -29,4 +30,11 @@ export class HeaderComponent implements OnInit {
     }
 
     ngOnInit() {}
+
+    onEn() {
+        this.translate.use('en');
+    }
+    onSr() {
+        this.translate.use('sr');
+    }
 }

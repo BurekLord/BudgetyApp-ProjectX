@@ -48,7 +48,10 @@
         "EXPENSE_CATEGORIES": "Total expenses by category",
         "INCOME_CATEGORIES": "Total incomes by category",
         "INCOMES": "Incomes",
-        "EXPENSES": "Expenses"
+        "EXPENSES": "Expenses",
+        "DESCRIPTION": "Description",
+        "CATEGORISE_THIS": "Categorise this",
+        "VALUE": "Value"
     },
     "TIME_DATE": {
         "DAY": "Day",
