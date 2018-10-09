@@ -5,11 +5,13 @@ span {
     margin-right: 1rem;
     display: inline-block;
 }
+
 .categories {
     // border: 1px solid black;
     display: flex;
     flex-direction: column;
     align-items: center;
+
     height: 100%;
     transition: all .1s;
 }
@@ -30,8 +32,8 @@ span {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
-    &:hover > .add-box {
+
+    &:hover>.add-box {
         opacity: 1;
         visibility: visible;
     }
@@ -46,7 +48,8 @@ span {
     flex-direction: column;
     align-items: center;
     width: 40%;
-    > input {
+
+    >input {
         margin-bottom: .7rem;
         width: 95%;
     }
@@ -60,9 +63,9 @@ span {
 }
 
 .btn-add {
-        background-color: $primary-blue;
-        width: 42%;
-    }
+    background-color: $primary-blue;
+    width: 42%;
+}
 
 .btn-finish {
     background-color: $red-50;
@@ -71,6 +74,8 @@ span {
 
 .btn-remove {
     display: flex;
+    width: 3rem;
+    height: 3rem;
     border-radius: 10rem;
     background-color: $red-600;
     margin-left: 2rem;

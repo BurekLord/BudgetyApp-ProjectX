@@ -39,3 +39,4 @@
 
     <button class="btn skip-btn" *ngIf="finished" (click)="onSkip()">{{btnEndText | translate}}</button>
 </div>
+<app-popup *ngIf="showPopup" [popupData]="popupData" (closePopupEvent)="PopupEventTriggered($event)"></app-popup>

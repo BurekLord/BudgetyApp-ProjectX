@@ -22,20 +22,20 @@ export class MainComponent implements OnInit, OnChanges {
     userExpenses: Expense[];
     userIncomes: Income[];
     // to use user data or userCredentials we need a @Input on that component (app-component provides the data)
-    @Input() set
-    _userData(value) {
+    @Input()
+    set _userData(value) {
         this.userData = value;
     }
-    @Input() set
-    _userCredentials(value) {
+    @Input()
+    set _userCredentials(value) {
         this.userCredentials = value;
     }
-    @Input() set
-    _userExpenses(value) {
+    @Input()
+    set _userExpenses(value) {
         this.userExpenses = value;
     }
-    @Input() set
-    _userIncomes(value) {
+    @Input()
+    set _userIncomes(value) {
         this.userIncomes = value;
     }
 

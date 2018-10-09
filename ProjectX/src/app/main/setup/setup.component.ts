@@ -1,3 +1,4 @@
+import { PopupData } from './../popup/popup.data';
 import { User } from './../../../models/user.model';
 import { DBService } from './../../../services/db.service';
 import { LoginService } from './../../../services/login.service';
@@ -41,7 +42,14 @@ export class SetupComponent implements OnInit {
     @ViewChild('input')
     input: ElementRef;
 
-    constructor(private db: DBService) {}
+    popupData: PopupData;
+    showPopup = false;
+
+    constructor(public db: DBService) {}
+
+    PopupEventTriggered(data) {
+        this.showPopup = data;
+    }
 
     clearInputFields() {
         this.input.nativeElement.value = null;
@@ -121,26 +129,15 @@ export class SetupComponent implements OnInit {
                     this.tables[3].isShown = true;
                 }
             }
-            // if (this.currentStep === this.steps[0]) {
-            //     this.tables[0].isShown = true;
-            //     this.tables[0].value.push(input);
-            //     this.btnAddShow = true;
-            // } else if (this.currentStep === this.steps[1]) {
-            //     this.tables[1].isShown = true;
-            //     this.tables[1].value.push(input);
-            //     this.btnAddShow = true;
-            // } else if (this.currentStep === this.steps[2]) {
-            //     this.tables[2].isShown = true;
-            //     this.tables[2].value.push(input);
-            // } else if (this.currentStep === this.steps[3]) {
-            //     // TODO
-            //     this.tables[3].isShown = true;
-            // }
             this.nextStep();
             this.added = false;
         } else {
             // TODO: remove and place a warning msg for the user
-            alert('enter a VALUE!');
+            this.popupData = new PopupData(
+                'Value missing',
+                'Please specify value!'
+            );
+            this.showPopup = true;
         }
     }
 
@@ -157,7 +154,11 @@ export class SetupComponent implements OnInit {
             this.clearInputFields();
         } else {
             // TODO: remove and place a warning msg for the user
-            alert('enter a VALUE!');
+            this.popupData = new PopupData(
+                'Value missing',
+                'Please specify value!'
+            );
+            this.showPopup = true;
         }
     }
 

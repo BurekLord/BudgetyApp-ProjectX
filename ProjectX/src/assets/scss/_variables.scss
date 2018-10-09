@@ -27,3 +27,12 @@ $font-fat: 900;
 $font-family: Arial,
 Helvetica,
 sans-serif;
+
+
+// BORDERS
+$red-boder: .1px solid $red-400;
+
+// SHADOWS
+$red-box-shadow: .0px 0px 6px $red-400,
+0px 0px 18px $red-400,
+0px 0px 20px $red-400;

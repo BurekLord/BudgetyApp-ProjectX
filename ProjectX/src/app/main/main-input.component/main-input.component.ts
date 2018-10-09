@@ -1,3 +1,4 @@
+import { PopupData } from './../popup/popup.data';
 import { config } from './../../../services/config';
 import { DBService } from './../../../services/db.service';
 import { User } from '../../../models/user.model';
@@ -25,7 +26,14 @@ export class MainInputComponent implements OnInit {
     @ViewChild('value')
     value: ElementRef;
 
+    popupData: PopupData;
+    showPopup = false;
+
     constructor(public db: DBService) {}
+
+    PopupEventTriggered(data) {
+        this.showPopup = data;
+    }
 
     clearInputFields() {
         this.name.nativeElement.value = null;
@@ -64,7 +72,11 @@ export class MainInputComponent implements OnInit {
 
             this.clearInputFields();
         } else {
-            alert('enter a value');
+            this.popupData = new PopupData(
+                'Value missing',
+                'Please specify value!'
+            );
+            this.showPopup = true;
         }
     }
 
@@ -99,7 +111,11 @@ export class MainInputComponent implements OnInit {
 
             this.clearInputFields();
         } else {
-            alert('enter a value');
+            this.popupData = new PopupData(
+                'Value missing',
+                'Please specify value!'
+            );
+            this.showPopup = true;
         }
     }
 
@@ -130,7 +146,11 @@ export class MainInputComponent implements OnInit {
 
             if (catExists) {
                 // if YES
-                alert('jebem ti mater glupu');
+                this.popupData = new PopupData(
+                    'Category exists',
+                    'Category with that name exists. Please chose other name!'
+                );
+                this.showPopup = true;
             } else {
                 // if NO
                 // push new category to tmpCatArray
@@ -153,7 +173,11 @@ export class MainInputComponent implements OnInit {
                 );
             }
         } else {
-            alert('enter category name!');
+            this.popupData = new PopupData(
+                'Value missing',
+                'Please specify category name!'
+            );
+            this.showPopup = true;
         }
     }
 
