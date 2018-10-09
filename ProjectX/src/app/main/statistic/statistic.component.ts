@@ -43,11 +43,13 @@ export class StatisticComponent implements OnInit, OnChanges {
 
     ngOnInit() {
         StatisticComponent.dataArr = [];
+        window.addEventListener('resize', () => {
+            GoogleCharts.load(this.drawTimeMoneyChart);
+        });
     }
 
     ngOnChanges(changes: SimpleChanges): void {
         if (this.expenses[0]) {
-            console.log(this.expenses);
             StatisticComponent.dataArr = [];
             this.expenses.forEach((expense) => {
                 StatisticComponent.dataArr.push(new StatisticDataModel(expense.getTimeStamp(), expense.getValue()));
@@ -71,7 +73,9 @@ export class StatisticComponent implements OnInit, OnChanges {
         const lineChart = new GoogleCharts.api.visualization.LineChart(
             document.getElementById('chart1')
         );
-        const elementWidth = document.getElementById('statistics').offsetWidth; // ovo resenje nije respoonsiv
+
+        // const elementWidth = document.getElementById('statistics').offsetWidth; // ovo resenje nije respoonsiv
+
         const options = {
             lineWidth: 2.5,
             pointSize: 5,
@@ -81,17 +85,17 @@ export class StatisticComponent implements OnInit, OnChanges {
                 color: '#ffffff',
                 fontSize: 20,
             },
-            width: elementWidth, // kad se ucita uzme duzinu statistik diva i da mu tu duzinu. ne resajzuje se
+            width: '100%', // kad se ucita uzme duzinu statistik diva i da mu tu duzinu. ne resajzuje se
             'backgroundColor': 'transparent',
             // 'opacity' : '0.8', // ovo ne radi
             // 'colors': '[red]', // ovo baguje zbog necega
             'fontSize': 15,
-            chartArea: { // ovo kontrolise koliki je i poziciju area gde se nalazi chart. ako stavi 100% sve onda se ne vide slova sa strane
-                left: '5%',
-                top: '15%',
-                width: '90%',
-                height: '75%'
-            },
+            // chartArea: { // ovo kontrolise koliki je i poziciju area gde se nalazi chart. ako stavi 100% sve onda se ne vide slova sa strane
+            //     left: '5%',
+            //     top: '15%',
+            //     width: '90%',
+            //     height: '75%'
+            // },
             // curveType: 'function', // dal ce bude cik cak ili kurv
             hAxis: { // stilizuje slova u horizontali
                 gridlines: { count: -1, color: '#606060' },
