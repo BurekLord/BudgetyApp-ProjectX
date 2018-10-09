@@ -59,7 +59,7 @@ span {
     opacity: 0;
     visibility: hidden;
     display: flex;
-    margin-top: 2rem;
+    margin-top: .7rem;
     // display: flex;
     flex-direction: column;
     align-items: center;
@@ -94,4 +94,6 @@ span {
     background-color: $red-600;
     margin-left: 2rem;
     line-height: 1.2rem;
+    color: white;
+    font-weight: 300;
 }

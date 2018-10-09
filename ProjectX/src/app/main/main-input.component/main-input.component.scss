@@ -46,15 +46,17 @@
         }
     }
 
-    .expense-btn {
-        // align-self: center;
-        &> .expense-btn {
-            background-color: $red-50;
-        }
+    button {
+        margin: .7rem;
+    }
+
+    .input-btn {
+        background-color: $red-50;
     }
 
     .input-box {
         display: flex;
         flex-direction: column;
+        margin: .5rem;
     }
 }
