@@ -1,3 +1,4 @@
+import { PopupData } from './../popup/popup.data';
 import { config } from './../../../services/config';
 import { User } from './../../../models/user.model';
 import { Income } from './../../../models/income.model';
@@ -51,8 +52,14 @@ export class CategoriesComponent implements OnInit, OnChanges {
     incInputShow = false;
     incBtnFinish = false;
 
+    popupData: PopupData;
+    showPopup = false;
+
     constructor(private db: DBService) {}
 
+    PopupEventTriggered(data) {
+        this.showPopup = data;
+    }
     clearInputFields() {
         this.expInput.nativeElement.value = null;
         this.incInput.nativeElement.value = null;
@@ -99,11 +106,6 @@ export class CategoriesComponent implements OnInit, OnChanges {
     }
 
     ngOnChanges(changes: SimpleChanges) {
-        // if (this.userData) {
-        //     if (!this.userData.getCategoriesExp()) {
-        //         this.userData.setCategoriesExp([]);
-        //     }
-        // }
         this.totalExpByCat();
         this.totalIncByCat();
     }
@@ -142,6 +144,12 @@ export class CategoriesComponent implements OnInit, OnChanges {
                     this.user
                 );
             }
+        } else {
+            this.popupData = new PopupData(
+                'Value missing',
+                'Please specify category name!'
+            );
+            this.showPopup = true;
         }
         this.clearInputFields();
     }

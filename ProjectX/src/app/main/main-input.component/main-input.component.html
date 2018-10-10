@@ -30,4 +30,6 @@
             </div>
         </div>
     </div>
+
 </div>
+<app-popup *ngIf="showPopup" [popupData]="popupData" (closePopupEvent)="PopupEventTriggered($event)"></app-popup>
