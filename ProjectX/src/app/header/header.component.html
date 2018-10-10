@@ -1,12 +1,20 @@
 <header class="header">
-    <div class="img-box">
-        <img src="../assets/icons/logo-final.png" alt="" />
+    <div class="logo-box">
+        <div class="img-box">
+            <img src="../assets/icons/logo-final.png" alt="" />
+        </div>
+        <h1>{{'TITLE.PROJECT' | translate}}</h1>
     </div>
-    <h1>{{'TITLE.PROJECT' | translate}}</h1>
-    <p>{{'LABEL.HEADER_TEXT' | translate}}</p>
-    <!-- TODO: delete in development div -->
-    <div style="margin-left: auto; font-size: 4rem;">In development Version - 0.1</div>
-    <button class="btn btn-en" (click)="onEn()">EN</button>
-    <button class="btn btn-sr" (click)="onSr()">SR</button>
-    <button class="btn btn-sign-out" (click)="onSignOUt()">{{'BUTTON.SIGN_OUT' | translate}}</button>
+    <div class="content-box">
+        <div class="text-box">
+            <p class="header-text">{{'LABEL.HEADER_TEXT' | translate}}</p>
+            <!-- TODO: delete in development div -->
+            <div class="banner">In development Version - 0.1</div>
+        </div>
+        <div class="btn-box">
+            <button class="btn btn-en" (click)="onEn()">EN</button>
+            <button class="btn btn-sr" (click)="onSr()">SR</button>
+            <button class="btn btn-sign-out" (click)="onSignOUt()">{{'BUTTON.SIGN_OUT' | translate}}</button>
+        </div>
+    </div>
 </header>

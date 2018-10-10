@@ -1,9 +1,11 @@
+@import '../../assets/scss/mixins'; 
 .header {
     border: 1px solid white;
 
     height: 10vh;
     position: relative;
     display: flex;
+    justify-content: space-between;
     align-items: center;
 
     background-image: linear-gradient(to right top,
@@ -12,44 +14,106 @@
         url(../../assets/images/money.jpg);
     background-position: top;
 
-    h1 {
-        padding-left: 2rem;
-        padding-right: 2rem;
+     @include responsive(secondThird) {
+        flex-direction: column;
+        height: fit-content;
+        align-items: start;
     }
 
-    .img-box {
-        height: 10vh;
+    .logo-box {
+        display: flex;
+        h1 {
+            font-size: 4rem;
+            line-height: inherit;
+            padding-left: 2rem;
+            padding-right: 2rem;
 
-        img {
-            padding: 1rem;
-            width: auto;
+             @include responsive(second) {
+                font-size: 5rem;
+            }
+        }
+
+        .img-box {
             height: 10vh;
+
+            img {
+                padding: 1rem;
+                width: auto;
+                height: 10vh;
+            }
         }
     }
 
-    .btn-sign-out {
-        margin-left: auto;
-        margin-right: 2rem;
-        color: white;
-        font-weight: 300;
-    }
+    .content-box {
+        display: flex;
+        @include responsive(fourth) {
+            flex-direction: column;
+        }
 
-    .btn-en {
-        background-image: url(../../assets/icons/Custom-Icon-Design-Flag-3-United-Kingdom-flag.ico);
-        background-position: center;
-        background-size: cover;
-        color: transparent;
-        margin: .5rem;
-        margin-left: auto;
-    }
-    .btn-sr {
-        background-image: url(../../assets/icons/Serbia-Flag-icon.png);
-        background-position: center;
-        background-size: cover;
-        color: transparent;
-        margin: .5rem;
-    }
-    .btn {
-       
+        @include responsive(secondThird) {
+            width: 100%;
+            padding: 0rem 3rem;
+            justify-content: space-between;
+        }
+         
+
+        .text-box {
+            display: flex;
+            flex-direction: row;
+            .banner {
+                margin-left: auto; 
+                font-size: 2rem;
+                @include responsive(fourth) {
+                     margin-left: 0; 
+                }
+            }
+
+        }
+
+        .text-box {
+            @include responsive(secondFirst) {
+                flex-direction: column;
+            }
+            
+        }
+        .btn-box {
+            display: flex;
+            
+            .btn-en {
+                background-image: url(../../assets/icons/Custom-Icon-Design-Flag-3-United-Kingdom-flag.ico);
+                background-position: center;
+                background-size: cover;
+                color: transparent;
+                margin: .5rem;
+                margin-left: 5rem;
+                height: auto;
+                width: fit-content;
+                @include responsive(fourth) {
+                     margin-left: 0; 
+                }
+            }
+            .btn-sr {
+                background-image: url(../../assets/icons/Serbia-Flag-icon.png);
+                background-position: center;
+                background-size: cover;
+                color: transparent;
+                margin: .5rem;
+                height: auto;
+                width: fit-content;
+            }
+            .btn {
+        
+            }
+            .btn-sign-out {
+                margin-left: 3rem;
+                margin-right: 2rem;
+                color: white;
+                font-weight: 300;
+                 @include responsive(fourth) {
+                     margin-left: auto; 
+            }
+            }
+        }
+        
     }
 }

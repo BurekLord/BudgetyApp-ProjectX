@@ -1,3 +1,4 @@
+@import '../../assets/scss/mixins';
 .main {
     padding: 4em;
     // define displey of type grid
@@ -20,6 +21,28 @@
         "statistic statistic";
 
     height: 100%;
+
+    @include responsive(second) {
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-items: center;
+        .categories {
+            width: 90%;
+        }
+        .balance {
+            width: 90%;
+        }
+
+        .main-input {
+            width: 90%;
+        }
+
+        .statistic {
+           width: 90%;
+        }
+    }
 }
 
 // set grid-area nema for the grid-template-areas, and the magic happenes

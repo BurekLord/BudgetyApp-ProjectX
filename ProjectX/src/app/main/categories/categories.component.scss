@@ -1,4 +1,5 @@
 @import '../../../assets/scss/variables';
+@import '../../../assets/scss/mixins'; 
 // TODO: remove stupid css
 
 span {
@@ -20,6 +21,14 @@ span {
     width: 100%;
 }
 
+ @include responsive(secondThird) {
+    .flex-container {
+        flex-direction: column;
+        align-items: center;
+        line-height: 2.5;
+    }
+}
+
 .category {
     margin: .2rem;
     border: $small-border;
@@ -33,10 +42,6 @@ span {
         box-shadow: $small-shadow;
     }
 
-    &:hover > .btn-remove {
-        display: flex;
-    }
-
     &:active {
         transform: translateY(-1px);
         box-shadow: $smaller-shadow;
@@ -48,16 +53,13 @@ span {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
-    &:hover > .add-box {
-        opacity: 1;
-        visibility: visible;
+
+    @include responsive(second) {
+        width: 90%;
     }
 }
 
 .add-box {
-    opacity: 0;
-    visibility: hidden;
     display: flex;
     margin-top: .7rem;
     // display: flex;
@@ -88,7 +90,8 @@ span {
 }
 
 .btn-remove {
-    display: none;
+    display: flex;
+    margin-left: auto;
     border-radius: 10rem;
     font-size: 1.5rem;
     background-color: $red-600;
