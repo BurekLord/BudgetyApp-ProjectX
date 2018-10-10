@@ -7,8 +7,8 @@
             <span>--  {{ 'LABEL.EXPENSES' | translate}}  --</span>
             <div class="category" *ngFor="let expCat of expCategoryValuePairs">
                 <img src="" alt="" />
-                <span>{{expCat[0]}}</span>
-                <span>{{expCat[1] | formatMoney}}</span>
+                <span class="name-span">{{expCat[0]}}</span>
+                <span class="value-span">{{expCat[1] | formatMoney}}</span>
                 <button class="btn btn-remove" (click)="onRemove(expCat[0],'expense')">X</button>
             </div>
             <div class="add-box">
@@ -24,8 +24,8 @@
             <span>--  {{ 'LABEL.INCOMES' | translate}}  --</span>
             <div class="category" *ngFor="let incCat of incCategoryValuePairs">
                 <img src="" alt="" />
-                <span>{{incCat[0]}}</span>
-                <span>{{incCat[1] | formatMoney}}</span>
+                <span class="name-span">{{incCat[0]}}</span>
+                <span class="value-span">{{incCat[1] | formatMoney}}</span>
                 <button class="btn btn-remove" (click)="onRemove(incCat[0],'income')">X</button>
             </div>
             <div class="add-box">

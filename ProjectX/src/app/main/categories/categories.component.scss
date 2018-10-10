@@ -94,6 +94,7 @@ span {
 .btn-remove {
     display: flex;
     margin-left: auto;
+    margin-right: 2rem;
     // novi 
     width: 3rem;
     height: 3rem;
@@ -106,4 +107,12 @@ span {
     line-height: 1.2rem;
     color: white;
     font-weight: 300;
+}
+
+.name-span {
+    margin-left: 2rem;
+}
+
+.value-span {
+    margin-right: auto;
 }

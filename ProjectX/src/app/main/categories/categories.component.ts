@@ -71,18 +71,20 @@ export class CategoriesComponent implements OnInit, OnChanges {
         // temporary array with all categories
         const tmpCatArr: string[] = this.user.getCategoriesExp();
         // loop through all categories
-        tmpCatArr.forEach(cat => {
-            let catVal = 0;
-            // loop through all expenses
-            this.expenses.forEach(exp => {
-                // compare category values from tmpCatArr and expense array
-                if (cat === exp.getCategory()) {
-                    // if true add all expense values(converted to positives) for current category
-                    catVal += Math.abs(exp.getValue());
-                }
+        if (tmpCatArr) {
+            tmpCatArr.forEach(cat => {
+                let catVal = 0;
+                // loop through all expenses
+                this.expenses.forEach(exp => {
+                    // compare category values from tmpCatArr and expense array
+                    if (cat === exp.getCategory()) {
+                        // if true add all expense values(converted to positives) for current category
+                        catVal += Math.abs(exp.getValue());
+                    }
+                });
+                this.expCategoryValuePairs.push([cat, catVal]);
             });
-            this.expCategoryValuePairs.push([cat, catVal]);
-        });
+        }
     }
 
     // get total money gained by Category
@@ -90,19 +92,21 @@ export class CategoriesComponent implements OnInit, OnChanges {
         this.incCategoryValuePairs = [];
         // temporary array with all categories
         const tmpCatArr: string[] = this.user.getCategoriesInc();
-        // loop through all categories
-        tmpCatArr.forEach(cat => {
-            let catVal = 0;
-            // loop through all expenses
-            this.incomes.forEach(inc => {
-                // compare category values from tmpCatArr and expense array
-                if (cat === inc.getCategory()) {
-                    // if true add all expense values(converted to positives) for current category
-                    catVal += inc.getValue();
-                }
+        if (tmpCatArr) {
+            // loop through all categories
+            tmpCatArr.forEach(cat => {
+                let catVal = 0;
+                // loop through all expenses
+                this.incomes.forEach(inc => {
+                    // compare category values from tmpCatArr and expense array
+                    if (cat === inc.getCategory()) {
+                        // if true add all expense values(converted to positives) for current category
+                        catVal += inc.getValue();
+                    }
+                });
+                this.incCategoryValuePairs.push([cat, catVal]);
             });
-            this.incCategoryValuePairs.push([cat, catVal]);
-        });
+        }
     }
 
     ngOnChanges(changes: SimpleChanges) {
@@ -113,30 +117,43 @@ export class CategoriesComponent implements OnInit, OnChanges {
     ngOnInit() {}
 
     onAdd(value: string, type: string) {
-        if (type === 'expense') {
-            this.expInputShow = true;
-            this.expBtnFinish = true;
-        } else if (type === 'income') {
-            this.incInputShow = true;
-            this.incBtnFinish = true;
-        }
         console.log(this.user);
         if (value) {
             if (this.user) {
                 if (type === 'expense') {
-                    this.user
-                        .getCategoriesExp()
-                        .push(
-                            value[0].toUpperCase() +
-                                value.slice(1).toLowerCase()
-                        );
+                    if (this.user.getCategoriesExp()) {
+                        this.user
+                            .getCategoriesExp()
+                            .push(
+                                value[0].toUpperCase() +
+                                    value.slice(1).toLowerCase()
+                            );
+                    } else {
+                        this.user.setCategoriesExp([]);
+                        this.user
+                            .getCategoriesExp()
+                            .push(
+                                value[0].toUpperCase() +
+                                    value.slice(1).toLowerCase()
+                            );
+                    }
                 } else if (type === 'income') {
-                    this.user
-                        .getCategoriesInc()
-                        .push(
-                            value[0].toUpperCase() +
-                                value.slice(1).toLowerCase()
-                        );
+                    if (this.user.getCategoriesInc()) {
+                        this.user
+                            .getCategoriesInc()
+                            .push(
+                                value[0].toUpperCase() +
+                                    value.slice(1).toLowerCase()
+                            );
+                    } else {
+                        this.user.setCategoriesExp([]);
+                         this.user
+                            .getCategoriesInc()
+                            .push(
+                                value[0].toUpperCase() +
+                                    value.slice(1).toLowerCase()
+                            );
+                            }
                 }
                 this.db.updateItem<User>(
                     config.users_endpoint,
@@ -144,12 +161,19 @@ export class CategoriesComponent implements OnInit, OnChanges {
                     this.user
                 );
             }
-        } else {
+        } else if ((this.expInputShow || this.expBtnFinish) && !value) {
             this.popupData = new PopupData(
                 'Value missing',
                 'Please specify category name!'
             );
             this.showPopup = true;
+        }
+        if (type === 'expense') {
+            this.expInputShow = true;
+            this.expBtnFinish = true;
+        } else if (type === 'income') {
+            this.incInputShow = true;
+            this.incBtnFinish = true;
         }
         this.clearInputFields();
     }
