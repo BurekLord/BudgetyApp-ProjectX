@@ -16,7 +16,7 @@
     grid-template-columns: repeat(2, minmax(30rem, 1fr));
 
     // a shortcut to position the grid elements. imagine this as a matrix of fields 3x2
-    grid-template-areas: "balance categories"
+    grid-template-areas: "balance total-box"
         "main-input categories"
         "statistic statistic";
 
@@ -28,26 +28,31 @@
         flex-direction: column;
         align-items: center;
         justify-items: center;
-        .categories {
-            width: 90%;
-            order: 3;
-            margin: 2rem;
-        }
         .balance {
             width: 90%;
             order: 1;
             margin: 2rem;
         }
 
-        .main-input {
+        .total-box {
             width: 90%;
-            order: 2;
             margin: 2rem;
+            order: 2;
         }
 
+        .main-input {
+            width: 90%;
+            order: 3;
+            margin: 2rem;
+        }
+        .categories {
+            width: 90%;
+            order: 4;
+            margin: 2rem;
+        }
         .statistic {
            width: 90%;
-           order: 4;
+           order: 5;
            margin: 2rem;
         }
     }
@@ -68,6 +73,18 @@
 
 .statistic {
     grid-area: statistic;
+}
+
+
+.total-box {
+    grid-area: total-box;
+    .total-expense {
+        // grid-area: total-expense;
+    }
+
+    .total-income {
+        // grid-area: total-income;
+    }
 }
 
 // second way to define position of the elements in the grid is by grid indexes 

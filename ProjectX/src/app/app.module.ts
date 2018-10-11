@@ -1,3 +1,5 @@
+import { TotalExpenseComponent } from './main/total-expense/total-expense.component';
+import { TotalIncomeComponent } from './main/total-income/total-income.component';
 import { CategoriesComponent } from './main/categories/categories.component';
 import { FormatMoneyPipe } from './../custom_pipes/format.money.pipe';
 import { StatisticComponent } from './main/statistic/statistic.component';
@@ -58,7 +60,9 @@ const appRoutes: Routes = [
         MainInputComponent,
         CategoriesComponent,
         FormatMoneyPipe,
-        PopupComponent
+        PopupComponent,
+        TotalIncomeComponent,
+        TotalExpenseComponent
     ],
     imports: [
         BrowserModule,
