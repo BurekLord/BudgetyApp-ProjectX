@@ -116,44 +116,88 @@ export class CategoriesComponent implements OnInit, OnChanges {
 
     ngOnInit() {}
 
+    checkForDuplicate(value, type: string): boolean {
+        // create temporary array with categories
+        let tmpCatArray;
+        if (type === 'expense') {
+            tmpCatArray = this.user.getCategoriesExp();
+            console.log(tmpCatArray);
+        } else if (type === 'income') {
+            this.user.getCategoriesInc() === undefined
+                ? (tmpCatArray = [])
+                : (tmpCatArray = this.user.getCategoriesInc());
+        }
+
+        // always format to upper case 1st letter and lower case the rest of the string
+        // so we can have nice category name and also prevent user from adding categories
+        // with same name but different letter case
+        const cat = value[0].toUpperCase() + value.slice(1).toLowerCase();
+        // check if category exsists
+        let catExists = false;
+        tmpCatArray.forEach(el => {
+            if (el === cat) {
+                catExists = true;
+            }
+        });
+        return catExists;
+    }
+
     onAdd(value: string, type: string) {
         console.log(this.user);
         if (value) {
             if (this.user) {
                 if (type === 'expense') {
-                    if (this.user.getCategoriesExp()) {
-                        this.user
-                            .getCategoriesExp()
-                            .push(
-                                value[0].toUpperCase() +
-                                    value.slice(1).toLowerCase()
-                            );
+                    // this.checkForDuplicate(value, type);
+                    console.log(this.checkForDuplicate(value, type));
+                    if (this.checkForDuplicate(value, type)) {
+                        this.popupData = new PopupData(
+                            'Category exists',
+                            'Category with that name exists. Please chose other name!'
+                        );
+                        this.showPopup = true;
                     } else {
-                        this.user.setCategoriesExp([]);
-                        this.user
-                            .getCategoriesExp()
-                            .push(
-                                value[0].toUpperCase() +
-                                    value.slice(1).toLowerCase()
-                            );
+                        if (this.user.getCategoriesExp()) {
+                            this.user
+                                .getCategoriesExp()
+                                .push(
+                                    value[0].toUpperCase() +
+                                        value.slice(1).toLowerCase()
+                                );
+                        } else {
+                            this.user.setCategoriesExp([]);
+                            this.user
+                                .getCategoriesExp()
+                                .push(
+                                    value[0].toUpperCase() +
+                                        value.slice(1).toLowerCase()
+                                );
+                        }
                     }
                 } else if (type === 'income') {
-                    if (this.user.getCategoriesInc()) {
-                        this.user
-                            .getCategoriesInc()
-                            .push(
-                                value[0].toUpperCase() +
-                                    value.slice(1).toLowerCase()
-                            );
+                    if (this.checkForDuplicate(value, type)) {
+                        this.popupData = new PopupData(
+                            'Category exists',
+                            'Category with that name exists. Please chose other name!'
+                        );
+                        this.showPopup = true;
                     } else {
-                        this.user.setCategoriesExp([]);
-                         this.user
-                            .getCategoriesInc()
-                            .push(
-                                value[0].toUpperCase() +
-                                    value.slice(1).toLowerCase()
-                            );
-                            }
+                        if (this.user.getCategoriesInc()) {
+                            this.user
+                                .getCategoriesInc()
+                                .push(
+                                    value[0].toUpperCase() +
+                                        value.slice(1).toLowerCase()
+                                );
+                        } else {
+                            this.user.setCategoriesExp([]);
+                            this.user
+                                .getCategoriesInc()
+                                .push(
+                                    value[0].toUpperCase() +
+                                        value.slice(1).toLowerCase()
+                                );
+                        }
+                    }
                 }
                 this.db.updateItem<User>(
                     config.users_endpoint,
