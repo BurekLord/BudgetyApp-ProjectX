@@ -17,13 +17,13 @@
     }
 
     .income-dropdown {
-        border: $small-border;
+        border: $slim-border;
         margin: .2rem;
         transition: .2s all;
 
         &:hover {
             transform: translateY(-2px);
-            box-shadow: $small-shadow;
+            box-shadow: $slim-shady;
         }
 
         &:active {
@@ -33,13 +33,13 @@
     }
 
     .expense-dropdown {
-        border: $small-border;
+        border: $slim-border;
         margin: .2rem;
         transition: .2s all;
 
         &:hover {
             transform: translateY(-2px);
-            box-shadow: $small-shadow;
+            box-shadow: $slim-shady;
         }
 
         &:active {
@@ -65,14 +65,26 @@
         flex-direction: column;
         margin: .5rem;
     }
+
     .invisible {
         color: transparent;
     }
+
     @include responsive(first) {
         flex-direction: column;
-        #g1 {order: 2;}
-        #g2 {order: 1;}
-        #g3 {order: 3;}
+
+        #g1 {
+            order: 2;
+        }
+
+        #g2 {
+            order: 1;
+        }
+
+        #g3 {
+            order: 3;
+        }
+
         .group {
             width: 70%;
         }
