@@ -1,0 +1,19 @@
+####################
+CHANGE LOG FILE // log all changes since last master build
+
+* v-0.1
+- project created
+- created basic components
+- made basic functionality
+- added simple desktop css
+- created firestore databse
+- connected db and app
+
+* v-0.2
+- added simple responsive css
+
+* v-0.3
+- refactored whole app css
+- changed main-input workflow
+- added total income and total expense components
+
