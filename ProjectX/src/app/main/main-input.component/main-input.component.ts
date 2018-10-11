@@ -21,10 +21,14 @@ export class MainInputComponent implements OnInit {
     expCategory: ElementRef;
     @ViewChild('incCategory')
     incCategory: ElementRef;
-    @ViewChild('name')
-    name: ElementRef;
-    @ViewChild('value')
-    value: ElementRef;
+    @ViewChild('incName')
+    incName: ElementRef;
+    @ViewChild('incValue')
+    incValue: ElementRef;
+    @ViewChild('expName')
+    expName: ElementRef;
+    @ViewChild('expValue')
+    expValue: ElementRef;
 
     popupData: PopupData;
     showPopup = false;
@@ -38,9 +42,12 @@ export class MainInputComponent implements OnInit {
     }
 
     clearInputFields() {
-        this.name.nativeElement.value = null;
-        this.value.nativeElement.value = null;
+        this.incName.nativeElement.value = null;
+        this.incValue.nativeElement.value = null;
+        this.expName.nativeElement.value = null;
+        this.expValue.nativeElement.value = null;
         this.expCategory.nativeElement.value = null;
+        // this.incCategory.nativeElement.value = null;
     }
 
     ngOnInit() {}
