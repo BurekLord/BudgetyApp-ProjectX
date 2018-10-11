@@ -22,7 +22,8 @@
         "ADD_INCOME": "Dodaj prihod",
         "ADD_EXPENSE": "Dodaj trošak",
         "NEW_CATEGORY": "Nova kategorija",
-        "SIGN_OUT": "Izloguj se"
+        "SIGN_OUT": "Izloguj se",
+        "CANCEL": "Otkaži"
     },
     "INPUT": {
         "SETUP_BALANCE": "Prvo unesite vaše trenutno stanje na računu...",
@@ -51,7 +52,10 @@
         "EXPENSES": "Troškovi",
         "DESCRIPTION": "Opis",
         "CATEGORISE_THIS": "Kategorišite ovo",
-        "VALUE": "Vrednost"
+        "VALUE": "Vrednost",
+        "LOGINBEIT": "&#x2606; ZAPOČNI ŠTEDNJU ODMAH!! &#x2606;<br>Klikni na google ili email dugme ispod<br>&darr;&darr;&darr;&darr;&darr;",
+        "ADD_INCOME_TO": "Dodaj ovaj prihod pod:",
+        "ADD_EXPENSE_TO": "Dodaj ovaj trosak pod:"
     },
     "TIME_DATE": {
         "DAY": "Dan",

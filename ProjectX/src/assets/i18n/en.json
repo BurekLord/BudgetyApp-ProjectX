@@ -22,7 +22,8 @@
         "ADD_INCOME": "Add Income",
         "ADD_EXPENSE": "Add Expense",
         "NEW_CATEGORY": "New Category",
-        "SIGN_OUT": "Sign Out"
+        "SIGN_OUT": "Sign Out",
+        "CANCEL": "Cancel"
     },
     "INPUT": {
         "SETUP_BALANCE": "First lets enter your current balance...",
@@ -51,7 +52,10 @@
         "EXPENSES": "Expenses",
         "DESCRIPTION": "Description",
         "CATEGORISE_THIS": "Categorise this",
-        "VALUE": "Value"
+        "VALUE": "Value",
+        "LOGINBEIT": "&#x2606;  START SAVING NOW!!  &#x2606;<br>Click on google or email button below<br>&darr;&darr;&darr;&darr;&darr;",
+        "ADD_INCOME_TO": "Add this income to:",
+        "ADD_EXPENSE_TO": "Add this expense to:"
     },
     "TIME_DATE": {
         "DAY": "Day",

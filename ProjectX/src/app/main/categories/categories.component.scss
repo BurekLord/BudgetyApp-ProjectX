@@ -1,5 +1,5 @@
 @import '../../../assets/scss/variables';
-@import '../../../assets/scss/mixins'; 
+@import '../../../assets/scss/mixins';
 // TODO: remove stupid css
 
 span {
@@ -15,6 +15,9 @@ span {
 
     height: 100%;
     transition: all .1s;
+
+    padding-top: 1rem;
+    padding-bottom: 3rem;
 }
 
 .flex-container {
@@ -23,7 +26,7 @@ span {
     width: 100%;
 }
 
- @include responsive(secondThird) {
+@include responsive(secondThird) {
     .flex-container {
         flex-direction: column;
         align-items: center;
@@ -33,7 +36,7 @@ span {
 
 .category {
     margin: .2rem;
-    border: $small-border;
+    border: $slim-border;
     display: flex;
     width: 99%;
     transition: all .2s;
@@ -41,7 +44,7 @@ span {
 
     &:hover {
         transform: translateY(-2px);
-        box-shadow: $small-shadow;
+        box-shadow: $slim-shady;
     }
 
     &:active {
@@ -68,7 +71,8 @@ span {
     flex-direction: column;
     align-items: center;
     width: 80%;
-    > input {
+
+    >input {
         margin-bottom: .7rem;
         width: 95%;
     }
@@ -82,9 +86,9 @@ span {
 }
 
 .btn-add {
-        background-color: $red-50;
-        width: 35%;
-    }
+    background-color: $red-50;
+    width: 35%;
+}
 
 .btn-finish {
     background-color: $primary-blue;

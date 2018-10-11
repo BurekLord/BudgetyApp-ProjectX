@@ -28,6 +28,8 @@ export class MainInputComponent implements OnInit {
 
     popupData: PopupData;
     showPopup = false;
+    incCatClicked = false;
+    expCatClicked = false;
 
     constructor(public db: DBService) {}
 
@@ -44,79 +46,90 @@ export class MainInputComponent implements OnInit {
     ngOnInit() {}
 
     onIncomeAddClick(inc: any, name: any, value: any) {
-        if (value) {
-            // kreireaj nov income i pretvori vrednos u pozitivnu vrednost
-            const newIncome = new Income(
-                name,
-                parseFloat(value.toString()),
-                inc,
-                new Date(),
-                this.userData.getId()
-            );
-            this.db.addItem<Income>(
-                config.incomes_endpoint,
-                newIncome,
-                undefined,
-                this.userData.getId()
-            );
+        console.log('inc: any, name: any, value: any', inc, name, value);
+        // if (this.incCatClicked) {
+            if (value) {
+                // kreireaj nov income i pretvori vrednos u pozitivnu vrednost
+                const newIncome = new Income(
+                    name,
+                    parseFloat(value.toString()),
+                    inc,
+                    new Date(),
+                    this.userData.getId()
+                );
+                this.db.addItem<Income>(
+                    config.incomes_endpoint,
+                    newIncome,
+                    undefined,
+                    this.userData.getId()
+                );
 
-            // updejtuj userData
-            this.db.updateItem<User>(
-                config.users_endpoint,
-                this.userData.getId(),
-                this.userData
-            );
-            this.incDropIsHidden = true;
-            // calc balance
-            this.calculateBalance();
+                // updejtuj userData
+                this.db.updateItem<User>(
+                    config.users_endpoint,
+                    this.userData.getId(),
+                    this.userData
+                );
+                this.incDropIsHidden = true;
+                 this.incCatClicked = false;
+                // calc balance
+                this.calculateBalance();
 
-            this.clearInputFields();
-        } else {
-            this.popupData = new PopupData(
-                'Value missing',
-                'Please specify value!'
-            );
-            this.showPopup = true;
-        }
+                this.clearInputFields();
+            } else {
+                this.popupData = new PopupData(
+                    'Value missing',
+                    'Please specify value!'
+                );
+                this.showPopup = true;
+            }
+        // } else {
+        //     this.incCatClicked = true;
+        // }
     }
 
     onExpenseAddClick(exp: any, name: any, value: any) {
-        // ako postoji value u inputu
-        if (value) {
-            // kreiraj novi expens i stavi minus ispred vrednosti i pretvori je u number
-            const newExpense = new Expense(
-                name,
-                parseFloat('-' + value.toString()),
-                exp,
-                new Date(),
-                this.userData.getId()
-            );
-            // odaj ga u bazu
-            this.db.addItem<Expense>(
-                config.expenses_endpoint,
-                newExpense,
-                undefined,
-                this.userData.getId()
-            );
+        // if (this.expCatClicked) {
+            // ako postoji value u inputu
+            if (value) {
+                // kreiraj novi expens i stavi minus ispred vrednosti i pretvori je u number
+                const newExpense = new Expense(
+                    name,
+                    parseFloat('-' + value.toString()),
+                    exp,
+                    new Date(),
+                    this.userData.getId()
+                );
+                // odaj ga u bazu
+                this.db.addItem<Expense>(
+                    config.expenses_endpoint,
+                    newExpense,
+                    undefined,
+                    this.userData.getId()
+                );
 
-            // updejtuj userData
-            this.db.updateItem<User>(
-                config.users_endpoint,
-                this.userData.getId(),
-                this.userData
-            );
-            this.expDropIsHidden = true;
-            // calc balance
-            this.calculateBalance();
+                // updejtuj userData
+                this.db.updateItem<User>(
+                    config.users_endpoint,
+                    this.userData.getId(),
+                    this.userData
+                );
+                this.expDropIsHidden = true;
+                this.expCatClicked = false;
+                // calc balance
+                this.calculateBalance();
 
-            this.clearInputFields();
-        } else {
-            this.popupData = new PopupData(
-                'Value missing',
-                'Please specify value!'
-            );
-            this.showPopup = true;
-        }
+                this.clearInputFields();
+            } else {
+                this.popupData = new PopupData(
+                    'Value missing',
+                    'Please specify value!'
+                );
+                this.showPopup = true;
+            }
+        // } else {
+        //     this.expCatClicked = true;
+        // }
     }
 
     newCategoryAdd(value: any, type: string) {
@@ -189,16 +202,37 @@ export class MainInputComponent implements OnInit {
         this.incCategory.nativeElement.value = null;
     }
 
+    onCategorise(type: string) {
+        if ( type === 'inc' ) {
+            this.incCatClicked = !this.incCatClicked;
+        } else if ( type === 'exp' ) {
+            this.expCatClicked = !this.expCatClicked;
+        }
+    }
+
     onIncBtn() {
         this.incDropIsHidden = !this.incDropIsHidden;
         this.expDropIsHidden = true;
         this.newCategoryCtrl = true;
+        this.incCatClicked = false;
     }
 
     onExpBtn() {
         this.expDropIsHidden = !this.expDropIsHidden;
         this.incDropIsHidden = true;
         this.newCategoryCtrl = true;
+        this.expCatClicked = false;
+    }
+
+    onBackdropClick() {
+        this.expDropIsHidden = true;
+        this.newCategoryCtrl = true;
+        this.incCatClicked = false;
+
+        this.expDropIsHidden = true;
+        this.incDropIsHidden = true;
+        this.newCategoryCtrl = true;
+        this.expCatClicked = false;
     }
 
     calculateBalance() {

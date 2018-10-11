@@ -1,3 +1,5 @@
+@import '../../../assets/scss/mixins';
+
 .balance {
     // border: 1px solid black;
     display: flex;
@@ -8,10 +10,17 @@
 
     height: 100%;
 
+    @include responsive(secondThird) {
+        min-height: 25rem;
+    }
+
     .balance__container {
         // padding: 0 15rem;
         // border-radius: 5rem;
         // background-image: radial-gradient(white 1%, white 22%, transparent 74%);
+
+        padding-top: 1rem;
+        padding-bottom: 3rem;
 
         .balance__text {
             font-size: 2rem;

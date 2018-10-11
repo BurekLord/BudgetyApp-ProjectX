@@ -1,6 +1,7 @@
-@import '../../assets/scss/mixins'; 
+@import '../../assets/scss/mixins';
+
 .header {
-    border: 1px solid white;
+    border-bottom: 1px solid white;
 
     height: 10vh;
     position: relative;
@@ -14,21 +15,22 @@
         url(../../assets/images/money.jpg);
     background-position: top;
 
-     @include responsive(secondThird) {
-        flex-direction: column;
+    @include responsive(secondThird) {
+        flex-direction: row;
         height: fit-content;
         align-items: start;
     }
 
     .logo-box {
         display: flex;
+
         h1 {
             font-size: 4rem;
             line-height: inherit;
             padding-left: 2rem;
             padding-right: 2rem;
 
-             @include responsive(second) {
+            @include responsive(second) {
                 font-size: 5rem;
             }
         }
@@ -46,25 +48,31 @@
 
     .content-box {
         display: flex;
+
         @include responsive(fourth) {
             flex-direction: column;
         }
 
         @include responsive(secondThird) {
-            width: 100%;
-            padding: 0rem 3rem;
-            justify-content: space-between;
+           display: none;
         }
-         
+
 
         .text-box {
             display: flex;
             flex-direction: row;
+
+            p {
+                letter-spacing: 0.5rem;
+            }
+
             .banner {
-                margin-left: auto; 
+                margin-left: auto;
                 font-size: 2rem;
+                text-decoration: underline;
+
                 @include responsive(fourth) {
-                     margin-left: 0; 
+                    margin-left: 0;
                 }
             }
 
@@ -74,11 +82,13 @@
             @include responsive(secondFirst) {
                 flex-direction: column;
             }
-            
+
         }
+
         .btn-box {
+
             display: flex;
-            
+
             .btn-en {
                 background-image: url(../../assets/icons/Custom-Icon-Design-Flag-3-United-Kingdom-flag.ico);
                 background-position: center;
@@ -88,10 +98,12 @@
                 margin-left: 5rem;
                 height: auto;
                 width: fit-content;
+
                 @include responsive(fourth) {
-                     margin-left: 0; 
+                    margin-left: 0;
                 }
             }
+
             .btn-sr {
                 background-image: url(../../assets/icons/Serbia-Flag-icon.png);
                 background-position: center;
@@ -101,19 +113,54 @@
                 height: auto;
                 width: fit-content;
             }
-            .btn {
-        
-            }
+
+            .btn {}
+
             .btn-sign-out {
                 margin-left: 3rem;
                 margin-right: 2rem;
                 color: white;
                 font-weight: 300;
-                 @include responsive(fourth) {
-                     margin-left: auto; 
-            }
+
+                @include responsive(fourth) {
+                    margin-left: auto;
+                }
             }
         }
-        
+
+    }
+
+    .translation {
+        display: none;
+        margin: 1rem 2rem;
+         @include responsive(secondThird) {
+           display: flex;
+           flex-direction: column;
+             .btn-en {
+                 margin-bottom: .5rem;
+                background-image: url(../../assets/icons/Custom-Icon-Design-Flag-3-United-Kingdom-flag.ico);
+                background-position: center;
+                background-size: cover;
+                color: transparent;
+                // margin: .5rem;
+                // margin-left: 5rem;
+                height: auto;
+                width: fit-content;
+
+                @include responsive(fourth) {
+                    margin-left: 0;
+                }
+            }
+
+            .btn-sr {
+                background-image: url(../../assets/icons/Serbia-Flag-icon.png);
+                background-position: center;
+                background-size: cover;
+                color: transparent;
+                // margin: .5rem;
+                height: auto;
+                width: fit-content;
+            }
+        }
     }
 }

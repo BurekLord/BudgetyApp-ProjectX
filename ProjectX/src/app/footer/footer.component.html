@@ -1,3 +1,18 @@
 <footer class="footer">
-    <p class="footer-text">ProjectX &copy;MacroHard Inc.</p>
+    <!-- TODO: remove in development and inline style -->
+    <div style="display:flex;">
+        <p class="footer-text">ProjectX &copy;MacroHard Inc.</p>
+        <span class="banner">In development Version - 0.2</span>
+    </div>
+    <div class="content-box">
+        <!-- <div class="text-box">
+            <p class="header-text">{{'LABEL.HEADER_TEXT' | translate}}</p>
+            
+        </div> -->
+        <div class="btn-box">
+            <button class="btn btn-en" (click)="onEn()">EN</button>
+            <button class="btn btn-sr" (click)="onSr()">SR</button>
+            <button class="btn btn-sign-out" (click)="onSignOUt()">{{'BUTTON.SIGN_OUT' | translate}}</button>
+        </div>
+    </div>
 </footer>
