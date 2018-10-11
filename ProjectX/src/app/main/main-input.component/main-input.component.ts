@@ -47,7 +47,7 @@ export class MainInputComponent implements OnInit {
 
     onIncomeAddClick(inc: any, name: any, value: any) {
         console.log('inc: any, name: any, value: any', inc, name, value);
-        if (this.incCatClicked) {
+        // if (this.incCatClicked) {
             if (value) {
                 // kreireaj nov income i pretvori vrednos u pozitivnu vrednost
                 const newIncome = new Income(
@@ -83,13 +83,13 @@ export class MainInputComponent implements OnInit {
                 );
                 this.showPopup = true;
             }
-        } else {
-            this.incCatClicked = true;
-        }
+        // } else {
+        //     this.incCatClicked = true;
+        // }
     }
 
     onExpenseAddClick(exp: any, name: any, value: any) {
-        if (this.expCatClicked) {
+        // if (this.expCatClicked) {
             // ako postoji value u inputu
             if (value) {
                 // kreiraj novi expens i stavi minus ispred vrednosti i pretvori je u number
@@ -127,9 +127,9 @@ export class MainInputComponent implements OnInit {
                 );
                 this.showPopup = true;
             }
-        } else {
-            this.expCatClicked = true;
-        }
+        // } else {
+        //     this.expCatClicked = true;
+        // }
     }
 
     newCategoryAdd(value: any, type: string) {
@@ -200,6 +200,14 @@ export class MainInputComponent implements OnInit {
             : (this.newCategoryCtrl = true);
         this.expCategory.nativeElement.value = null;
         this.incCategory.nativeElement.value = null;
+    }
+
+    onCategorise(type: string) {
+        if ( type === 'inc' ) {
+            this.incCatClicked = !this.incCatClicked;
+        } else if ( type === 'exp' ) {
+            this.expCatClicked = !this.expCatClicked;
+        }
     }
 
     onIncBtn() {
