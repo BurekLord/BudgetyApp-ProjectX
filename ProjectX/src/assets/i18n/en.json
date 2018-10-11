@@ -51,7 +51,8 @@
         "EXPENSES": "Expenses",
         "DESCRIPTION": "Description",
         "CATEGORISE_THIS": "Categorise this",
-        "VALUE": "Value"
+        "VALUE": "Value",
+        "LOGINBEIT": "&#x2606;  START SAVING NOW!!  &#x2606;<br>Click on google or email button below<br>&darr;&darr;&darr;&darr;&darr;"
     },
     "TIME_DATE": {
         "DAY": "Day",

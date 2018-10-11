@@ -123,7 +123,7 @@ button {
 
 input {
     @include responsive(secondThird) {
-        line-height: 2;
+        line-height: 1.5;
         font-size: 2rem;
     }
 
