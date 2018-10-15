@@ -1,6 +1,6 @@
 import { auth } from 'firebase/app';
 import { TranslateService } from '@ngx-translate/core';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-footer',
@@ -9,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
- constructor(public translate: TranslateService) {}
+    @Input() signOutShow: boolean;
+
+    constructor(public translate: TranslateService) {}
 
     onSignOUt() {
         auth()
