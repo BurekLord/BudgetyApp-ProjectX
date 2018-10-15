@@ -46,11 +46,11 @@ export class CategoriesComponent implements OnInit, OnChanges {
     // values to display from this array for income categories
     incCategoryValuePairs = [];
 
-    expInputShow = false;
-    expBtnFinish = false;
+    expBtnAddBoxShow = true;
+    expAddBoxShow = false;
 
-    incInputShow = false;
-    incBtnFinish = false;
+    incBtnAddBoxShow = true;
+    incAddBoxShow = false;
 
     popupData: PopupData;
     showPopup = false;
@@ -116,6 +116,16 @@ export class CategoriesComponent implements OnInit, OnChanges {
 
     ngOnInit() {}
 
+    openAddBox(type: string) {
+        if (type === 'expense') {
+            this.expAddBoxShow = true;
+            this.expBtnAddBoxShow = false;
+        } else if (type === 'income') {
+            this.incAddBoxShow = true;
+            this.incBtnAddBoxShow = false;
+        }
+    }
+
     onAdd(value: string, type: string) {
         console.log(this.user);
         if (value) {
@@ -147,13 +157,13 @@ export class CategoriesComponent implements OnInit, OnChanges {
                             );
                     } else {
                         this.user.setCategoriesExp([]);
-                         this.user
+                        this.user
                             .getCategoriesInc()
                             .push(
                                 value[0].toUpperCase() +
                                     value.slice(1).toLowerCase()
                             );
-                            }
+                    }
                 }
                 this.db.updateItem<User>(
                     config.users_endpoint,
@@ -161,31 +171,30 @@ export class CategoriesComponent implements OnInit, OnChanges {
                     this.user
                 );
             }
-        } else if ((this.expInputShow || this.expBtnFinish) && !value) {
+        } else if (type === 'expense' && !value) {
             this.popupData = new PopupData(
                 'Value missing',
-                'Please specify category name!'
+                'Please specify category name for Expense!'
+            );
+            this.showPopup = true;
+        } else if (type === 'income' && !value) {
+            this.popupData = new PopupData(
+                'Value missing',
+                'Please specify category name for Income!'
             );
             this.showPopup = true;
         }
-        if (type === 'expense') {
-            this.expInputShow = true;
-            this.expBtnFinish = true;
-        } else if (type === 'income') {
-            this.incInputShow = true;
-            this.incBtnFinish = true;
-        }
+
         this.clearInputFields();
     }
 
     onFinish(type: string) {
         if (type === 'expense') {
-            this.expInputShow = false;
-            this.expBtnFinish = false;
-        }
-        if (type === 'income') {
-            this.incInputShow = false;
-            this.incBtnFinish = false;
+            this.expAddBoxShow = false;
+            this.expBtnAddBoxShow = true;
+        } else if (type === 'income') {
+            this.incAddBoxShow = false;
+            this.incBtnAddBoxShow = true;
         }
 
         this.db.updateItem<User>(
@@ -193,7 +202,7 @@ export class CategoriesComponent implements OnInit, OnChanges {
             this.user.getId(),
             this.user
         );
-        this.clearInputFields();
+        // this.clearInputFields();
     }
 
     onRemove(cat: any, type: string) {
