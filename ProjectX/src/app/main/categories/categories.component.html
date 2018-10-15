@@ -4,7 +4,7 @@
     <h2>{{'LABEL.CATEGORIES' | translate}}</h2>
     <div class="flex-container">
         <div class="cat-section">
-            <span>--  {{ 'LABEL.EXPENSES' | translate}}  --</span>
+            <span>-- {{ 'LABEL.EXPENSES' | translate}} --</span>
             <div class="category" *ngFor="let expCat of expCategoryValuePairs">
                 <img src="" alt="" />
                 <span class="name-span">{{expCat[0]}}</span>
@@ -21,7 +21,7 @@
             </div>
         </div>
         <div class="cat-section">
-            <span>--  {{ 'LABEL.INCOMES' | translate}}  --</span>
+            <span>-- {{ 'LABEL.INCOMES' | translate}} --</span>
             <div class="category" *ngFor="let incCat of incCategoryValuePairs">
                 <img src="" alt="" />
                 <span class="name-span">{{incCat[0]}}</span>
@@ -38,5 +38,6 @@
             </div>
         </div>
     </div>
+    <button (click)="openTransactions()">List of transactions</button>
 </section>
 <app-popup *ngIf="showPopup" [popupData]="popupData" (closePopupEvent)="PopupEventTriggered($event)"></app-popup>

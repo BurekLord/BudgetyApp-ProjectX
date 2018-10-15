@@ -1,4 +1,5 @@
 @import '../../assets/scss/mixins';
+
 .main {
     padding: 4em;
     // define displey of type grid
@@ -28,6 +29,7 @@
         flex-direction: column;
         align-items: center;
         justify-items: center;
+
         .balance {
             width: 90%;
             order: 1;
@@ -45,15 +47,17 @@
             order: 3;
             margin: 2rem;
         }
+
         .categories {
             width: 90%;
             order: 4;
             margin: 2rem;
         }
+
         .statistic {
-           width: 90%;
-           order: 5;
-           margin: 2rem;
+            width: 90%;
+            order: 5;
+            margin: 2rem;
         }
     }
 }
@@ -78,6 +82,7 @@
 
 .total-box {
     grid-area: total-box;
+
     .total-expense {
         // grid-area: total-expense;
     }

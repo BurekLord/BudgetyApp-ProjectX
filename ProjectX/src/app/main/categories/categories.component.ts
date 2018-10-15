@@ -11,7 +11,9 @@ import {
     OnChanges,
     SimpleChanges,
     ViewChild,
-    ElementRef
+    ElementRef,
+    Output,
+    EventEmitter
 } from '@angular/core';
 @Component({
     selector: 'app-categories',
@@ -28,6 +30,9 @@ export class CategoriesComponent implements OnInit, OnChanges {
     user: User;
     expenses: Expense[];
     incomes: Income[];
+
+    @Output()
+    emitOnOpen: EventEmitter<any> = new EventEmitter();
 
     @Input()
     set userData(value) {
@@ -56,6 +61,10 @@ export class CategoriesComponent implements OnInit, OnChanges {
     showPopup = false;
 
     constructor(private db: DBService) {}
+
+    openTransactions() {
+        this.emitOnOpen.emit(true);
+    }
 
     PopupEventTriggered(data) {
         this.showPopup = data;
@@ -147,13 +156,13 @@ export class CategoriesComponent implements OnInit, OnChanges {
                             );
                     } else {
                         this.user.setCategoriesExp([]);
-                         this.user
+                        this.user
                             .getCategoriesInc()
                             .push(
                                 value[0].toUpperCase() +
                                     value.slice(1).toLowerCase()
                             );
-                            }
+                    }
                 }
                 this.db.updateItem<User>(
                     config.users_endpoint,
