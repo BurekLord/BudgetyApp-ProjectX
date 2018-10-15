@@ -39,6 +39,9 @@
             height: 10vh;
 
             img {
+                @include responsive(second) {
+                    height: 10rem;
+                }
                 padding: 1rem;
                 width: auto;
                 height: 10vh;
