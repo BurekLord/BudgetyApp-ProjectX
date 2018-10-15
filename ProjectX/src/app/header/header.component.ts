@@ -14,7 +14,8 @@ export class HeaderComponent implements OnInit {
     userData: User;
     @Input()
     userCredentials: UserCredentials;
-
+    @Input()
+    signOutShow = false;
     constructor(public translate: TranslateService) {}
 
     onSignOUt() {

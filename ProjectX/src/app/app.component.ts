@@ -30,6 +30,12 @@ export class AppComponent implements OnInit {
         translate.use('en');
     }
 
+    signOutVal(): boolean {
+        if (this.currUserCredentials) {
+            return true;
+        }
+    }
+
     ngOnInit() {
         // 1. LOG IN user
         this.loginService.userCredentials.subscribe(res => {
@@ -53,19 +59,33 @@ export class AppComponent implements OnInit {
                                 );
                                 this.currUserCredentials.isNew = false;
                                 // get all incomes and expenses from user
-                                this.db.getAllValues(config.incomes_endpoint, this.currUserData.getId())
+                                this.db
+                                    .getAllValues(
+                                        config.incomes_endpoint,
+                                        this.currUserData.getId()
+                                    )
                                     .subscribe(
                                         incomes => {
-                                            this.currUserIncomes = Converter.jsonToModelList(incomes, config.incomes_endpoint);
+                                            this.currUserIncomes = Converter.jsonToModelList(
+                                                incomes,
+                                                config.incomes_endpoint
+                                            );
                                         },
                                         err => {
                                             console.error(err);
                                         }
                                     );
-                                this.db.getAllValues(config.expenses_endpoint, this.currUserData.getId())
+                                this.db
+                                    .getAllValues(
+                                        config.expenses_endpoint,
+                                        this.currUserData.getId()
+                                    )
                                     .subscribe(
                                         expenses => {
-                                            this.currUserExpenses = Converter.jsonToModelList(expenses, config.expenses_endpoint);
+                                            this.currUserExpenses = Converter.jsonToModelList(
+                                                expenses,
+                                                config.expenses_endpoint
+                                            );
                                         },
                                         err => {
                                             console.error(err);
