@@ -62,9 +62,9 @@ export class CategoriesComponent implements OnInit, OnChanges {
 
     constructor(private db: DBService) {}
 
-    openTransactions() {
-        this.emitOnOpen.emit(true);
-    }
+    // openTransactions() {
+    //     this.emitOnOpen.emit(true);
+    // }
 
     PopupEventTriggered(data) {
         this.showPopup = data;
