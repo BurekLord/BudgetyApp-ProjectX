@@ -30,7 +30,7 @@
         padding-top: 3rem;
         padding-bottom: 2rem;
     }
- 
+
 
     button {
         width: 3rem;
@@ -64,9 +64,23 @@
         border: $slim-border;
     }
 
+
+
     span {
         margin: 0 0.6rem;
     }
+}
+
+.filter-reset {
+    display: flex;
+    margin-bottom: 1rem;
+
+    button {
+        margin-right: auto;
+        color: #fff;
+        background-color: $red-600;
+    }
+
 }
 
 .dropdown {
@@ -157,8 +171,18 @@
     }
 }
 
+.list-hide {
+    opacity: 0;
+    height: auto;
+    max-height: 0;
+    margin: 1rem;
+    width: fit-content;
+    overflow-y: scroll;
+    transition: opacity 0.5s, max-height 0.5s;
+}
+
 .list-show {
-    display: block;
+    opacity: 1;
     height: auto;
     max-height: 65%;
     width: fit-content;
@@ -169,21 +193,40 @@
         0px 0px 11px rgba(0, 0, 0, 0.1);
     border-radius: 0.5rem;
     overflow-y: scroll;
+    transition: opacity 0.5s, max-height 0.5s;
 }
 
 .list-item {
-    margin-bottom: 0.6rem;
     padding: 0;
-    border: $slim-border;
-    display: flex;
-    justify-content: left;
+    border-collapse: collapse;
 
-    span {
-        margin: 0 0.5rem;
+    th {
+        background-color: #ffffff;
+        color: #000000;
+        text-align: left;
+        padding: 0 .5rem;
+        border: 1px solid $primary-color;
     }
 
-    .value-span {
-        margin-left: auto;
+    td {
+        border: 1px solid $primary-color;
+        padding: 0 0.5rem;
+    }
+
+    tr {
+        background-color: $primary-blue;
+
+        &:hover {
+            background-color: #3891df;
+        }
+    }
+
+    tr:nth-child(even) {
+        background-color: $primary-color-light;
+
+        &:hover {
+            background-color: #646464;
+        }
     }
 }
 

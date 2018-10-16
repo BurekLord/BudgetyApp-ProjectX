@@ -45,6 +45,7 @@ export class ListComponent implements OnInit {
     showDate = false;
     showCategory = false;
     showDropdown = false;
+    showList = false;
     clicked: string;
 
     @Output()
@@ -73,6 +74,10 @@ export class ListComponent implements OnInit {
     }
 
     constructor() {}
+
+    toggleList() {
+        this.showList = true;
+    }
 
     dropdownOption(option) {
         if (this.clicked === option) {
@@ -143,8 +148,7 @@ export class ListComponent implements OnInit {
 
     timeStampConvert(timeStamp: any): number {
         // time stamp to date string to miliseconds
-        const date = Date.parse(timeStamp.toDateString());
-        return date;
+        return Date.parse(timeStamp.toDateString());
     }
 
     setFilterOptions(option: string, value: any, input?: any) {
@@ -231,6 +235,7 @@ export class ListComponent implements OnInit {
                 tmpList = this.incomes;
             }
         }
+        this.toggleList();
         this.list = tmpList;
     }
 
@@ -238,7 +243,7 @@ export class ListComponent implements OnInit {
         this.list = [];
         this.categoriesList = [];
         this.filterOptions = new FilterOptions();
-
+        this.showList = false;
         this.type = undefined;
         this.date = undefined;
         this.category = undefined;
