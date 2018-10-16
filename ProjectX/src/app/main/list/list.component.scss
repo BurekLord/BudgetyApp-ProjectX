@@ -1,0 +1,187 @@
+@import '../../../assets/scss/variables';
+@import '../../../assets/scss/mixins';
+
+.list-component {
+    position: absolute;
+    width: fit-content;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(58, 58, 58, 0.9);
+    z-index: 9995;
+    border-right: 1px solid #ffffff;
+    overflow: hidden;
+}
+
+.title {
+    padding: 1rem;
+    border-bottom: 1px solid #ffffff;
+    text-align: center;
+    font-weight: $font-thick;
+    display: flex;
+
+    button {
+        width: 3rem;
+        height: 3rem;
+        font-size: 2rem;
+        font-weight: $font-fat;
+        margin-left: auto;
+    }
+}
+
+.options {
+    margin: 1rem;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1), 0px 0px 8px rgba(0, 0, 0, 0.1),
+        0px 0px 11px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+
+    .opt-buttons {
+        display: flex;
+
+        span {
+            font-size: 1.6rem;
+        }
+    }
+
+    button {
+        background-color: $red-50;
+        color: #000;
+        margin: 0.5rem;
+        border: $slim-border;
+    }
+
+    span {
+        margin: 0 0.6rem;
+    }
+}
+
+.dropdown {
+    // visibility: hidden;
+    max-height: 0;
+    opacity: 0;
+    top: 0;
+    margin: 1rem;
+    padding: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1), 0px 0px 8px rgba(0, 0, 0, 0.1),
+        0px 0px 11px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    font-size: 1.5rem;
+    transition: max-height 0.5s, opacity 0.5s;
+
+}
+
+.showme {
+    visibility: visible;
+    max-height: 6000px;
+    top: 0;
+    opacity: 1;
+    margin: 1rem;
+    padding: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1), 0px 0px 8px rgba(0, 0, 0, 0.1),
+        0px 0px 11px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    font-size: 1.5rem;
+    transition: max-height 0.5s, opacity 0.5s;
+
+}
+
+.li {
+    display: flex;
+    padding: 0 0.5rem;
+    border: $slim-border;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: $slim-shady;
+        cursor: pointer;
+    }
+
+    &:active {
+        transform: translateY(-1px);
+        box-shadow: $smaller-shadow;
+    }
+}
+
+.div {
+    border: $slim-border;
+    padding: 0 0.5rem;
+}
+
+.datepick {
+    display: flex;
+    padding: 0 0.5rem;
+    font-size: 1.5rem;
+    border: $slim-border;
+
+    &:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    &:active {
+        transform: none;
+        box-shadow: none;
+    }
+
+    input {
+        background-color: transparent;
+        color: #ffffff;
+        border: none;
+        margin-left: auto;
+        text-align: center;
+
+        &:active {
+            border: none;
+            cursor: pointer;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+.list-show {
+    display: block;
+    height: auto;
+    max-height: 65%;
+    width: fit-content;
+    padding: 1rem;
+    margin: 1rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1), 0px 0px 8px rgba(0, 0, 0, 0.1),
+        0px 0px 11px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    overflow-y: scroll;
+}
+
+.list-item {
+    margin-bottom: 0.6rem;
+    padding: 0;
+    border: $slim-border;
+    display: flex;
+    justify-content: left;
+
+    span {
+        margin: 0 0.5rem;
+    }
+
+    .value-span {
+        margin-left: auto;
+    }
+}
+
+.test {
+    display: block;
+    margin: 1rem;
+    padding: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1), 0px 0px 8px rgba(0, 0, 0, 0.1),
+        0px 0px 11px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    font-size: 1.5rem;
+}

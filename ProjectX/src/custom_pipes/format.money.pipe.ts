@@ -5,13 +5,15 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FormatMoneyPipe implements PipeTransform {
     currency: string;
-    transform(money: string) {
+    transform(money: number) {
         // insert some regex if number pattern then transform else return money
         // currency will be worked on, string literal for now
         this.currency = AppComponent.currency;
         // array of digits form given number
         let digits: string[];
-        digits = money.toString().split('');
+        digits = Math.abs(money)
+            .toString()
+            .split('');
         // final array of formated number with dots to be converted to string
         const formatedDigits: string[] = [];
         let formatedMoney = '';

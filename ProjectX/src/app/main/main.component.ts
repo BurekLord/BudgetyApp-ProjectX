@@ -40,10 +40,15 @@ export class MainComponent implements OnInit, OnChanges {
     }
 
     currentUser: User;
+    showTransactions = false;
 
     showSetup = false;
     showLogin = true;
     constructor() {}
+
+    catchEmit(eventData) {
+        this.showTransactions = eventData;
+    }
 
     ngOnInit() {
         // in the console we can see that onInit userData is undefined. because it is called async

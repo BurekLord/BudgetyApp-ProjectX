@@ -28,6 +28,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { LoginService } from '../services/login.service';
 import { MainInputComponent } from './main/main-input.component/main-input.component';
 import { PopupComponent } from './main/popup/popup.component';
+import { ListComponent } from './main/list/list.component';
 
 // routes for the router
 const appRoutes: Routes = [
@@ -58,7 +59,8 @@ const appRoutes: Routes = [
         MainInputComponent,
         CategoriesComponent,
         FormatMoneyPipe,
-        PopupComponent
+        PopupComponent,
+        ListComponent
     ],
     imports: [
         BrowserModule,
