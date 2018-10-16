@@ -16,10 +16,15 @@ import { TranslateService } from '@ngx-translate/core';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+    public static currency: string;
     currUserData: any;
     currUserCredentials: UserCredentials;
     currUserExpenses: any[] = [];
     currUserIncomes: any[] = [];
+
+    hasBalance = false;
+    hasIncomes = false;
+    hasExpenses = false;
 
     constructor(
         public db: DBService,
@@ -28,6 +33,19 @@ export class AppComponent implements OnInit {
     ) {
         translate.setDefaultLang('en');
         translate.use('en');
+
+        // TODO: fix this and see about its implementation
+        if (translate.defaultLang === 'en') {
+            AppComponent.currency = '$';
+        } else {
+            AppComponent.currency = 'din';
+        }
+    }
+
+    signOutVal(): boolean {
+        if (this.currUserCredentials) {
+            return true;
+        }
     }
 
     ngOnInit() {
@@ -51,21 +69,45 @@ export class AppComponent implements OnInit {
                                     userData.payload.data(),
                                     config.users_endpoint
                                 );
+                                if (this.currUserData.getBalance()) {
+                                    this.hasBalance = true;
+                                }
+
                                 this.currUserCredentials.isNew = false;
                                 // get all incomes and expenses from user
-                                this.db.getAllValues(config.incomes_endpoint, this.currUserData.getId())
+                                this.db
+                                    .getAllValues(
+                                        config.incomes_endpoint,
+                                        this.currUserData.getId()
+                                    )
                                     .subscribe(
                                         incomes => {
-                                            this.currUserIncomes = Converter.jsonToModelList(incomes, config.incomes_endpoint);
+                                            this.currUserIncomes = Converter.jsonToModelList(
+                                                incomes,
+                                                config.incomes_endpoint
+                                            );
+                                            if (this.currUserIncomes[0]) {
+                                                this.hasIncomes = true;
+                                            }
                                         },
                                         err => {
                                             console.error(err);
                                         }
                                     );
-                                this.db.getAllValues(config.expenses_endpoint, this.currUserData.getId())
+                                this.db
+                                    .getAllValues(
+                                        config.expenses_endpoint,
+                                        this.currUserData.getId()
+                                    )
                                     .subscribe(
                                         expenses => {
-                                            this.currUserExpenses = Converter.jsonToModelList(expenses, config.expenses_endpoint);
+                                            this.currUserExpenses = Converter.jsonToModelList(
+                                                expenses,
+                                                config.expenses_endpoint
+                                            );
+                                            if (this.currUserExpenses[0]) {
+                                                this.hasExpenses = true;
+                                            }
                                         },
                                         err => {
                                             console.error(err);

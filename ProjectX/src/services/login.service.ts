@@ -46,6 +46,7 @@ export class LoginService implements OnInit {
             signInOptions: [
                 // Leave the lines as is for the providers you want to offer your users.
                 auth.GoogleAuthProvider.PROVIDER_ID,
+                // auth.FacebookAuthProvider.PROVIDER_ID,
                 auth.EmailAuthProvider.PROVIDER_ID
                 // auth.FacebookAuthProvider.PROVIDER_ID
             ],

@@ -1,0 +1,40 @@
+<div class="list-component">
+    <div class="title">
+        <span>Transactions</span>
+        <button class="btn-close" (click)="close()">&#215;</button>
+    </div>
+    <div class="options">
+        <span>Filter options</span>
+        <div class="opt-buttons">
+            <button (click)="dropdownOption('Type')">Type</button>
+            <span>Sort by:</span>
+            <button (click)="dropdownOption('Date')">Date</button>
+            <button (click)="dropdownOption('Category')">Category</button>
+        </div>
+        <button (click)="reset()">Reset</button>
+    </div>
+
+    <div #type [ngClass]="{'dropdown':!showDropdown,'showme':showDropdown}">
+        <ul *ngIf="showType">
+            <li class="li" (click)="setFilterOptions('Type','Expense');setList();dropdownOption('Type')">Expense</li>
+            <li class="li" (click)="setFilterOptions('Type','Income');setList();dropdownOption('Type')">Income</li>
+        </ul>
+        <div [hidden]="!showDate">
+            <div class="div" *ngIf="categoriesList.length === 0"><span>Select type first</span></div>
+            <div class="div" *ngIf="categoriesList.length !== 0" class="datepick">
+                <input #startDate type="date" (change)="setFilterOptions('start',startDate.value,startDate)">to<input #endDate type="date" (change)="setFilterOptions('end',endDate.value,endDate);setList();dropdownOption('Date')">
+            </div>
+        </div>
+        <ul *ngIf="showCategory">
+            <li class="li" *ngIf="categoriesList.length === 0">Select type first</li>
+            <li class="li" *ngFor="let cat of categoriesList" (click)="setFilterOptions('Category',cat);setList();dropdownOption('Category')">{{cat}}</li>
+        </ul>
+    </div>
+    <div class="list-show">
+        <div class="list-item" *ngFor="let item of list">
+            <span>{{item.getName()}}</span>
+            <span>{{item.getValue() | formatMoney}}</span>
+        </div>
+    </div>
+</div>
+<app-popup *ngIf="showPopup" [popupData]="popupData" (closePopupEvent)="PopupEventTriggered($event)"></app-popup>

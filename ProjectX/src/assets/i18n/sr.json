@@ -22,7 +22,8 @@
         "ADD_INCOME": "Dodaj prihod",
         "ADD_EXPENSE": "Dodaj trošak",
         "NEW_CATEGORY": "Nova kategorija",
-        "SIGN_OUT": "Izloguj se"
+        "SIGN_OUT": "Izloguj se",
+        "CANCEL": "Otkaži"
     },
     "INPUT": {
         "SETUP_BALANCE": "Prvo unesite vaše trenutno stanje na računu...",
@@ -51,12 +52,25 @@
         "EXPENSES": "Troškovi",
         "DESCRIPTION": "Opis",
         "CATEGORISE_THIS": "Kategorišite ovo",
-        "VALUE": "Vrednost"
+        "VALUE": "Vrednost",
+        "LOGINBEIT": "&#x2606; ZAPOČNI ŠTEDNJU ODMAH!! &#x2606;<br>Klikni na google ili email dugme ispod<br>&darr;&darr;&darr;&darr;&darr;",
+        "ADD_INCOME_TO": "Dodaj ovaj prihod pod:",
+        "ADD_EXPENSE_TO": "Dodaj ovaj trosak pod:",
+        "SPENT_THIS": "Novac potrosen poslednjih",
+        "EARNED_THIS": "Novac zaradjen poslednjih",
+        "SHOW_TRANSACTIONS": "Pregledaj sve transakcija...",
+        "HELP": "Kliknite na dodaj prihod ili dodaj trošak da pokrenete aplikaciju..."
     },
     "TIME_DATE": {
         "DAY": "Dan",
         "WEEK": "Nedelja",
         "MONTH": "Mesec",
-        "YEAR": "Godina"
+        "YEAR": "Godina",
+        "30_DAYS": "30 dana",
+        "10_days": "10 dana",
+        "7_days": "7 dana"
+    },
+    "DISCLAIMER": {
+         "IN_DEVELOPMENT": "Ovo jos nije gotovo. Trenutno prikazuje samo trosak kroz vreme."
     }
 }

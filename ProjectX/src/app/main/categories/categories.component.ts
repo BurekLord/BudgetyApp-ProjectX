@@ -11,7 +11,9 @@ import {
     OnChanges,
     SimpleChanges,
     ViewChild,
-    ElementRef
+    ElementRef,
+    Output,
+    EventEmitter
 } from '@angular/core';
 @Component({
     selector: 'app-categories',
@@ -28,6 +30,9 @@ export class CategoriesComponent implements OnInit, OnChanges {
     user: User;
     expenses: Expense[];
     incomes: Income[];
+
+    @Output()
+    emitOnOpen: EventEmitter<any> = new EventEmitter();
 
     @Input()
     set userData(value) {
@@ -46,16 +51,20 @@ export class CategoriesComponent implements OnInit, OnChanges {
     // values to display from this array for income categories
     incCategoryValuePairs = [];
 
-    expInputShow = false;
-    expBtnFinish = false;
+    expBtnAddBoxShow = true;
+    expAddBoxShow = false;
 
-    incInputShow = false;
-    incBtnFinish = false;
+    incBtnAddBoxShow = true;
+    incAddBoxShow = false;
 
     popupData: PopupData;
     showPopup = false;
 
     constructor(private db: DBService) {}
+
+    // openTransactions() {
+    //     this.emitOnOpen.emit(true);
+    // }
 
     PopupEventTriggered(data) {
         this.showPopup = data;
@@ -69,40 +78,44 @@ export class CategoriesComponent implements OnInit, OnChanges {
     totalExpByCat() {
         this.expCategoryValuePairs = [];
         // temporary array with all categories
-        const tmpCatArr: string[] = this.user.getCategoriesExp();
+        const tmpCatArr: string[] = this.user ? this.user.getCategoriesExp() : undefined;
         // loop through all categories
-        tmpCatArr.forEach(cat => {
-            let catVal = 0;
-            // loop through all expenses
-            this.expenses.forEach(exp => {
-                // compare category values from tmpCatArr and expense array
-                if (cat === exp.getCategory()) {
-                    // if true add all expense values(converted to positives) for current category
-                    catVal += Math.abs(exp.getValue());
-                }
+        if (tmpCatArr) {
+            tmpCatArr.forEach(cat => {
+                let catVal = 0;
+                // loop through all expenses
+                this.expenses.forEach(exp => {
+                    // compare category values from tmpCatArr and expense array
+                    if (cat === exp.getCategory()) {
+                        // if true add all expense values(converted to positives) for current category
+                        catVal += Math.abs(exp.getValue());
+                    }
+                });
+                this.expCategoryValuePairs.push([cat, catVal]);
             });
-            this.expCategoryValuePairs.push([cat, catVal]);
-        });
+        }
     }
 
     // get total money gained by Category
     totalIncByCat() {
         this.incCategoryValuePairs = [];
         // temporary array with all categories
-        const tmpCatArr: string[] = this.user.getCategoriesInc();
-        // loop through all categories
-        tmpCatArr.forEach(cat => {
-            let catVal = 0;
-            // loop through all expenses
-            this.incomes.forEach(inc => {
-                // compare category values from tmpCatArr and expense array
-                if (cat === inc.getCategory()) {
-                    // if true add all expense values(converted to positives) for current category
-                    catVal += inc.getValue();
-                }
+        const tmpCatArr: string[] = this.user ? this.user.getCategoriesInc() : undefined;
+        if (tmpCatArr) {
+            // loop through all categories
+            tmpCatArr.forEach(cat => {
+                let catVal = 0;
+                // loop through all expenses
+                this.incomes.forEach(inc => {
+                    // compare category values from tmpCatArr and expense array
+                    if (cat === inc.getCategory()) {
+                        // if true add all expense values(converted to positives) for current category
+                        catVal += inc.getValue();
+                    }
+                });
+                this.incCategoryValuePairs.push([cat, catVal]);
             });
-            this.incCategoryValuePairs.push([cat, catVal]);
-        });
+        }
     }
 
     ngOnChanges(changes: SimpleChanges) {
@@ -112,31 +125,105 @@ export class CategoriesComponent implements OnInit, OnChanges {
 
     ngOnInit() {}
 
-    onAdd(value: string, type: string) {
+    openAddBox(type: string) {
         if (type === 'expense') {
-            this.expInputShow = true;
-            this.expBtnFinish = true;
+            this.expAddBoxShow = true;
+            this.expBtnAddBoxShow = false;
         } else if (type === 'income') {
-            this.incInputShow = true;
-            this.incBtnFinish = true;
+            this.incAddBoxShow = true;
+            this.incBtnAddBoxShow = false;
         }
+    }
+
+    checkForDuplicate(value, type: string): boolean {
+        // create temporary array with categories
+        let tmpCatArray;
+        if (type === 'expense') {
+            tmpCatArray = this.user.getCategoriesExp();
+            console.log(tmpCatArray);
+        } else if (type === 'income') {
+            this.user.getCategoriesInc() === undefined
+                ? (tmpCatArray = [])
+                : (tmpCatArray = this.user.getCategoriesInc());
+        }
+
+        // always format to upper case 1st letter and lower case the rest of the string
+        // so we can have nice category name and also prevent user from adding categories
+        // with same name but different letter case
+        const cat = value[0].toUpperCase() + value.slice(1).toLowerCase();
+        // check if category exsists
+        let catExists = false;
+        tmpCatArray.forEach(el => {
+            if (el === cat) {
+                catExists = true;
+            }
+        });
+        return catExists;
+    }
+
+    onAdd(value: string, type: string) {
         console.log(this.user);
         if (value) {
             if (this.user) {
                 if (type === 'expense') {
-                    this.user
-                        .getCategoriesExp()
-                        .push(
-                            value[0].toUpperCase() +
-                                value.slice(1).toLowerCase()
+                    // this.checkForDuplicate(value, type);
+                    console.log(this.checkForDuplicate(value, type));
+                    if (this.checkForDuplicate(value, type)) {
+                        this.popupData = new PopupData(
+                            'Category exists',
+                            'Category with that name exists. Please chose other name!'
                         );
+                        this.showPopup = true;
+                    } else {
+                        if (this.user.getCategoriesExp()) {
+                            this.user
+                                .getCategoriesExp()
+                                .push(
+                                    value[0].toUpperCase() +
+                                        value.slice(1).toLowerCase()
+                                );
+                        } else {
+                            this.user.setCategoriesExp([]);
+                            this.user
+                                .getCategoriesExp()
+                                .push(
+                                    value[0].toUpperCase() +
+                                        value.slice(1).toLowerCase()
+                                );
+                        }
+                    }
                 } else if (type === 'income') {
-                    this.user
-                        .getCategoriesInc()
-                        .push(
-                            value[0].toUpperCase() +
-                                value.slice(1).toLowerCase()
+                    if (this.checkForDuplicate(value, type)) {
+                        this.popupData = new PopupData(
+                            'Category exists',
+                            'Category with that name exists. Please chose other name!'
                         );
+                        this.showPopup = true;
+                    } else {
+                        // this.user.setCategoriesExp([]);
+                        // this.user
+                        //     .getCategoriesInc()
+                        //     .push(
+                        //         value[0].toUpperCase() +
+                        //             value.slice(1).toLowerCase()
+                        //     );
+                        if (this.user.getCategoriesInc()) {
+                            this.user
+                                .getCategoriesInc()
+                                .push(
+                                    value[0].toUpperCase() +
+                                        value.slice(1).toLowerCase()
+                                );
+                        } else {
+                            this.user.setCategoriesExp([]);
+                            this.user
+                                .getCategoriesInc()
+                                .push(
+                                    value[0].toUpperCase() +
+                                        value.slice(1).toLowerCase()
+                                );
+                        }
+                    }
                 }
                 this.db.updateItem<User>(
                     config.users_endpoint,
@@ -144,24 +231,30 @@ export class CategoriesComponent implements OnInit, OnChanges {
                     this.user
                 );
             }
-        } else {
+        } else if (type === 'expense' && !value) {
             this.popupData = new PopupData(
                 'Value missing',
-                'Please specify category name!'
+                'Please specify category name for Expense!'
+            );
+            this.showPopup = true;
+        } else if (type === 'income' && !value) {
+            this.popupData = new PopupData(
+                'Value missing',
+                'Please specify category name for Income!'
             );
             this.showPopup = true;
         }
+
         this.clearInputFields();
     }
 
     onFinish(type: string) {
         if (type === 'expense') {
-            this.expInputShow = false;
-            this.expBtnFinish = false;
-        }
-        if (type === 'income') {
-            this.incInputShow = false;
-            this.incBtnFinish = false;
+            this.expAddBoxShow = false;
+            this.expBtnAddBoxShow = true;
+        } else if (type === 'income') {
+            this.incAddBoxShow = false;
+            this.incBtnAddBoxShow = true;
         }
 
         this.db.updateItem<User>(
@@ -169,7 +262,7 @@ export class CategoriesComponent implements OnInit, OnChanges {
             this.user.getId(),
             this.user
         );
-        this.clearInputFields();
+        // this.clearInputFields();
     }
 
     onRemove(cat: any, type: string) {

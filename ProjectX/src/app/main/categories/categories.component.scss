@@ -1,5 +1,5 @@
 @import '../../../assets/scss/variables';
-@import '../../../assets/scss/mixins'; 
+@import '../../../assets/scss/mixins';
 // TODO: remove stupid css
 
 span {
@@ -15,6 +15,9 @@ span {
 
     height: 100%;
     transition: all .1s;
+
+    padding-top: 1rem;
+    padding-bottom: 3rem;
 }
 
 .flex-container {
@@ -23,7 +26,7 @@ span {
     width: 100%;
 }
 
- @include responsive(secondThird) {
+@include responsive(secondThird) {
     .flex-container {
         flex-direction: column;
         align-items: center;
@@ -33,7 +36,7 @@ span {
 
 .category {
     margin: .2rem;
-    border: $small-border;
+    border: $slim-border;
     display: flex;
     width: 99%;
     transition: all .2s;
@@ -41,7 +44,7 @@ span {
 
     &:hover {
         transform: translateY(-2px);
-        box-shadow: $small-shadow;
+        box-shadow: $slim-shady;
     }
 
     &:active {
@@ -64,11 +67,11 @@ span {
 .add-box {
     display: flex;
     margin-top: .7rem;
-    // display: flex;
     flex-direction: column;
     align-items: center;
     width: 80%;
-    > input {
+
+    >input {
         margin-bottom: .7rem;
         width: 95%;
     }
@@ -81,10 +84,20 @@ span {
     width: 100%;
 }
 
-.btn-add {
-        background-color: $red-50;
-        width: 35%;
+.add-new {
+    font-size: 3rem;
+    line-height: 4rem;
+    @include responsive(second) {
+         line-height: 5rem;
     }
+}
+
+.btn-add {
+    background-color: $red-50;
+    width: 35%;
+    color: black;
+    font-weight: $font-thick;
+}
 
 .btn-finish {
     background-color: $primary-blue;
@@ -94,16 +107,25 @@ span {
 .btn-remove {
     display: flex;
     margin-left: auto;
+    margin-right: 2rem;
     // novi 
     width: 3rem;
     height: 3rem;
 
     border-radius: 10rem;
-    font-size: 1.5rem;
+    font-size: 3rem;
     background-color: $red-600;
     margin-left: 2rem;
 
     line-height: 1.2rem;
     color: white;
     font-weight: 300;
+}
+
+.name-span {
+    margin-left: 2rem;
+}
+
+.value-span {
+    margin-right: auto;
 }

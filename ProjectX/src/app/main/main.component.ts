@@ -25,6 +25,11 @@ export class MainComponent implements OnInit, OnChanges {
     @Input()
     set _userData(value) {
         this.userData = value;
+        if (this.userData) {
+            if (this.userData.getBalance()) {
+                this.hasBalance = true;
+            }
+        }
     }
     @Input()
     set _userCredentials(value) {
@@ -33,17 +38,32 @@ export class MainComponent implements OnInit, OnChanges {
     @Input()
     set _userExpenses(value) {
         this.userExpenses = value;
+        if (this.userExpenses[0]) {
+            this.hasExpenses = true;
+        }
     }
     @Input()
     set _userIncomes(value) {
         this.userIncomes = value;
+        if (this.userIncomes[0]) {
+            this.hasIncomes = true;
+        }
     }
 
     currentUser: User;
+    showTransactions = false;
 
-    showSetup = false;
+    // showSetup = false;
     showLogin = true;
+    hasBalance = false;
+    hasIncomes = false;
+    hasExpenses = false;
+
     constructor() {}
+
+    catchEmit(eventData) {
+        this.showTransactions = eventData;
+    }
 
     ngOnInit() {
         // in the console we can see that onInit userData is undefined. because it is called async
@@ -62,11 +82,11 @@ export class MainComponent implements OnInit, OnChanges {
             console.log('On credentials changes');
             if (changes._userCredentials.currentValue.isNew) {
                 console.log('On credentials changes is new');
-                this.showSetup = true;
+                // this.showSetup = true;
                 this.showLogin = false;
             } else {
                 console.log('On credentials changes not new');
-                this.showSetup = false;
+                // this.showSetup = false;
                 this.showLogin = false;
             }
         }

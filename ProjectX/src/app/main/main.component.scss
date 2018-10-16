@@ -1,4 +1,6 @@
 @import '../../assets/scss/mixins';
+@import '../../assets/scss/variables';
+
 .main {
     padding: 4em;
     // define displey of type grid
@@ -16,7 +18,8 @@
     grid-template-columns: repeat(2, minmax(30rem, 1fr));
 
     // a shortcut to position the grid elements. imagine this as a matrix of fields 3x2
-    grid-template-areas: "balance categories"
+    grid-template-areas: "balance incomes"
+        "balance expenses"
         "main-input categories"
         "statistic statistic";
 
@@ -28,21 +31,54 @@
         flex-direction: column;
         align-items: center;
         justify-items: center;
-        .categories {
-            width: 90%;
-        }
+
         .balance {
             width: 90%;
+            order: 1;
+            margin: 2rem;
+        }
+
+        .incomes {
+            width: 90%;
+            margin: 2rem;
+            order: 2;
+        }
+
+        .expenses {
+            width: 90%;
+            margin: 2rem;
+            order: 3;
         }
 
         .main-input {
             width: 90%;
+            order: 4;
+            margin: 2rem;
+        }
+
+        .categories {
+            width: 90%;
+            order: 5;
+            margin: 2rem;
         }
 
         .statistic {
            width: 90%;
+           order: 6;
+           margin: 2rem;
+        }
+        .help-box {
+            width: 90%;
+            order: 3;
+            margin: 2rem;
+            text-align: center;
         }
     }
+}
+
+.help-box {
+    grid-area: categories;
+    align-self: center;
 }
 
 // set grid-area nema for the grid-template-areas, and the magic happenes
@@ -62,9 +98,50 @@
     grid-area: statistic;
 }
 
+
+.total-box {
+    grid-area: total-box;
+
+    .total-expense {
+        // grid-area: total-expense;
+    }
+
+    .total-income {
+        // grid-area: total-income;
+    }
+}
+
 // second way to define position of the elements in the grid is by grid indexes 
-.setup .login {
+.login {
     grid-area: login;
     grid-row: 1/3;
     grid-column: 1/4;
+}
+
+.btn-list {
+    position: absolute;
+    top: 50%;
+    left: -1.5rem;
+    transform: translateY(-50%);
+    // border-radius: 0rem 20rem 20rem 0rem;
+    border: none;
+
+    width: 4rem;
+    height: 100%;
+
+    display: flex;
+    justify-content: end;
+    white-space: nowrap;
+
+    // change
+    background-color: $primary-color-light;
+}
+.vertical-text {
+    position: fixed; 
+    transform: rotate(-90deg);
+    transform-origin: left center 0;
+    // margin-left: 2rem;
+    top: 60%;
+    left: 1rem;
+    cursor: pointer;
 }

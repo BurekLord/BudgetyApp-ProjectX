@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { auth } from 'firebase/app';
+import { TranslateService } from '@ngx-translate/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-footer',
@@ -7,9 +9,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+    @Input() signOutShow: boolean;
 
-  ngOnInit() {
-  }
+    constructor(public translate: TranslateService) {}
+
+    onSignOUt() {
+        auth()
+            .signOut()
+            .then(function() {
+                console.log('User sign-OUT method called!');
+            })
+            .catch(function(error) {
+                console.log('Error happened while singing OUT!', error);
+            });
+        window.location.reload();
+    }
+
+    ngOnInit() {}
+
+    onEn() {
+        this.translate.use('en');
+    }
+    onSr() {
+        this.translate.use('sr');
+    }
 
 }

@@ -1,3 +1,4 @@
+import { AppComponent } from './../app.component';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from './../../models/user.model';
 import { Component, OnInit, Input } from '@angular/core';
@@ -14,7 +15,8 @@ export class HeaderComponent implements OnInit {
     userData: User;
     @Input()
     userCredentials: UserCredentials;
-
+    @Input()
+    signOutShow = false;
     constructor(public translate: TranslateService) {}
 
     onSignOUt() {
