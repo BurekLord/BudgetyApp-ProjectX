@@ -1,5 +1,9 @@
 @import '../../../assets/scss/mixins';
+@import '../../../assets/scss/variables';
 
+// .balance-small {
+//     min-height: 10rem !important;
+// }
 .balance {
     // border: 1px solid black;
     display: flex;
@@ -11,7 +15,7 @@
     height: 100%;
 
     @include responsive(secondThird) {
-        min-height: 25rem;
+        min-height: 17rem;
     }
 
     .balance__container {
@@ -26,6 +30,16 @@
             font-size: 2rem;
             text-transform: uppercase;
             // color: black;
+        }
+
+        .exp-text {
+            color: $red-600;
+            font-weight: $font-fat;
+        }
+
+        .inc-text {
+            color: $primary-blue;
+            font-weight: $font-fat;
         }
 
         .balance__value {

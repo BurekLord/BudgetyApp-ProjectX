@@ -16,7 +16,8 @@
     grid-template-columns: repeat(2, minmax(30rem, 1fr));
 
     // a shortcut to position the grid elements. imagine this as a matrix of fields 3x2
-    grid-template-areas: "balance total-box"
+    grid-template-areas: "balance incomes"
+        "balance expenses"
         "main-input categories"
         "statistic statistic";
 
@@ -34,25 +35,31 @@
             margin: 2rem;
         }
 
-        .total-box {
+        .incomes {
             width: 90%;
             margin: 2rem;
             order: 2;
         }
 
-        .main-input {
+        .expenses {
             width: 90%;
-            order: 3;
             margin: 2rem;
+            order: 3;
         }
-        .categories {
+
+        .main-input {
             width: 90%;
             order: 4;
             margin: 2rem;
         }
+        .categories {
+            width: 90%;
+            order: 5;
+            margin: 2rem;
+        }
         .statistic {
            width: 90%;
-           order: 5;
+           order: 6;
            margin: 2rem;
         }
     }

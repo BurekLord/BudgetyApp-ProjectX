@@ -16,6 +16,7 @@ import { TranslateService } from '@ngx-translate/core';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+    public static currency: string;
     currUserData: any;
     currUserCredentials: UserCredentials;
     currUserExpenses: any[] = [];
@@ -28,6 +29,13 @@ export class AppComponent implements OnInit {
     ) {
         translate.setDefaultLang('en');
         translate.use('en');
+
+        // TODO: fix this and see about its implementation
+        if (translate.defaultLang === 'en') {
+            AppComponent.currency = '$';
+        } else {
+            AppComponent.currency = 'din';
+        }
     }
 
     signOutVal(): boolean {
