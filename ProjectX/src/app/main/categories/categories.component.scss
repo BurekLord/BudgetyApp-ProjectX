@@ -86,7 +86,10 @@ span {
 
 .add-new {
     font-size: 3rem;
-    line-height: 5rem;
+    line-height: 4rem;
+    @include responsive(second) {
+         line-height: 5rem;
+    }
 }
 
 .btn-add {

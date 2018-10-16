@@ -1,3 +1,4 @@
+import { AppComponent } from './../app.component';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from './../../models/user.model';
 import { Component, OnInit, Input } from '@angular/core';

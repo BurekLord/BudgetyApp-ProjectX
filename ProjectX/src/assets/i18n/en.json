@@ -55,12 +55,17 @@
         "VALUE": "Value",
         "LOGINBEIT": "&#x2606;  START SAVING NOW!!  &#x2606;<br>Click on google or email button below<br>&darr;&darr;&darr;&darr;&darr;",
         "ADD_INCOME_TO": "Add this income to:",
-        "ADD_EXPENSE_TO": "Add this expense to:"
+        "ADD_EXPENSE_TO": "Add this expense to:",
+        "SPENT_THIS": "Money spent last",
+        "EARNED_THIS": "Money earned last"
     },
     "TIME_DATE": {
         "DAY": "Day",
         "WEEK": "Week",
         "MONTH": "Month",
-        "YEAR": "Year"
+        "YEAR": "Year",
+        "30_DAYS": "30 days",
+        "10_days": "10 days",
+        "7_days": "7 days"
     }
 }

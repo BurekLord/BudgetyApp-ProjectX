@@ -55,12 +55,17 @@
         "VALUE": "Vrednost",
         "LOGINBEIT": "&#x2606; ZAPOČNI ŠTEDNJU ODMAH!! &#x2606;<br>Klikni na google ili email dugme ispod<br>&darr;&darr;&darr;&darr;&darr;",
         "ADD_INCOME_TO": "Dodaj ovaj prihod pod:",
-        "ADD_EXPENSE_TO": "Dodaj ovaj trosak pod:"
+        "ADD_EXPENSE_TO": "Dodaj ovaj trosak pod:",
+        "SPENT_THIS": "Novac potrosen poslednjih",
+        "EARNED_THIS": "Novac zaradjen poslednjih"
     },
     "TIME_DATE": {
         "DAY": "Dan",
         "WEEK": "Nedelja",
         "MONTH": "Mesec",
-        "YEAR": "Godina"
+        "YEAR": "Godina",
+        "30_DAYS": "30 dana",
+        "10_days": "10 dana",
+        "7_days": "7 dana"
     }
 }
