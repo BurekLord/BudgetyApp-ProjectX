@@ -26,6 +26,7 @@ export class BalanceComponent implements OnInit {
 
     @Input()
     set userExpenses(value) {
+        this.money = 0;
         value.forEach((el) => {
         if (el.getTimeStamp() > this.date) {
                 this.money += el.getValue();
@@ -35,6 +36,7 @@ export class BalanceComponent implements OnInit {
 
     @Input()
     set userIncomes(value) {
+        this.money = 0;
         value.forEach((el) => {
         if (el.getTimeStamp() > this.date) {
             this.money += el.getValue();

@@ -42,7 +42,7 @@ export class MainComponent implements OnInit, OnChanges {
     currentUser: User;
     showTransactions = false;
 
-    showSetup = false;
+    // showSetup = false;
     showLogin = true;
     constructor() {}
 
@@ -67,11 +67,11 @@ export class MainComponent implements OnInit, OnChanges {
             console.log('On credentials changes');
             if (changes._userCredentials.currentValue.isNew) {
                 console.log('On credentials changes is new');
-                this.showSetup = true;
+                // this.showSetup = true;
                 this.showLogin = false;
             } else {
                 console.log('On credentials changes not new');
-                this.showSetup = false;
+                // this.showSetup = false;
                 this.showLogin = false;
             }
         }

@@ -1,6 +1,7 @@
 <app-login class="login" *ngIf="showLogin"></app-login>
 <!-- <app-setup class="setup" *ngIf="showSetup" [userData]="userData"></app-setup> -->
-<main class="main" *ngIf="!showLogin && !showSetup">
+<main class="main" *ngIf="!showLogin">
+     <!-- && !showSetup -->
     <app-categories (emitOnOpen)="catchEmit($event)" class="categories" [userData]="userData" [userExpenses]="userExpenses" [userIncomes]="userIncomes"></app-categories>
     <app-balance class="balance" [userData]="userData"></app-balance>
     <app-balance class="incomes" [userData]="userData" [dataToDisplay]="'incomes'" [userIncomes]="userIncomes"></app-balance>

@@ -78,7 +78,7 @@ export class CategoriesComponent implements OnInit, OnChanges {
     totalExpByCat() {
         this.expCategoryValuePairs = [];
         // temporary array with all categories
-        const tmpCatArr: string[] = this.user.getCategoriesExp();
+        const tmpCatArr: string[] = this.user ? this.user.getCategoriesExp() : undefined;
         // loop through all categories
         if (tmpCatArr) {
             tmpCatArr.forEach(cat => {
@@ -100,7 +100,7 @@ export class CategoriesComponent implements OnInit, OnChanges {
     totalIncByCat() {
         this.incCategoryValuePairs = [];
         // temporary array with all categories
-        const tmpCatArr: string[] = this.user.getCategoriesInc();
+        const tmpCatArr: string[] = this.user ? this.user.getCategoriesInc() : undefined;
         if (tmpCatArr) {
             // loop through all categories
             tmpCatArr.forEach(cat => {
