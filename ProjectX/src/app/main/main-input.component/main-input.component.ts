@@ -145,7 +145,9 @@ export class MainInputComponent implements OnInit {
             // create temporary array with categories
             let tmpCatArray;
             if (type === 'Expense') {
-                tmpCatArray = this.userData.getCategoriesExp();
+                this.userData.getCategoriesExp() === undefined
+                    ? (tmpCatArray = [])
+                    : (tmpCatArray = this.userData.getCategoriesExp());
             } else if (type === 'Income') {
                 this.userData.getCategoriesInc() === undefined
                     ? (tmpCatArray = [])
@@ -186,11 +188,18 @@ export class MainInputComponent implements OnInit {
                 // hide new Category Controls
                 this.newCategoryCtrl = true;
                 // updejtuj userData
-                this.db.updateItem<User>(
-                    config.users_endpoint,
-                    this.userData.getId(),
-                    this.userData
-                );
+                // this.db.updateItem<User>(
+                //     config.users_endpoint,
+                //     this.userData.getId(),
+                //     this.userData
+                // );
+                // todo lemi
+                if (type === 'Expense') {
+                    console.log(cat, this.expName, this.expValue);
+                    this.onExpenseAddClick(cat, this.expName.nativeElement.value, this.expValue.nativeElement.value);
+                } else if (type === 'Income') {
+                    this.onIncomeAddClick(cat, this.incName.nativeElement.value, this.incValue.nativeElement.value);
+                }
             }
         } else {
             this.popupData = new PopupData(
