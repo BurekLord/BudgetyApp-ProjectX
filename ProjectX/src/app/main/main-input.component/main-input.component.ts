@@ -227,6 +227,9 @@ export class MainInputComponent implements OnInit {
     }
 
     onIncBtn() {
+        if (!this.incDropIsHidden) {
+            this.clearInputFields();
+        }
         this.incDropIsHidden = !this.incDropIsHidden;
         this.expDropIsHidden = true;
         this.newCategoryCtrl = true;
@@ -234,6 +237,9 @@ export class MainInputComponent implements OnInit {
     }
 
     onExpBtn() {
+        if (!this.expDropIsHidden) {
+            this.clearInputFields();
+        }
         this.expDropIsHidden = !this.expDropIsHidden;
         this.incDropIsHidden = true;
         this.newCategoryCtrl = true;

@@ -58,7 +58,8 @@
         "ADD_EXPENSE_TO": "Add this expense to:",
         "SPENT_THIS": "Money spent last",
         "EARNED_THIS": "Money earned last",
-        "SHOW_TRANSACTIONS": "Filter all transactions..."
+        "SHOW_TRANSACTIONS": "Filter all transactions...",
+        "HELP": "Click on add income or add expense to get started..."
     },
     "TIME_DATE": {
         "DAY": "Day",
@@ -68,5 +69,8 @@
         "30_DAYS": "30 days",
         "10_days": "10 days",
         "7_days": "7 days"
+    },
+    "DISCLAIMER": {
+        "IN_DEVELOPMENT": "This functionality is in development. Currently it just shows your spending over time."
     }
 }

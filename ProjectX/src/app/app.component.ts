@@ -22,6 +22,10 @@ export class AppComponent implements OnInit {
     currUserExpenses: any[] = [];
     currUserIncomes: any[] = [];
 
+    hasBalance = false;
+    hasIncomes = false;
+    hasExpenses = false;
+
     constructor(
         public db: DBService,
         translate: TranslateService,
@@ -65,6 +69,10 @@ export class AppComponent implements OnInit {
                                     userData.payload.data(),
                                     config.users_endpoint
                                 );
+                                if (this.currUserData.getBalance()) {
+                                    this.hasBalance = true;
+                                }
+
                                 this.currUserCredentials.isNew = false;
                                 // get all incomes and expenses from user
                                 this.db
@@ -78,6 +86,9 @@ export class AppComponent implements OnInit {
                                                 incomes,
                                                 config.incomes_endpoint
                                             );
+                                            if (this.currUserIncomes[0]) {
+                                                this.hasIncomes = true;
+                                            }
                                         },
                                         err => {
                                             console.error(err);
@@ -94,6 +105,9 @@ export class AppComponent implements OnInit {
                                                 expenses,
                                                 config.expenses_endpoint
                                             );
+                                            if (this.currUserExpenses[0]) {
+                                                this.hasExpenses = true;
+                                            }
                                         },
                                         err => {
                                             console.error(err);

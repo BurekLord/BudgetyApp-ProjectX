@@ -51,6 +51,7 @@ export class ListComponent implements OnInit {
     emitOnClose: EventEmitter<any> = new EventEmitter();
 
     close() {
+        this.reset();
         this.emitOnClose.emit(false);
     }
 

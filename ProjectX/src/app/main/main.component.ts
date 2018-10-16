@@ -25,6 +25,11 @@ export class MainComponent implements OnInit, OnChanges {
     @Input()
     set _userData(value) {
         this.userData = value;
+        if (this.userData) {
+            if (this.userData.getBalance()) {
+                this.hasBalance = true;
+            }
+        }
     }
     @Input()
     set _userCredentials(value) {
@@ -33,10 +38,16 @@ export class MainComponent implements OnInit, OnChanges {
     @Input()
     set _userExpenses(value) {
         this.userExpenses = value;
+        if (this.userExpenses[0]) {
+            this.hasExpenses = true;
+        }
     }
     @Input()
     set _userIncomes(value) {
         this.userIncomes = value;
+        if (this.userIncomes[0]) {
+            this.hasIncomes = true;
+        }
     }
 
     currentUser: User;
@@ -44,6 +55,10 @@ export class MainComponent implements OnInit, OnChanges {
 
     // showSetup = false;
     showLogin = true;
+    hasBalance = false;
+    hasIncomes = false;
+    hasExpenses = false;
+
     constructor() {}
 
     catchEmit(eventData) {

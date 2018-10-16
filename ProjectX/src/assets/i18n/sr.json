@@ -58,7 +58,8 @@
         "ADD_EXPENSE_TO": "Dodaj ovaj trosak pod:",
         "SPENT_THIS": "Novac potrosen poslednjih",
         "EARNED_THIS": "Novac zaradjen poslednjih",
-        "SHOW_TRANSACTIONS": "Pregledaj sve transakcija..."
+        "SHOW_TRANSACTIONS": "Pregledaj sve transakcija...",
+        "HELP": "Kliknite na dodaj prihod ili dodaj trošak da pokrenete aplikaciju..."
     },
     "TIME_DATE": {
         "DAY": "Dan",
@@ -68,5 +69,8 @@
         "30_DAYS": "30 dana",
         "10_days": "10 dana",
         "7_days": "7 dana"
+    },
+    "DISCLAIMER": {
+         "IN_DEVELOPMENT": "This functionality is in development. Currently it just shows your spending over time."
     }
 }

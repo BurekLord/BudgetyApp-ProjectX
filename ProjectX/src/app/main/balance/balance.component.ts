@@ -27,8 +27,9 @@ export class BalanceComponent implements OnInit {
     @Input()
     set userExpenses(value) {
         this.money = 0;
+
         value.forEach((el) => {
-        if (el.getTimeStamp() > this.date) {
+        if (el.getTimeStamp() > this.getPastMonth()) {
                 this.money += el.getValue();
             }
         });
@@ -37,8 +38,9 @@ export class BalanceComponent implements OnInit {
     @Input()
     set userIncomes(value) {
         this.money = 0;
+
         value.forEach((el) => {
-        if (el.getTimeStamp() > this.date) {
+        if (el.getTimeStamp() > this.getPastMonth()) {
             this.money += el.getValue();
             }
         });
@@ -56,12 +58,16 @@ export class BalanceComponent implements OnInit {
 
     constructor() {}
 
-    ngOnInit() {
+    getPastMonth() {
         // znaci date 30 dana unazad nek prestavlja to mesec
         this.date = new Date();
         this.date.setDate(this.date.getDate() - 30);
         // const dateString = date.toISOString().split('T')[0];
+        return this.date;
+    }
 
+    ngOnInit() {
+        this.getPastMonth();
         if (this.dataToDisplay !== 'balance') {
              this.timeFrame = TIME_FRAME.month;
 
