@@ -57,7 +57,8 @@
         "ADD_INCOME_TO": "Dodaj ovaj prihod pod:",
         "ADD_EXPENSE_TO": "Dodaj ovaj trosak pod:",
         "SPENT_THIS": "Novac potrosen poslednjih",
-        "EARNED_THIS": "Novac zaradjen poslednjih"
+        "EARNED_THIS": "Novac zaradjen poslednjih",
+        "SHOW_TRANSACTIONS": "Pregledaj sve transakcija..."
     },
     "TIME_DATE": {
         "DAY": "Dan",

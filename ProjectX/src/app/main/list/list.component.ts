@@ -233,6 +233,24 @@ export class ListComponent implements OnInit {
         this.list = tmpList;
     }
 
+    reset() {
+        this.list = [];
+        this.categoriesList = [];
+        this.filterOptions = new FilterOptions();
+
+        this.type = undefined;
+        this.date = undefined;
+        this.category = undefined;
+        this.endDate = undefined;
+        this.startDate = undefined;
+        this.showPopup = false;
+        this.showType = false;
+        this.showDate = false;
+        this.showCategory = false;
+        this.showDropdown = false;
+        this.clicked = undefined;
+    }
+
     test() {
         this.timeStampConvert(this.filterOptions[0].period);
     }

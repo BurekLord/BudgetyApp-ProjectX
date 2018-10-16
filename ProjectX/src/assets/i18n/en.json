@@ -57,7 +57,8 @@
         "ADD_INCOME_TO": "Add this income to:",
         "ADD_EXPENSE_TO": "Add this expense to:",
         "SPENT_THIS": "Money spent last",
-        "EARNED_THIS": "Money earned last"
+        "EARNED_THIS": "Money earned last",
+        "SHOW_TRANSACTIONS": "Filter all transactions..."
     },
     "TIME_DATE": {
         "DAY": "Day",

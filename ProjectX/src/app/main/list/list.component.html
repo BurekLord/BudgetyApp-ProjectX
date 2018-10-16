@@ -11,6 +11,7 @@
             <button (click)="dropdownOption('Date')">Date</button>
             <button (click)="dropdownOption('Category')">Category</button>
         </div>
+        <button (click)="reset()">Reset</button>
     </div>
 
     <div #type [ngClass]="{'dropdown':!showDropdown,'showme':showDropdown}">
