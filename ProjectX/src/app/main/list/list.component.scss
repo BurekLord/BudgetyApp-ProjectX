@@ -184,7 +184,7 @@
 .list-show {
     opacity: 1;
     height: auto;
-    max-height: 65%;
+    max-height: 80%;
     width: fit-content;
     padding: 1rem;
     margin: 1rem;
@@ -192,8 +192,12 @@
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1), 0px 0px 8px rgba(0, 0, 0, 0.1),
         0px 0px 11px rgba(0, 0, 0, 0.1);
     border-radius: 0.5rem;
-    overflow-y: scroll;
+    overflow-y: hidden;
     transition: opacity 0.5s, max-height 0.5s;
+
+    &:hover {
+        overflow-y: scroll;
+    }
 }
 
 .list-item {
@@ -230,15 +234,24 @@
     }
 }
 
-.test {
-    display: block;
-    margin: 1rem;
-    padding: 0.5rem;
-    background-color: rgba(0, 0, 0, 0.2);
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1), 0px 0px 8px rgba(0, 0, 0, 0.1),
-        0px 0px 11px rgba(0, 0, 0, 0.1);
-    border-radius: 0.5rem;
-    font-size: 1.5rem;
+.sort {
+    display: inline;
+
+    transition: all.3s;
+    margin: 0;
+    padding: 0;
+    box-shadow: 0px 0px 2px #fff;
+
+    &:hover {
+        transform: translateY(-2px);
+        cursor: pointer;
+        box-shadow: 0px 0px 2px $primary-color-light;
+    }
+
+    &:active {
+        transform: translateY(-2px);
+        box-shadow: 0px 0px 2px #ffffff;
+    }
 }
 
 .btn-close {

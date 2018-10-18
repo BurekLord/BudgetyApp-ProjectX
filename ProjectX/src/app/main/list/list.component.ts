@@ -37,6 +37,8 @@ export class ListComponent implements OnInit {
     endDate: ElementRef;
     @ViewChild('startDate')
     startDate: ElementRef;
+    @ViewChild('valueSort')
+    valueSort: ElementRef;
 
     @Input()
     showPopup = false;
@@ -48,6 +50,8 @@ export class ListComponent implements OnInit {
     showList = false;
     clicked: string;
 
+    //
+    valueSortToggle = false;
     @Output()
     emitOnClose: EventEmitter<any> = new EventEmitter();
 
@@ -75,10 +79,6 @@ export class ListComponent implements OnInit {
 
     constructor() {}
 
-    toggleList() {
-        this.showList = true;
-    }
-
     dropdownOption(option) {
         if (this.clicked === option) {
             this.showDropdown = false;
@@ -101,37 +101,32 @@ export class ListComponent implements OnInit {
 
     existingDateCheck(option, value, input: any) {
         let found: boolean;
+        const valueToMS = Date.parse(new Date(value).toDateString());
         if (this.filterOptions.type === 'Expense') {
-            const expVals: number[] = [];
+            const expVals = [];
             this.expenses.forEach(exp => {
-                expVals.push(
-                    this.timeStampConvert(new Date(exp.getTimeStamp()))
-                );
+                expVals.push(Date.parse(exp.getTimeStamp().toDateString()));
             });
             if (
-                this.timeStampConvert(new Date(value)) >=
-                    Math.min(...expVals) &&
-                this.timeStampConvert(new Date(value)) <= Math.max(...expVals)
+                valueToMS >= Math.min(...expVals) &&
+                valueToMS <= Math.max(...expVals)
             ) {
                 found = true;
             }
         } else if (this.filterOptions.type === 'Income') {
             const incVals: number[] = [];
             this.incomes.forEach(inc => {
-                incVals.push(
-                    this.timeStampConvert(new Date(inc.getTimeStamp()))
-                );
+                incVals.push(Date.parse(inc.getTimeStamp().toDateString()));
             });
             if (
-                this.timeStampConvert(new Date(value)) >=
-                    Math.min(...incVals) &&
-                this.timeStampConvert(new Date(value)) <= Math.max(...incVals)
+                valueToMS >= Math.min(...incVals) &&
+                valueToMS <= Math.max(...incVals)
             ) {
                 found = true;
             }
         }
         if (found) {
-            return this.timeStampConvert(new Date(value));
+            return valueToMS;
         } else if (!found) {
             this.popupData = new PopupData(
                 'Date not found',
@@ -147,8 +142,8 @@ export class ListComponent implements OnInit {
     }
 
     timeStampConvert(timeStamp: any): number {
-        // time stamp to date string to miliseconds
-        return Date.parse(timeStamp.toDateString());
+        // time stamp to miliseconds
+        return Date.parse(timeStamp.toString());
     }
 
     setFilterOptions(option: string, value: any, input?: any) {
@@ -194,7 +189,8 @@ export class ListComponent implements OnInit {
         const cat = this.filterOptions.category;
         const start = this.filterOptions.startDate;
         const end = this.filterOptions.endDate;
-        let tmpList: (Expense | Income)[];
+        this.list = [];
+        let tmpList: (Expense | Income)[] = [];
         // select and sort expenses
         if (this.filterOptions.type === 'Expense') {
             if (this.filterOptions.category) {
@@ -213,6 +209,9 @@ export class ListComponent implements OnInit {
                         Date.parse(exp.getTimeStamp().toDateString()) <= end
                     );
                 });
+                // reset datepicker inputs
+                this.startDate.nativeElement.value = null;
+                this.endDate.nativeElement.value = null;
             } else {
                 tmpList = this.expenses;
             }
@@ -231,12 +230,52 @@ export class ListComponent implements OnInit {
                         Date.parse(inc.getTimeStamp().toDateString()) <= end
                     );
                 });
+                // reset datepicker inputs
+                this.startDate.nativeElement.value = null;
+                this.endDate.nativeElement.value = null;
             } else {
                 tmpList = this.incomes;
             }
         }
-        this.toggleList();
-        this.list = tmpList;
+        this.list = this.sortByDate(tmpList);
+        this.showList = true;
+    }
+
+    sortByDate(tmpList: (Expense | Income)[]) {
+        tmpList.sort(function(obj1, obj2) {
+            return (
+                Date.parse(obj1.getTimeStamp().toString()) -
+                Date.parse(obj2.getTimeStamp().toString())
+            );
+        });
+        return tmpList;
+    }
+
+    sortValueAsc(list: (Expense | Income)[]) {
+        list.sort(function(obj1, obj2) {
+            return Math.abs(obj1.getValue()) - Math.abs(obj2.getValue());
+        });
+        return list;
+    }
+    sortValueDesc(list: (Expense | Income)[]) {
+        list.sort(function(obj1, obj2) {
+            return Math.abs(obj2.getValue()) - Math.abs(obj1.getValue());
+        });
+        return list;
+    }
+
+    onValueSort() {
+        const upArrow = '&#8679;';
+        const downArrow = '&#8681;';
+        if (this.valueSortToggle === false) {
+            this.valueSortToggle = true;
+            this.valueSort.nativeElement.innerHTML = downArrow;
+            this.sortValueAsc(this.list);
+        } else if (this.valueSortToggle === true) {
+            this.valueSortToggle = false;
+            this.valueSort.nativeElement.innerHTML = upArrow;
+            this.sortValueDesc(this.list);
+        }
     }
 
     reset() {
@@ -255,6 +294,7 @@ export class ListComponent implements OnInit {
         this.showCategory = false;
         this.showDropdown = false;
         this.clicked = undefined;
+        this.valueSort.nativeElement.innerHTML = '&#8679;';
     }
 
     test() {
