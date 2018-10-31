@@ -5,6 +5,7 @@ import { User } from '../../../models/user.model';
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { Income } from '../../../models/income.model';
 import { Expense } from '../../../models/expense.model';
+import { PopupService } from '../popup/popup.service';
 
 @Component({
     selector: 'app-main-input',
@@ -30,16 +31,10 @@ export class MainInputComponent implements OnInit {
     @ViewChild('expValue')
     expValue: ElementRef;
 
-    popupData: PopupData;
-    showPopup = false;
     incCatClicked = false;
     expCatClicked = false;
 
-    constructor(public db: DBService) {}
-
-    PopupEventTriggered(data) {
-        this.showPopup = data;
-    }
+    constructor(public db: DBService, private popupService: PopupService) {}
 
     clearInputFields() {
         this.incName.nativeElement.value = null;
@@ -55,85 +50,80 @@ export class MainInputComponent implements OnInit {
     onIncomeAddClick(inc: any, name: any, value: any) {
         console.log('inc: any, name: any, value: any', inc, name, value);
         // if (this.incCatClicked) {
-            if (value) {
-                // kreireaj nov income i pretvori vrednos u pozitivnu vrednost
-                const newIncome = new Income(
-                    name,
-                    parseFloat(value.toString()),
-                    inc,
-                    new Date(),
-                    this.userData.getId()
-                );
-                this.db.addItem<Income>(
-                    config.incomes_endpoint,
-                    newIncome,
-                    undefined,
-                    this.userData.getId()
-                );
+        if (value) {
+            // kreireaj nov income i pretvori vrednos u pozitivnu vrednost
+            const newIncome = new Income(
+                name,
+                parseFloat(value.toString()),
+                inc,
+                new Date(),
+                this.userData.getId()
+            );
+            this.db.addItem<Income>(
+                config.incomes_endpoint,
+                newIncome,
+                undefined,
+                this.userData.getId()
+            );
 
-                // updejtuj userData
-                this.db.updateItem<User>(
-                    config.users_endpoint,
-                    this.userData.getId(),
-                    this.userData
-                );
-                this.incDropIsHidden = true;
-                 this.incCatClicked = false;
-                // calc balance
-                this.calculateBalance();
+            // updejtuj userData
+            this.db.updateItem<User>(
+                config.users_endpoint,
+                this.userData.getId(),
+                this.userData
+            );
+            this.incDropIsHidden = true;
+            this.incCatClicked = false;
+            // calc balance
+            this.calculateBalance();
 
-                this.clearInputFields();
-            } else {
-                this.popupData = new PopupData(
-                    'Value missing',
-                    'Please specify value!'
-                );
-                this.showPopup = true;
-            }
-        // } else {
-        //     this.incCatClicked = true;
-        // }
+            this.clearInputFields();
+        } else {
+            this.popupService.openPopup(
+                'Value missing',
+                'Please specify value!'
+            );
+        }
     }
 
     onExpenseAddClick(exp: any, name: any, value: any) {
         // if (this.expCatClicked) {
-            // ako postoji value u inputu
-            if (value) {
-                // kreiraj novi expens i stavi minus ispred vrednosti i pretvori je u number
-                const newExpense = new Expense(
-                    name,
-                    parseFloat('-' + value.toString()),
-                    exp,
-                    new Date(),
-                    this.userData.getId()
-                );
-                // odaj ga u bazu
-                this.db.addItem<Expense>(
-                    config.expenses_endpoint,
-                    newExpense,
-                    undefined,
-                    this.userData.getId()
-                );
+        // ako postoji value u inputu
+        if (value) {
+            // kreiraj novi expens i stavi minus ispred vrednosti i pretvori je u number
+            const newExpense = new Expense(
+                name,
+                parseFloat('-' + value.toString()),
+                exp,
+                new Date(),
+                this.userData.getId()
+            );
+            // odaj ga u bazu
+            this.db.addItem<Expense>(
+                config.expenses_endpoint,
+                newExpense,
+                undefined,
+                this.userData.getId()
+            );
 
-                // updejtuj userData
-                this.db.updateItem<User>(
-                    config.users_endpoint,
-                    this.userData.getId(),
-                    this.userData
-                );
-                this.expDropIsHidden = true;
-                this.expCatClicked = false;
-                // calc balance
-                this.calculateBalance();
+            // updejtuj userData
+            this.db.updateItem<User>(
+                config.users_endpoint,
+                this.userData.getId(),
+                this.userData
+            );
+            this.expDropIsHidden = true;
+            this.expCatClicked = false;
+            // calc balance
+            this.calculateBalance();
 
-                this.clearInputFields();
-            } else {
-                this.popupData = new PopupData(
-                    'Value missing',
-                    'Please specify value!'
-                );
-                this.showPopup = true;
-            }
+            this.clearInputFields();
+        } else {
+            this.popupService.openPopup(
+                'Value missing',
+                'Please specify value!'
+            );
+        }
         // } else {
         //     this.expCatClicked = true;
         // }
@@ -168,11 +158,10 @@ export class MainInputComponent implements OnInit {
 
             if (catExists) {
                 // if YES
-                this.popupData = new PopupData(
+                this.popupService.openPopup(
                     'Category exists',
                     'Category with that name exists. Please chose other name!'
                 );
-                this.showPopup = true;
             } else {
                 // if NO
                 // push new category to tmpCatArray
@@ -196,17 +185,24 @@ export class MainInputComponent implements OnInit {
                 // todo lemi
                 if (type === 'Expense') {
                     console.log(cat, this.expName, this.expValue);
-                    this.onExpenseAddClick(cat, this.expName.nativeElement.value, this.expValue.nativeElement.value);
+                    this.onExpenseAddClick(
+                        cat,
+                        this.expName.nativeElement.value,
+                        this.expValue.nativeElement.value
+                    );
                 } else if (type === 'Income') {
-                    this.onIncomeAddClick(cat, this.incName.nativeElement.value, this.incValue.nativeElement.value);
+                    this.onIncomeAddClick(
+                        cat,
+                        this.incName.nativeElement.value,
+                        this.incValue.nativeElement.value
+                    );
                 }
             }
         } else {
-            this.popupData = new PopupData(
+            this.popupService.openPopup(
                 'Value missing',
                 'Please specify category name!'
             );
-            this.showPopup = true;
         }
     }
 
@@ -219,9 +215,9 @@ export class MainInputComponent implements OnInit {
     }
 
     onCategorise(type: string) {
-        if ( type === 'inc' ) {
+        if (type === 'inc') {
             this.incCatClicked = !this.incCatClicked;
-        } else if ( type === 'exp' ) {
+        } else if (type === 'exp') {
             this.expCatClicked = !this.expCatClicked;
         }
     }

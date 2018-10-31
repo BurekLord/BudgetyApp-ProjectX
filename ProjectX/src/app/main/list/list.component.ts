@@ -12,6 +12,7 @@ import {
     Output,
     EventEmitter
 } from '@angular/core';
+import { PopupService } from '../popup/popup.service';
 
 @Component({
     selector: 'app-list',
@@ -40,9 +41,6 @@ export class ListComponent implements OnInit {
     @ViewChild('valueSort')
     valueSort: ElementRef;
 
-    @Input()
-    showPopup = false;
-    popupData: PopupData;
     showType = false;
     showDate = false;
     showCategory = false;
@@ -60,10 +58,6 @@ export class ListComponent implements OnInit {
         this.emitOnClose.emit(false);
     }
 
-    PopupEventTriggered(data) {
-        this.showPopup = data;
-    }
-
     @Input()
     set userData(value) {
         this.user = value;
@@ -77,7 +71,7 @@ export class ListComponent implements OnInit {
         this.incomes = value;
     }
 
-    constructor() {}
+    constructor(private popupService: PopupService) {}
 
     dropdownOption(option) {
         if (this.clicked === option) {
@@ -128,7 +122,7 @@ export class ListComponent implements OnInit {
         if (found) {
             return valueToMS;
         } else if (!found) {
-            this.popupData = new PopupData(
+            this.popupService.openPopup(
                 'Date not found',
                 'Please specify existing ' +
                     option +
@@ -136,7 +130,6 @@ export class ListComponent implements OnInit {
                     this.filterOptions.type +
                     '!'
             );
-            this.showPopup = true;
             input.value = null;
         }
     }
@@ -288,7 +281,6 @@ export class ListComponent implements OnInit {
         this.category = undefined;
         this.endDate = undefined;
         this.startDate = undefined;
-        this.showPopup = false;
         this.showType = false;
         this.showDate = false;
         this.showCategory = false;

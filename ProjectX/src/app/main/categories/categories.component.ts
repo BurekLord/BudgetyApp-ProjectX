@@ -15,13 +15,13 @@ import {
     Output,
     EventEmitter
 } from '@angular/core';
+import { PopupService } from '../popup/popup.service';
 @Component({
     selector: 'app-categories',
     templateUrl: './categories.component.html',
     styleUrls: ['./categories.component.scss']
 })
 export class CategoriesComponent implements OnInit, OnChanges {
-    //
     @ViewChild('expInput')
     expInput: ElementRef;
     @ViewChild('incInput')
@@ -57,28 +57,20 @@ export class CategoriesComponent implements OnInit, OnChanges {
     incBtnAddBoxShow = true;
     incAddBoxShow = false;
 
-    popupData: PopupData;
-    showPopup = false;
+    constructor(private db: DBService, private popupService: PopupService) {}
 
-    constructor(private db: DBService) {}
-
-    // openTransactions() {
-    //     this.emitOnOpen.emit(true);
+    // clearInputFields() {
+    //     this.expInput.nativeElement.value = null;
+    //     this.incInput.nativeElement.value = null;
     // }
-
-    PopupEventTriggered(data) {
-        this.showPopup = data;
-    }
-    clearInputFields() {
-        this.expInput.nativeElement.value = null;
-        this.incInput.nativeElement.value = null;
-    }
 
     // get total money spent by Category
     totalExpByCat() {
         this.expCategoryValuePairs = [];
         // temporary array with all categories
-        const tmpCatArr: string[] = this.user ? this.user.getCategoriesExp() : undefined;
+        const tmpCatArr: string[] = this.user
+            ? this.user.getCategoriesExp()
+            : undefined;
         // loop through all categories
         if (tmpCatArr) {
             tmpCatArr.forEach(cat => {
@@ -100,7 +92,9 @@ export class CategoriesComponent implements OnInit, OnChanges {
     totalIncByCat() {
         this.incCategoryValuePairs = [];
         // temporary array with all categories
-        const tmpCatArr: string[] = this.user ? this.user.getCategoriesInc() : undefined;
+        const tmpCatArr: string[] = this.user
+            ? this.user.getCategoriesInc()
+            : undefined;
         if (tmpCatArr) {
             // loop through all categories
             tmpCatArr.forEach(cat => {
@@ -169,11 +163,11 @@ export class CategoriesComponent implements OnInit, OnChanges {
                     // this.checkForDuplicate(value, type);
                     console.log(this.checkForDuplicate(value, type));
                     if (this.checkForDuplicate(value, type)) {
-                        this.popupData = new PopupData(
+                        this.popupService.openPopup(
                             'Category exists',
                             'Category with that name exists. Please chose other name!'
                         );
-                        this.showPopup = true;
+                        this.expInput.nativeElement.value = null;
                     } else {
                         if (this.user.getCategoriesExp()) {
                             this.user
@@ -194,19 +188,12 @@ export class CategoriesComponent implements OnInit, OnChanges {
                     }
                 } else if (type === 'income') {
                     if (this.checkForDuplicate(value, type)) {
-                        this.popupData = new PopupData(
+                        this.popupService.openPopup(
                             'Category exists',
                             'Category with that name exists. Please chose other name!'
                         );
-                        this.showPopup = true;
+                        this.incInput.nativeElement.value = null;
                     } else {
-                        // this.user.setCategoriesExp([]);
-                        // this.user
-                        //     .getCategoriesInc()
-                        //     .push(
-                        //         value[0].toUpperCase() +
-                        //             value.slice(1).toLowerCase()
-                        //     );
                         if (this.user.getCategoriesInc()) {
                             this.user
                                 .getCategoriesInc()
@@ -232,20 +219,16 @@ export class CategoriesComponent implements OnInit, OnChanges {
                 );
             }
         } else if (type === 'expense' && !value) {
-            this.popupData = new PopupData(
+            this.popupService.openPopup(
                 'Value missing',
                 'Please specify category name for Expense!'
             );
-            this.showPopup = true;
         } else if (type === 'income' && !value) {
-            this.popupData = new PopupData(
+            this.popupService.openPopup(
                 'Value missing',
                 'Please specify category name for Income!'
             );
-            this.showPopup = true;
         }
-
-        this.clearInputFields();
     }
 
     onFinish(type: string) {

@@ -14,7 +14,7 @@
                 <div [hidden]="!incCatClicked">
                     <div class="income-dropdown" *ngFor="let inc of userData?.getCategoriesInc()" (click)="onIncomeAddClick(inc, incName?.value, incValue?.value)">{{inc}}</div>
                     <div class="income-dropdown" (click)="newCategory()">+ {{ 'BUTTON.NEW_CATEGORY' | translate}}</div>
-                    
+
                     <div class="input-box" [ngClass]="{'hide': newCategoryCtrl}">
                         <input #incCategory type="text" name="category">
                         <button class="btn input-btn" (click)="newCategoryAdd(incCategory.value, 'Income')">{{'BUTTON.ADD'
@@ -23,7 +23,7 @@
                 </div>
             </div>
         </div>
-      
+
         <div id="g3" class="group" [ngClass]="{'hide': !incDropIsHidden}">
             <button class="btn" (click)="onExpBtn()">{{expDropIsHidden ? ('BUTTON.ADD_EXPENSE' | translate) : ('BUTTON.CANCEL' | translate)}}</button>
             <div [hidden]="expDropIsHidden">
@@ -32,9 +32,10 @@
                     <input #expName type="text" name="name">
                     <label for="value">{{'LABEL.VALUE' | translate}}</label>
                     <input #expValue type="number" name="value">
-                    <button class="btn input-btn" [ngClass]="{'invisible': expDropIsHidden && incDropIsHidden}" (click)="onCategorise('exp')">{{'LABEL.ADD_EXPENSE_TO' | translate}}</button>
+                    <button class="btn input-btn" [ngClass]="{'invisible': expDropIsHidden && incDropIsHidden}" (click)="onCategorise('exp')">{{'LABEL.ADD_EXPENSE_TO' |
+                        translate}}</button>
                 </div>
-               <div [hidden]="!expCatClicked">
+                <div [hidden]="!expCatClicked">
                     <div class="expense-dropdown" *ngFor="let exp of userData?.getCategoriesExp()" (click)="onExpenseAddClick(exp, expName?.value, expValue?.value)">{{exp}}</div>
                     <div class="expense-dropdown" (click)="newCategory()">+ {{ 'BUTTON.NEW_CATEGORY' | translate}}</div>
 
@@ -48,11 +49,10 @@
         </div>
 
     </div>
-    <app-popup *ngIf="showPopup" [popupData]="popupData" (closePopupEvent)="PopupEventTriggered($event)"></app-popup>
 
 </section>
 
-  <!-- <ng-container *ngTemplateOutlet="input"></ng-container> -->
+<!-- <ng-container *ngTemplateOutlet="input"></ng-container> -->
 <!-- <ng-template #input>
     <div id="g2" class="group">
         <label for="name">{{'LABEL.DESCRIPTION' | translate}}</label>
