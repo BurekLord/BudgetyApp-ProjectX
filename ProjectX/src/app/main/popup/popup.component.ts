@@ -1,3 +1,4 @@
+import { PopupService } from './popup.service';
 import { PopupData } from './popup.data';
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 @Component({
@@ -6,14 +7,15 @@ import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
     styleUrls: ['./popup.component.scss']
 })
 export class PopupComponent implements OnInit {
-    @Input()
-    popupData: PopupData = new PopupData();
-    @Output()
-    closePopupEvent: EventEmitter<any> = new EventEmitter();
-    constructor() {}
+    popupData: PopupData;
+
+    constructor(private popupService: PopupService) {}
+
     close() {
-        this.closePopupEvent.emit(false);
+        this.popupService.closePopup();
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.popupData = this.popupService.getPopupData();
+    }
 }

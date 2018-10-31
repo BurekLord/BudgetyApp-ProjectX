@@ -9,7 +9,8 @@
         "BALANCE_TITLE": "Balans",
         "CATEGORIES_TITLE": "Kategorije",
         "STATISTICS_TITLE": "Statistike",
-        "PROJECT": "ProjectX"
+        "PROJECT": "ProjectX",
+        "LIST": "Transakcije"
     },
     "BUTTON": {
         "ADD": "Dodaj",
@@ -23,7 +24,11 @@
         "ADD_EXPENSE": "Dodaj trošak",
         "NEW_CATEGORY": "Nova kategorija",
         "SIGN_OUT": "Izloguj se",
-        "CANCEL": "Otkaži"
+        "CANCEL": "Otkaži",
+        "RESET": "Poništi",
+        "TYPE": "Vrsta",
+        "DATE": "Datum",
+        "CATEGORY": "Kategorija"
     },
     "INPUT": {
         "SETUP_BALANCE": "Prvo unesite vaše trenutno stanje na računu...",
@@ -59,7 +64,18 @@
         "SPENT_THIS": "Novac potrosen poslednjih",
         "EARNED_THIS": "Novac zaradjen poslednjih",
         "SHOW_TRANSACTIONS": "Pregledaj sve transakcija...",
-        "HELP": "Kliknite na dodaj prihod ili dodaj trošak da pokrenete aplikaciju..."
+        "HELP": "Kliknite na dodaj prihod ili dodaj trošak da pokrenete aplikaciju...",
+        "FILTER": "Opcije prikaza",
+        "FILTER_BY": "Prikaz po:",
+        "SELECT": "Odaberi vrstu transakcije",
+        "TO": "do:",
+        "INCOME": "Prihod",
+        "EXPENSE": "Trošak",
+        "TH_DESCRIPTION": "Opis",
+        "TH_VALUE": "Vrednost",
+        "TH_CATEGORY": "Kategorija",
+        "TH_TIME": "Vreme",
+        "TH_DATE": "Datum"
     },
     "TIME_DATE": {
         "DAY": "Dan",
@@ -71,6 +87,6 @@
         "7_days": "7 dana"
     },
     "DISCLAIMER": {
-         "IN_DEVELOPMENT": "Ovo jos nije gotovo. Trenutno prikazuje samo trosak kroz vreme."
+        "IN_DEVELOPMENT": "Ovo jos nije gotovo. Trenutno prikazuje samo trosak kroz vreme."
     }
 }
