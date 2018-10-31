@@ -9,11 +9,13 @@ import {
     SimpleChanges
 } from '@angular/core';
 import { Income } from '../../models/income.model';
+import { PopupService } from './popup/popup.service';
 
 @Component({
     selector: 'app-main',
     templateUrl: './main.component.html',
-    styleUrls: ['./main.component.scss']
+    styleUrls: ['./main.component.scss'],
+    providers: [PopupService]
 })
 // in every component we use userData or userCredentials we will implement OnChanges angular life cycle hook
 export class MainComponent implements OnInit, OnChanges {
@@ -55,11 +57,12 @@ export class MainComponent implements OnInit, OnChanges {
 
     // showSetup = false;
     showLogin = true;
+    showPopup = false;
     hasBalance = false;
     hasIncomes = false;
     hasExpenses = false;
 
-    constructor() {}
+    constructor(private popupService: PopupService) {}
 
     catchEmit(eventData) {
         this.showTransactions = eventData;
@@ -68,6 +71,9 @@ export class MainComponent implements OnInit, OnChanges {
     ngOnInit() {
         // in the console we can see that onInit userData is undefined. because it is called async
         console.log('onInit user data TEST', this.userData);
+        this.popupService.open.subscribe((data: boolean) => {
+            this.showPopup = data;
+        });
     }
 
     ngOnChanges(changes: SimpleChanges) {
