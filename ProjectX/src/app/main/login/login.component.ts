@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { LoginService } from './../../../services/login.service';
+import * as firebase from 'firebase';
 
 @Component({
     selector: 'app-login',
@@ -12,4 +13,13 @@ export class LoginComponent implements OnInit {
         loginService.startLogInUI();
     }
     ngOnInit() {}
+
+    anonLogin(): Promise<any> {
+        return firebase
+            .auth()
+            .signInAnonymously()
+            .then(resp => {
+                console.log(resp);
+            });
+    }
 }
