@@ -1,7 +1,10 @@
 <!-- firebaseUI login -->
 <section class="login">
+
     <div class="firebase-login">
+
         <div class="clickbeit" [innerHTML]="'LABEL.LOGINBEIT' | translate"></div>
+        <button class="btn" (click)="anonLogin()">Try as Guest</button>
         <div id="firebaseui-auth-container"></div>
         <div id="loader">Loading...</div>
         <div class="description">
@@ -9,6 +12,7 @@
             <p [innerHtml]="'LABEL.PROJECT_DESCRIPTION' | translate">
             </p>
         </div>
+
     </div>
 </section>
 
