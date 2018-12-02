@@ -1,15 +1,10 @@
-import { Converter } from './../converters/converter';
 import { Injectable } from '@angular/core';
-import {
-    AngularFirestoreDocument,
-    AngularFirestore,
-    AngularFirestoreCollection
-} from 'angularfire2/firestore';
-
-import { Observable, forkJoin, Subject, from } from 'rxjs';
-import { map, switchMap, mergeMap } from 'rxjs/operators';
-
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { firestore } from 'firebase';
+import { forkJoin, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+import { Converter } from './../converters/converter';
 import { config } from './config';
 
 @Injectable()
@@ -50,14 +45,8 @@ export class DBService {
         this.document
             .update({ ...Converter.modelToJson<T>(update) })
             .then(
-                () =>
-                    console.log(
-                        `Document updated on ${endpoint} with id ${id}`
-                    ),
-                () =>
-                    console.error(
-                        `Document update REJECTED on ${endpoint} with id ${id}`
-                    )
+                () => {},
+                () => {}
             );
     }
 
@@ -86,15 +75,8 @@ export class DBService {
         this.document
             .delete()
             .then(
-                resolved =>
-                    console.log(
-                        `Document from ${endpoint} with id ${id} was DELETED`
-                    ),
-                rejected =>
-                    console.error(
-                        `Document from ${endpoint} with id ${id} was NOT DELETED`,
-                        rejected
-                    )
+                () => {},
+                () => {}
             );
     }
 
@@ -128,9 +110,7 @@ export class DBService {
                                 endpoint
                             );
                         })
-                        .catch(err => {
-                            console.log('No data on server or in cache', err);
-                        });
+                        .catch(err => {});
                 }
             });
     }

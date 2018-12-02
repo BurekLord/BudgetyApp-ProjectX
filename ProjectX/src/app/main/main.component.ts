@@ -70,7 +70,6 @@ export class MainComponent implements OnInit, OnChanges {
 
     ngOnInit() {
         // in the console we can see that onInit userData is undefined. because it is called async
-        console.log('onInit user data TEST', this.userData);
         this.popupService.open.subscribe((data: boolean) => {
             this.showPopup = data;
         });
@@ -79,19 +78,15 @@ export class MainComponent implements OnInit, OnChanges {
     ngOnChanges(changes: SimpleChanges) {
         if (changes._userData && changes._userData.currentValue) {
             // OnChanges is subscribed on the @Input and every time input gets new data it is called
-            console.log('On changes', changes._userData.currentValue);
             // now we have up to date current user with the latest data...
             // EVERY TIME user is changed in the database, this will be triggered
         }
 
         if (changes._userCredentials && changes._userCredentials.currentValue) {
-            console.log('On credentials changes');
             if (changes._userCredentials.currentValue.isNew) {
-                console.log('On credentials changes is new');
                 // this.showSetup = true;
                 this.showLogin = false;
             } else {
-                console.log('On credentials changes not new');
                 // this.showSetup = false;
                 this.showLogin = false;
             }

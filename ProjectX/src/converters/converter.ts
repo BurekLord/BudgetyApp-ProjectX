@@ -1,8 +1,10 @@
+import { throwError } from 'rxjs';
+
 import { Expense } from './../models/expense.model';
-import { config } from './../services/config';
 import { Income } from './../models/income.model';
 import { User } from './../models/user.model';
-import { throwError } from 'rxjs';
+import { config } from './../services/config';
+
 export class Converter {
     constructor() {}
 
@@ -49,7 +51,6 @@ export class Converter {
                 };
                 return json;
             } else if (model instanceof Expense) {
-                console.log('inconverter');
                 json = {
                     name: model.getName() ? model.getName() : null,
                     value: model.getValue() ? model.getValue() : null,
@@ -96,7 +97,9 @@ export class Converter {
                     json.name ? json.name : undefined,
                     json.value ? json.value : undefined,
                     json.category ? json.category : undefined,
-                    json.timeStamp ? new Date(json.timeStamp.seconds * 1000) : undefined,
+                    json.timeStamp
+                        ? new Date(json.timeStamp.seconds * 1000)
+                        : undefined,
                     json.userId ? json.userId : undefined
                 );
             } else if (endpoint === config.expenses_endpoint) {
@@ -104,7 +107,9 @@ export class Converter {
                     json.name ? json.name : undefined,
                     json.value ? json.value : undefined,
                     json.category ? json.category : undefined,
-                    json.timeStamp ? new Date(json.timeStamp.seconds * 1000) : undefined,
+                    json.timeStamp
+                        ? new Date(json.timeStamp.seconds * 1000)
+                        : undefined,
                     json.userId ? json.userId : undefined
                 );
             }

@@ -1,14 +1,12 @@
-import { Income } from './../models/income.model';
-import { Expense } from './../models/expense.model';
+import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+
 import { Converter } from './../converters/converter';
-import { config } from './../services/config';
 import { User } from './../models/user.model';
 import { UserCredentials } from './../models/userCredentials.model';
-import { LoginService } from './../services/login.service';
-import { Component, OnInit } from '@angular/core';
-
+import { config } from './../services/config';
 import { DBService } from './../services/db.service';
-import { TranslateService } from '@ngx-translate/core';
+import { LoginService } from './../services/login.service';
 
 @Component({
     selector: 'app-root',
@@ -52,7 +50,6 @@ export class AppComponent implements OnInit {
         // 1. LOG IN user
         this.loginService.userCredentials.subscribe(res => {
             if (res) {
-                console.log('changed user credenttials, ', res);
                 this.currUserCredentials = res;
                 // 2. get userData from be
                 this.db
