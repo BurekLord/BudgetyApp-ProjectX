@@ -53,10 +53,10 @@ body {
 }
 
 a {
+    color: $primary-blue-light;
 
     &:link,
     &:visited {
-        color: inherit;
         text-decoration: none;
         text-transform: uppercase;
         display: inline-block;
