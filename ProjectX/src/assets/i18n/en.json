@@ -28,7 +28,8 @@
         "RESET": "Reset",
         "TYPE": "Type",
         "DATE": "Date",
-        "CATEGORY": "Category"
+        "CATEGORY": "Category",
+        "TRY_AS_GUEST": "Try as guest"
     },
     "INPUT": {
         "SETUP_BALANCE": "First lets enter your current balance...",
@@ -58,7 +59,7 @@
         "DESCRIPTION": "Description",
         "CATEGORISE_THIS": "Categorise this",
         "VALUE": "Value",
-        "LOGINBEIT": "&#x2606;  START SAVING NOW!!  &#x2606;<br>Click on google or email button below<br>&darr;&darr;&darr;&darr;&darr;",
+        "LOGINBEIT": "&#x2606;  START SAVING NOW!!  &#x2606;<br>Click on google or email button below or try as a guest<br>&darr;&darr;&darr;&darr;&darr;",
         "ADD_INCOME_TO": "Add this income to a category",
         "ADD_EXPENSE_TO": "Add this expense to a category",
         "SPENT_THIS": "Money spent last",
@@ -75,7 +76,9 @@
         "TH_VALUE": "Value",
         "TH_CATEGORY": "Category",
         "TH_TIME": "Time",
-        "TH_DATE": "Date"
+        "TH_DATE": "Date",
+        "PROJECT_EXPLANATION": "We created this app using <a href=\"https://angular.io/\">Angular6</a> JavaScript framework with <a href=\"https://sass-lang.com/\">Sass</a>, CSS pre-processor.<br/>For a database we are using <a href=\"https://firebase.google.com/\">Farebase Firestore</a>.<br/>We tried to create this app using only our own solutions, but due to lack of time, there were two things that we didnt make ourselves:<br/>1) Login functionality, witch is in fact <a href=\"https://firebase.google.com/docs/auth/android/firebaseui\">FirebaseUI</a>  (with a fairly straight forward implementation process).<br/>2) <a href=\"https://developers.google.com/chart/\">Google charts</a> api witch we use for \"Statistics\" component.",
+        "EXPLANATION": "What technologies did we use to create this app?"
     },
     "TIME_DATE": {
         "DAY": "Day",
@@ -87,6 +90,6 @@
         "7_days": "7 days"
     },
     "DISCLAIMER": {
-        "IN_DEVELOPMENT": "This functionality is in development. Currently it just shows your spending over time."
+        "IN_DEVELOPMENT": "This functionality is in development. Currently not working..."
     }
 }
