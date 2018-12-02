@@ -28,7 +28,8 @@
         "RESET": "Poništi",
         "TYPE": "Vrsta",
         "DATE": "Datum",
-        "CATEGORY": "Kategorija"
+        "CATEGORY": "Kategorija",
+        "TRY_AS_GUEST": "Probaj kao gost"
     },
     "INPUT": {
         "SETUP_BALANCE": "Prvo unesite vaše trenutno stanje na računu...",
@@ -47,7 +48,7 @@
         "BALANCE_OVERTIME": "Novac potrošen ovog meseca",
         "SETTINGS_LANGUAGE": "Jezik",
         "SETTINGS_THEME": "Tema",
-        "PROJECT_DESCRIPTION": " Ovo je projekat namenjen za moju ličnu upotrebu.<br>Radi vežbe dodali smo mogućnost da ovu aplikaciju koristi vise ljudi i da svako ima svoj nalog<br>Osnovna funkcija ove aplikacije je da vodi računa o tome koliko korisnik troši i zaradjuje novca i te podatke sortira po kategorijama i vremenu.<br> Postoji još dosta funkcionalnosti koje planiramo da dodamo, ali nam se ne žuri :D<br> Hvala vam što koristite našu aplikaciju<br> MacroHardInc tim:<br>Glavni programer:) <a href='https://www.facebook.com/mile.ignjatovic.5'>Mile Ignjatovic</a><br>Onaj drugi programer: <a href='https://www.facebook.com/marko.m.misojcic'>Marko Misojcic</a><br>\"Biznis analitičar\" ... šta god to značilo ...: <a href='https://www.youtube.com/watch?v=sIFFywo_-1w'>Nenad Mijailovic</a>",
+        "PROJECT_DESCRIPTION": " Ovo je projekat namenjen za moju ličnu upotrebu.<br>Radi vežbe dodali smo mogućnost da ovu aplikaciju koristi vise ljudi i da svako ima svoj nalog<br>Osnovna funkcija ove aplikacije je da vodi računa o tome koliko korisnik troši i zaradjuje novca i te podatke sortira po kategorijama i vremenu.<br> Postoji još dosta funkcionalnosti koje planiramo da dodamo, ali nam se ne žuri :D<br> Hvala vam što koristite našu aplikaciju<br> MacroHardInc tim:<br>Glavni programer:) <a href='https://www.facebook.com/mile.ignjatovic.5'>Mile Ignjatovic</a><br>Onaj drugi programer: <a href='https://www.facebook.com/marko.m.misojcic'>Marko Misojcic</a><br>Doprineo konstruktivnom kritikom: <a href='https://www.youtube.com/watch?v=sIFFywo_-1w'>Nenad Mijailovic</a>",
         "STATISTIC_TIME_FRAME": "Vreme",
         "WELCOME": "Dobrodošli u ProjectX",
         "HEADER_TEXT": "Vodi računa o svojim parama...",
@@ -58,9 +59,9 @@
         "DESCRIPTION": "Opis",
         "CATEGORISE_THIS": "Kategorišite ovo",
         "VALUE": "Vrednost",
-        "LOGINBEIT": "&#x2606; ZAPOČNI ŠTEDNJU ODMAH!! &#x2606;<br>Klikni na google ili email dugme ispod<br>&darr;&darr;&darr;&darr;&darr;",
-        "ADD_INCOME_TO": "Dodaj ovaj prihod pod:",
-        "ADD_EXPENSE_TO": "Dodaj ovaj trosak pod:",
+        "LOGINBEIT": "&#x2606; ZAPOČNI ŠTEDNJU ODMAH!! &#x2606;<br>Klikni na google ili email dugme ispod ili udjite na sajt kao gost<br>&darr;&darr;&darr;&darr;&darr;",
+        "ADD_INCOME_TO": "Dodaj ovaj prihod pod kategoriju",
+        "ADD_EXPENSE_TO": "Dodaj ovaj trosak pod kategoriju",
         "SPENT_THIS": "Novac potrosen poslednjih",
         "EARNED_THIS": "Novac zaradjen poslednjih",
         "SHOW_TRANSACTIONS": "Pregledaj sve transakcija...",
@@ -75,7 +76,9 @@
         "TH_VALUE": "Vrednost",
         "TH_CATEGORY": "Kategorija",
         "TH_TIME": "Vreme",
-        "TH_DATE": "Datum"
+        "TH_DATE": "Datum",
+        "PROJECT_EXPLANATION": "Aplikaciju smo napravili koristeci <a href=\"https://angular.io/\">Angular6</a> JavaScript framework uz <a href=\"https://sass-lang.com/\">Sass</a>, CSS pre-processor.<br/>Za bazu podataka koristimo <a href=\"https://firebase.google.com/\">Farebase Firestore</a>.<br/>Trudili smo da sve napravimo koristeci nasa lična rešenja, ali dve stvari koje nismo sami napravili zbog manjka vremena su:<br/>1) Login funkcionalnost, koja je u stvari <a href=\"https://firebase.google.com/docs/auth/android/firebaseui\">FirebaseUI</a> gotova komponenta, čija implementacija nije mnogo komplikovana.<br/>2) <a href=\"https://developers.google.com/chart/\">Google charts</a> api koji koristimo za \"Statistika\" komponentu, ali to i dalje nismo implementirali kako treba... jer je implementacija ovog api-ja noćna mora...",
+        "EXPLANATION": "Kako smo napravili aplikaciju?"
     },
     "TIME_DATE": {
         "DAY": "Dan",
@@ -87,6 +90,6 @@
         "7_days": "7 dana"
     },
     "DISCLAIMER": {
-        "IN_DEVELOPMENT": "Ovo jos nije gotovo. Trenutno prikazuje samo trosak kroz vreme."
+        "IN_DEVELOPMENT": "Ova funkcionalnost nije u potpunosti implementirana..."
     }
 }

@@ -23,10 +23,8 @@ export class HeaderComponent implements OnInit {
         auth()
             .signOut()
             .then(function() {
-                console.log('User sign-OUT method called!');
             })
             .catch(function(error) {
-                console.log('Error happened while singing OUT!', error);
             });
         window.location.reload();
     }

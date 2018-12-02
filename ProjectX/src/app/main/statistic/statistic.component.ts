@@ -48,7 +48,6 @@ export class StatisticComponent implements OnInit, OnChanges {
         const day = date.getDay();
         const month = date.getMonth() + 1;
         const year = date.getFullYear();
-        console.log('dannnn' + day);
         return (
             day.toString() +
             '.' +
@@ -75,9 +74,7 @@ export class StatisticComponent implements OnInit, OnChanges {
             }
         });
         StatisticComponent.dailyValuesArray.forEach(el => {
-            console.log(new Date(el.time).getDate() + ' ' + el.value);
         });
-        console.log(this.setTimeFrame());
         const timeFrameArray = this.setTimeFrame();
         timeFrameArray.forEach(day => {
             let val;
@@ -101,9 +98,6 @@ export class StatisticComponent implements OnInit, OnChanges {
         for (let i = 1; i < days + 1; i++) {
             timeFrameArray.push(Date.parse(month + 1 + '/' + i + '/' + year));
         }
-        // console.log(
-        //     new Date(Date.parse(month + 1 + '/21/' + year)).toDateString()
-        // );
         return timeFrameArray;
     }
 
@@ -138,8 +132,6 @@ export class StatisticComponent implements OnInit, OnChanges {
     }
 
     drawTimeMoneyChart() {
-        console.log('DATA ARR U DRAW', this);
-        console.log('pozvan draw');
         const transformedData: any = [['Time', 'Money']];
 
         StatisticComponent.finalArr.forEach(el => {
@@ -168,7 +160,8 @@ export class StatisticComponent implements OnInit, OnChanges {
             // 'opacity' : '0.8', // ovo ne radi
             // 'colors': '[red]', // ovo baguje zbog necega
             fontSize: 15,
-            // chartArea: { // ovo kontrolise koliki je i poziciju area gde se nalazi chart. ako stavi 100% sve onda se ne vide slova sa strane
+            // chartArea: { // ovo kontrolise koliki je i poziciju area 
+            // gde se nalazi chart. ako stavi 100% sve onda se ne vide slova sa strane
             //     left: '5%',
             //     top: '15%',
             //     width: '90%',

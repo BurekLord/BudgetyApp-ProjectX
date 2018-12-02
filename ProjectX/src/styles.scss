@@ -40,7 +40,7 @@ body {
     // TODO: change font
     font-family: 'HpFont';
     font-weight: $font-slim;
-    color: $red-50;
+    color: $red-10;
     background-image: linear-gradient(to right bottom,
         rgba($primary-color-light, 1),
         rgba($primary-color, 1));
@@ -53,10 +53,10 @@ body {
 }
 
 a {
+    color: $primary-blue-light;
 
     &:link,
     &:visited {
-        color: inherit;
         text-decoration: none;
         text-transform: uppercase;
         display: inline-block;
@@ -131,7 +131,7 @@ input {
     color: $primary-color;
     border: none;
     border-bottom: 3px solid $red-400;
-    background-color: $red-10;
+    background-color: white;
     padding: .5rem;
 }
 

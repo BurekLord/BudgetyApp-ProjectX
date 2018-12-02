@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit {
             .auth()
             .signInAnonymously()
             .then(resp => {
-                console.log(resp);
             });
     }
 }

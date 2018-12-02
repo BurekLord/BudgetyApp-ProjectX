@@ -58,7 +58,6 @@ export class LoginService implements OnInit {
 
         // when user logs in
         auth().onAuthStateChanged(user => {
-            console.log('IN AUTH', user);
             if (user) {
                 // checks if the user has just singed up in so that it doesn call addUser 2x
                 let isFirstTime: boolean;
@@ -94,8 +93,6 @@ export class LoginService implements OnInit {
                 //     user.uid
                 // );
                 // }
-            } else {
-                console.log('User IS singed OUT');
             }
         });
     }

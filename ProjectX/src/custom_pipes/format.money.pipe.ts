@@ -19,7 +19,6 @@ export class FormatMoneyPipe implements PipeTransform {
         let formatedMoney = '';
         if (digits[0] === '-') {
             digits.splice(0, 1);
-            console.log(digits);
         }
         let dotPoint = digits.length - 1;
         for (let i = digits.length - 1; i > -1; i--) {

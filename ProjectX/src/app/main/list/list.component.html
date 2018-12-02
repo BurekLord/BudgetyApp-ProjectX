@@ -12,7 +12,7 @@
             <button (click)="dropdownOption('Category')">{{'BUTTON.CATEGORY' | translate}}</button>
         </div>
     </div>
-    <div #type [ngClass]="{'dropdown':!showDropdown,'showme':showDropdown}">
+    <div class="font-fix" #type [ngClass]="{'dropdown':!showDropdown,'showme':showDropdown}">
         <ul *ngIf="showType">
             <li class="li" (click)="setFilterOptions('Type','Expense');setList();dropdownOption('Type')">{{'LABEL.EXPENSE' | translate}}</li>
             <li class="li" (click)="setFilterOptions('Type','Income');setList();dropdownOption('Type')">{{'LABEL.INCOME' | translate}}</li>

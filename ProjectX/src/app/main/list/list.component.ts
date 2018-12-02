@@ -175,7 +175,6 @@ export class ListComponent implements OnInit {
             this.endDate.nativeElement.value = null;
             this.filterOptions.category = value;
         }
-        console.log(this.filterOptions);
     }
 
     setList() {

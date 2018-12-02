@@ -1,14 +1,13 @@
-import { auth } from 'firebase/app';
+import { Component, Input, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { Component, OnInit, Input } from '@angular/core';
+import { auth } from 'firebase/app';
 
 @Component({
-  selector: 'app-footer',
-  templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.scss']
+    selector: 'app-footer',
+    templateUrl: './footer.component.html',
+    styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
-
     @Input() signOutShow: boolean;
 
     constructor(public translate: TranslateService) {}
@@ -16,12 +15,8 @@ export class FooterComponent implements OnInit {
     onSignOUt() {
         auth()
             .signOut()
-            .then(function() {
-                console.log('User sign-OUT method called!');
-            })
-            .catch(function(error) {
-                console.log('Error happened while singing OUT!', error);
-            });
+            .then(function() {})
+            .catch(function(error) {});
         window.location.reload();
     }
 
@@ -33,5 +28,4 @@ export class FooterComponent implements OnInit {
     onSr() {
         this.translate.use('sr');
     }
-
 }

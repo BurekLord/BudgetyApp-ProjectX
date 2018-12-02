@@ -48,7 +48,6 @@ export class MainInputComponent implements OnInit {
     ngOnInit() {}
 
     onIncomeAddClick(inc: any, name: any, value: any) {
-        console.log('inc: any, name: any, value: any', inc, name, value);
         // if (this.incCatClicked) {
         if (value) {
             // kreireaj nov income i pretvori vrednos u pozitivnu vrednost
@@ -184,7 +183,6 @@ export class MainInputComponent implements OnInit {
                 // );
                 // todo lemi
                 if (type === 'Expense') {
-                    console.log(cat, this.expName, this.expValue);
                     this.onExpenseAddClick(
                         cat,
                         this.expName.nativeElement.value,

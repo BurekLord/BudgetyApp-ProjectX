@@ -134,7 +134,6 @@ export class CategoriesComponent implements OnInit, OnChanges {
         let tmpCatArray;
         if (type === 'expense') {
             tmpCatArray = this.user.getCategoriesExp();
-            console.log(tmpCatArray);
         } else if (type === 'income') {
             this.user.getCategoriesInc() === undefined
                 ? (tmpCatArray = [])
@@ -156,12 +155,10 @@ export class CategoriesComponent implements OnInit, OnChanges {
     }
 
     onAdd(value: string, type: string) {
-        console.log(this.user);
         if (value) {
             if (this.user) {
                 if (type === 'expense') {
                     // this.checkForDuplicate(value, type);
-                    console.log(this.checkForDuplicate(value, type));
                     if (this.checkForDuplicate(value, type)) {
                         this.popupService.openPopup(
                             'Category exists',
