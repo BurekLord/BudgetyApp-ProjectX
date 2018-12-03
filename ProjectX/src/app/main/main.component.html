@@ -17,7 +17,8 @@
     <span *ngIf="hasIncomes || hasExpenses" class="vertical-text" (click)="catchEmit(true)">
         {{'LABEL.SHOW_TRANSACTIONS' | translate}}
     </span>
-    <app-list [hidden]="!showTransactions" (emitOnClose)="catchEmit($event)" [userData]="userData" [userExpenses]="userExpenses" [userIncomes]="userIncomes"></app-list>
+    <app-list [ngClass]="{'show': showTransactions===true,'hide': showTransactions===false}" (emitOnClose)="catchEmit($event)" [userData]="userData" [userExpenses]="userExpenses"
+              [userIncomes]="userIncomes"></app-list>
     <div *ngIf="!hasBalance && !hasIncomes && !hasExpenses" class="help-box">{{'LABEL.HELP' | translate}}</div>
 </main>
 <app-popup *ngIf="showPopup"></app-popup>

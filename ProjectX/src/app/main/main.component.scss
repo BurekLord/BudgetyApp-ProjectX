@@ -1,6 +1,50 @@
 @import '../../assets/scss/mixins';
 @import '../../assets/scss/variables';
 
+.show {
+    position: absolute;
+    width: fit-content;
+    height: 100%;
+    top: 0;
+    left: 0;
+    // transform: translateX(20%);
+    background-color: rgba(58, 58, 58, 0.9);
+    z-index: 9995;
+    border-right: 1px solid #ffffff;
+    overflow: hidden;
+    transition: all .4s;
+
+    @include responsive(secondThird) {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.hide {
+    position: absolute;
+    width: fit-content;
+    height: 100%;
+    top: 0;
+    // left: -20%;
+    transform: translateX(-103%);
+    background-color: rgba(58, 58, 58, 0.9);
+    z-index: 9995;
+    border-right: 1px solid #ffffff;
+    overflow: hidden;
+    transition: all .4s;
+
+    @include responsive(second) {
+        transform: translateX(-203%);
+    }
+
+    @include responsive(secondThird) {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+    }
+}
+
 .main {
     padding: 4em;
     // define displey of type grid
@@ -63,10 +107,11 @@
         }
 
         .statistic {
-           width: 90%;
-           order: 6;
-           margin: 2rem;
+            width: 90%;
+            order: 6;
+            margin: 2rem;
         }
+
         .help-box {
             width: 90%;
             order: 3;
@@ -136,8 +181,9 @@
     // change
     background-color: $primary-color-light;
 }
+
 .vertical-text {
-    position: fixed; 
+    position: fixed;
     transform: rotate(-90deg);
     transform-origin: left center 0;
     // margin-left: 2rem;
