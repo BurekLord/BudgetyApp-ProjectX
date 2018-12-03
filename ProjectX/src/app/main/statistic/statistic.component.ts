@@ -160,12 +160,12 @@ export class StatisticComponent implements OnInit, OnChanges {
             // 'opacity' : '0.8', // ovo ne radi
             // 'colors': '[red]', // ovo baguje zbog necega
             fontSize: 15,
-            // chartArea: { // ovo kontrolise koliki je i poziciju area 
-            // gde se nalazi chart. ako stavi 100% sve onda se ne vide slova sa strane
-            //     left: '5%',
-            //     top: '15%',
+            // chartArea: {
+            //     // ovo kontrolise koliki je i poziciju area gde se nalazi chart. ako stavi 100% sve onda se ne vide slova sa strane
+            //     // left: '5%',
+            //     // top: '15%',
             //     width: '90%',
-            //     height: '75%'
+            //     height: '85%'
             // },
             // curveType: 'function', // dal ce bude cik cak ili kurv
             hAxis: {
@@ -197,7 +197,7 @@ export class StatisticComponent implements OnInit, OnChanges {
                 }
             },
             explorer: {
-                // keepInBounds: true,
+                keepInBounds: true
             } // ovo je da moze da se zum i pan
             // theme: 'maximized',
         };
