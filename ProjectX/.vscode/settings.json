@@ -7,5 +7,5 @@
     "typescriptHero.imports.multiLineWrapThreshold": 180,
     "editor.wrappingIndent": "indent",
     "html.format.wrapAttributes": "aligned-multiple",
-    "window.zoomLevel": 1
+    "window.zoomLevel": 0
 }

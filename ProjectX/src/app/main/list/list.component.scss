@@ -11,6 +11,7 @@
     z-index: 9995;
     border-right: 1px solid #ffffff;
     overflow: hidden;
+    transition: all .4s;
 
     @include responsive(secondThird) {
         position: fixed;
@@ -18,6 +19,8 @@
         height: 100%;
     }
 }
+
+
 
 .title {
     padding: 1rem;
