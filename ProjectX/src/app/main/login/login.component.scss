@@ -1,3 +1,5 @@
+@import '../../../assets/scss/mixins';
+
 .login {
     min-height: 80vh;
     display: flex;
@@ -40,7 +42,11 @@
     }
 
     .guest-btn {
-        font-size: 2rem;
+        @include responsive(second) {
+            font-size: 2rem;
+           
+        }
+        font-size: 1.5rem;
         line-height: 1.9;
         padding: 0.5rem 3rem;
     }
