@@ -22,6 +22,14 @@ html {
     @include responsive(secondThird) {
         font-size: 62.5%;
     }
+
+    @include responsive(fourth) {
+        font-size: 52.5%;
+    }
+
+    @include responsive(fifth) {
+        font-size: 45%;
+    }
 }
 
 @font-face {

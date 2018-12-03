@@ -187,7 +187,7 @@
 .list-show {
     opacity: 1;
     height: auto;
-    max-height: 80%;
+    max-height: 70vh;
     width: fit-content;
     padding: 1rem;
     margin: 1rem;
@@ -195,12 +195,8 @@
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1), 0px 0px 8px rgba(0, 0, 0, 0.1),
         0px 0px 11px rgba(0, 0, 0, 0.1);
     border-radius: 0.5rem;
-    overflow-y: hidden;
+    overflow-y: scroll;
     transition: opacity 0.5s, max-height 0.5s;
-
-    &:hover {
-        overflow-y: scroll;
-    }
 }
 
 .list-item {
