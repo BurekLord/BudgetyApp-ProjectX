@@ -1,11 +1,11 @@
-import { PopupData } from './../popup/popup.data';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+
+import { Expense } from '../../../models/expense.model';
+import { Income } from '../../../models/income.model';
+import { User } from '../../../models/user.model';
+import { PopupService } from '../popup/popup.service';
 import { config } from './../../../services/config';
 import { DBService } from './../../../services/db.service';
-import { User } from '../../../models/user.model';
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
-import { Income } from '../../../models/income.model';
-import { Expense } from '../../../models/expense.model';
-import { PopupService } from '../popup/popup.service';
 
 @Component({
     selector: 'app-main-input',
@@ -251,7 +251,7 @@ export class MainInputComponent implements OnInit {
         this.expCatClicked = false;
     }
 
-    calculateBalance() {
+    public calculateBalance() {
         this.db.joinIncomeAndExpens(this.userData.getId()).subscribe(res => {
             // add them into one arr
             const data = [];

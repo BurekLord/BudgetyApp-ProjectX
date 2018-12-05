@@ -1,14 +1,10 @@
-import { Expense } from './../../models/expense.model';
-import { UserCredentials } from './../../models/userCredentials.model';
-import { User } from './../../models/user.model';
-import {
-    Component,
-    OnInit,
-    Input,
-    OnChanges,
-    SimpleChanges
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+
 import { Income } from '../../models/income.model';
+import { Expense } from './../../models/expense.model';
+import { User } from './../../models/user.model';
+import { UserCredentials } from './../../models/userCredentials.model';
+import { MainInputComponent } from './main-input.component/main-input.component';
 import { PopupService } from './popup/popup.service';
 
 @Component({
@@ -19,6 +15,7 @@ import { PopupService } from './popup/popup.service';
 })
 // in every component we use userData or userCredentials we will implement OnChanges angular life cycle hook
 export class MainComponent implements OnInit, OnChanges {
+    @ViewChild('mainInputComponent') mainInputComponent: MainInputComponent;
     userCredentials: UserCredentials;
     userData: User;
     userExpenses: Expense[];
@@ -52,6 +49,8 @@ export class MainComponent implements OnInit, OnChanges {
         }
     }
 
+    @Output() refreshUser: EventEmitter<boolean> = new EventEmitter();
+
     currentUser: User;
     showTransactions = false;
 
@@ -70,8 +69,9 @@ export class MainComponent implements OnInit, OnChanges {
 
     ngOnInit() {
         // in the console we can see that onInit userData is undefined. because it is called async
-        this.popupService.open.subscribe((data: boolean) => {
-            this.showPopup = data;
+        this.popupService.open.subscribe((data: any) => {
+            this.refreshUser.emit(data.refreshUser);
+            this.showPopup = data.showPopup;
         });
     }
 

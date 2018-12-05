@@ -1,7 +1,18 @@
 <div (click)="close()" class="popup">
     <div class="msg_box">
-        <div><span>{{ popupData.title}}</span></div>
+        <div>
+            <span>{{ popupData.title }}</span>
+        </div>
         <p>{{ popupData.message }}</p>
-        <button class="btn" (click)="close()">OK</button>
+        <div class="flex">
+            <button class="btn" (click)="close(true)">OK</button>
+            <button
+                class="btn"
+                *ngIf="popupData.options"
+                (click)="close(false)"
+            >
+                Cancel
+            </button>
+        </div>
     </div>
 </div>

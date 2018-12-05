@@ -73,7 +73,7 @@ export class Converter {
         return json;
     }
 
-    static jsonToModel(json: any, endpoint: string) {
+    static jsonToModel(json: any, endpoint: string, id?: string) {
         if (json) {
             if (endpoint === config.users_endpoint) {
                 return new User(
@@ -100,7 +100,8 @@ export class Converter {
                     json.timeStamp
                         ? new Date(json.timeStamp.seconds * 1000)
                         : undefined,
-                    json.userId ? json.userId : undefined
+                    json.userId ? json.userId : undefined,
+                    id
                 );
             } else if (endpoint === config.expenses_endpoint) {
                 return new Expense(
@@ -110,7 +111,8 @@ export class Converter {
                     json.timeStamp
                         ? new Date(json.timeStamp.seconds * 1000)
                         : undefined,
-                    json.userId ? json.userId : undefined
+                    json.userId ? json.userId : undefined,
+                    id
                 );
             }
         }
@@ -119,7 +121,7 @@ export class Converter {
     static jsonToModelList(json: any[], endpoint: string) {
         const models = [];
         json.forEach(el => {
-            models.push(this.jsonToModel(el.data(), endpoint));
+            models.push(this.jsonToModel(el.data(), endpoint, el.id));
         });
         return models;
     }

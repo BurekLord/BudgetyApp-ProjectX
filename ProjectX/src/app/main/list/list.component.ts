@@ -1,18 +1,9 @@
-import { element } from 'protractor';
-import { PopupData } from './../popup/popup.data';
-import { Income } from './../../../models/income.model';
-import { Expense } from './../../../models/expense.model';
-import { User } from './../../../models/user.model';
-import {
-    Component,
-    OnInit,
-    Input,
-    ElementRef,
-    ViewChild,
-    Output,
-    EventEmitter
-} from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+
 import { PopupService } from '../popup/popup.service';
+import { Expense } from './../../../models/expense.model';
+import { Income } from './../../../models/income.model';
+import { User } from './../../../models/user.model';
 
 @Component({
     selector: 'app-list',
@@ -72,6 +63,15 @@ export class ListComponent implements OnInit {
     }
 
     constructor(private popupService: PopupService) {}
+
+    selectItem(item: Expense | Income) {
+        this.popupService.openPopup('Delete this item?', undefined, item);
+        this.popupService.open.subscribe((data: any) => {
+            if (data.refreshUser) {
+                this.list.splice(this.list.indexOf(item), 1);
+            }
+        });
+    }
 
     dropdownOption(option) {
         if (this.clicked === option) {

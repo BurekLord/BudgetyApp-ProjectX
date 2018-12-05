@@ -1,6 +1,8 @@
-import { PopupService } from './popup.service';
+import { Component, OnInit } from '@angular/core';
+
 import { PopupData } from './popup.data';
-import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+import { PopupService } from './popup.service';
+
 @Component({
     selector: 'app-popup',
     templateUrl: './popup.component.html',
@@ -11,8 +13,8 @@ export class PopupComponent implements OnInit {
 
     constructor(private popupService: PopupService) {}
 
-    close() {
-        this.popupService.closePopup();
+    close(truOrFols: boolean) {
+        this.popupService.closePopup(truOrFols);
     }
 
     ngOnInit() {

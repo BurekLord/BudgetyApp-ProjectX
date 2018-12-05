@@ -5,6 +5,8 @@
         [signOutShow]="signOutVal()"
     ></app-header>
     <app-main
+        #mainComponent
+        (refreshUser)="reloadUserData($event)"
         style="padding-bottom: 10rem;"
         [_userData]="currUserData"
         [_userCredentials]="currUserCredentials"

@@ -6,19 +6,38 @@ export class Expense {
     private category: string;
     private timeStamp: Date;
     private userId: string;
+    private id: string;
 
     constructor(
         name: string,
         value: number,
         category: string,
         timeStamp: Date,
-        userId: string
+        userId: string,
+        id?: string
     ) {
         this.name = name;
         this.value = value;
         this.category = category;
         this.timeStamp = timeStamp;
         this.userId = userId;
+        this.id = id;
+    }
+
+    /**
+     * Getter id
+     * @return {string}
+     */
+    public getId(): string {
+        return this.id;
+    }
+
+    /**
+     * Setter id
+     * @param {string} value
+     */
+    public setId(value: string) {
+        this.id = value;
     }
 
     /**
